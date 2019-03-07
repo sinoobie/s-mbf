@@ -6,7 +6,7 @@ recode? ok, but don't delete this note:)
 Special thanks to: Derray
 '''
 from threading import Thread
-from requests import post, get
+from requests import post
 import os
 os.system('clear')
 
