@@ -1,5 +1,9 @@
 # s-mbf
-Simple multi bruteforce facebook by KANG-NEWBIE
+Simple multi bruteforce facebook by KANG-NEWBIE<br>
+# Update:
+- V.2.0<br>
+ fix bug
+
 # installation
 $ apt update && apt upgrade<br>$ pkg install python<br>$ pkg install git<br>$ git clone https://github.com/KANG-NEWBIE/s-mbf<br>$ pip install requests<br>$ cd s-mbf<br>$ python embf.py<br>
 <h1>Note:</h1>
