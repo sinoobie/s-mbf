@@ -68,7 +68,7 @@ print("\n%s[LIVE RESULT]:"%(c))
 o=[]
 for x in file:
     o.append(x)
-p=ThreadPool(5)
+p=ThreadPool(50)
 p.map(main,o)
 
 if 'yeah' in str(tap) or 'notbad' in str(cek):
