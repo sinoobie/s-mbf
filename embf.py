@@ -120,7 +120,6 @@ def main(arg):
                         tulis="{}\n".format(live)
                         f=open('result/live.txt','a').write(tulis)
                         print("%s[%sfound%s]%s %s -> %s"%(c,g,c,w,arg,pas))
-                        f.close()
                 elif 'checkpoint' in str(respData):
                         true='notbad'
                         cek.append(true)
@@ -132,10 +131,9 @@ def main(arg):
                         wrt="{}\n".format(CP)
                         f=open('result/live.txt','a').write(wrt)
                         print("%s[%sCpoint%s]%s %s -> %s"%(c,y,c,w,arg,pas))
-                        f.close()
                 else:
                         print("%s[%snot%s]%s %s"%(c,r,c,w,arg))
-	except KeyboardInterrupt:
+	except:
 		pass
 
 print(banner)
