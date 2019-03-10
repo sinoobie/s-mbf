@@ -54,7 +54,7 @@ def getFid():
 		exit("[!] Key interrupt: Stoped.")
 	except KeyError:
 		os.remove('dump/friends_id.txt')
-                exit('[!] failed to fetch friend id')
+		exit('[!] failed to fetch friend id')
 
 def getGid():
 	print(banner)
@@ -96,7 +96,7 @@ def getGid():
 		exit("[!] Key interrupt: Stoped.")
 	except KeyError:
 		os.remove('dump/group_id.txt')
-                exit('[!] failed to fetch friend id')
+		exit('[!] failed to fetch friend id')
 cek=[]
 tap=[]
 def main(arg):
