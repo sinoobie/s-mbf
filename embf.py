@@ -30,9 +30,9 @@ def getFid():
 		for i in s['friends']['data']:
 			b.write(i['id'] + '\n')
 			print('\r[*] %s retrieved'%(i['id'])),;sys.stdout.flush();time.sleep(0.0001)
-		b.close()
-		print('\r[*] all friends idsuccessfuly retreived')
+		print('\n\r[!] all friends id successfuly retreived')
 		print("[!] file saved: dump/friends_id.txt")
+		b.close()
 		exit()
 	except IOError:
 		try:
@@ -72,9 +72,9 @@ def getGid():
 		for i in s['data']:
 			b.write(i['id'] + '\n')
 			print('\r[*] %s retrieved'%(i['id'])),;sys.stdout.flush();time.sleep(0.0001)
-		b.close()
-		print('\r[*] all friends idsuccessfuly retreived')
+		print('\n\r[!] '+limit+' members id successfuly retreived')
 		print("[!] file saved: dump/group_id.txt")
+		b.close()
 		exit()
 	except IOError:
 		try:
