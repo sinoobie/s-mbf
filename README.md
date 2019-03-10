@@ -1,8 +1,10 @@
 # s-mbf
 Simple multi bruteforce facebook by KANG-NEWBIE<br>
 # Update:
+- v.3.0<br>
+Add new feature: dump id from friends id and dump id from group id<br>
 - V.2.0<br>
- fix bug
+Fix bug
 
 # installation
 $ apt update && apt upgrade<br>$ pkg install python<br>$ pkg install git<br>$ git clone https://github.com/KANG-NEWBIE/s-mbf<br>$ pip install requests<br>$ cd s-mbf<br>$ python embf.py<br>
