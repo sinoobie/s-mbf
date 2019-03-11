@@ -18,6 +18,8 @@ def getFid():
 	print(banner)
 	try:
 		os.mkdir('toket')
+	except OSError: pass
+	try:
 		os.mkdir('dump')
 	except OSError: pass
 	try:
@@ -59,6 +61,8 @@ def getGid():
 	print(banner)
 	try:
 		os.mkdir('toket')
+	except OSError: pass
+	try:
 		os.mkdir('dump')
 	except OSError: pass
 	try:
