@@ -97,6 +97,16 @@ def getGid():
 	except KeyError:
 		os.remove('dump/group_'+id+'_id.txt')
 		exit('[!] failed to fetch friend id')
+
+def rmtoken():
+	ques=input("\n[?] are you sure (y/n) ")
+	if ques == 'n' or ques == 'N':
+		exit("[!] Canceling")
+	elif ques == 'y' or ques == 'Y':
+		os.remove('toket/token.txt')
+		exit("[!] success removed access token")
+	else: exit("[!] wrong input: exit")
+
 cek=[]
 tap=[]
 def main(arg):
@@ -137,17 +147,19 @@ def main(arg):
 		pass
 
 print(banner)
-print("\t[1] start \n\t[2] dump id from your friends id \n\t[3] dump id from your group id")
+print("\t[1] start \n\t[2] dump id from your friends id \n\t[3] dump id from your group id \n\t[4] remove access token")
 pilih=int(input('\n\t[!] choose your option: '))
-if pilih != 2 or pilih != 3:
-	os.system('clear')
-	print(banner)
 if pilih == 2:
 	os.system('clear')
 	getFid()
 elif pilih == 3:
 	os.system('clear')
 	getGid()
+elif pilih == 4:
+	rmtoken()
+else:
+	os.system('clear')
+	print(banner)
 
 try:
         file=open(input("[in] Id List Target: ")).read().splitlines()
