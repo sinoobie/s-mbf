@@ -9,12 +9,11 @@ c="\033[36m"
 y="\033[33m"
 #banner
 banner=("""%s
-   _____            __    __  ______  ____
-  / __(_)_ _  ___  / /__ /  |/  / _ )/ __/
- _\ \/ /  ' \/ _ \/ / -_) /|_/ / _  / _/
-/___/_/_/_/_/ .__/_/\__/_/  /_/____/_/ %sv.3%s
-           /_/ 		%sAuthor:KANG-NEWBIE%s
-"""%(c,y,c,g,w))
+   _____ __  ______  ____
+  / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
+ _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
+/___/_/_/  /_/____/_/     %sversion: %s3.0%s
+"""%(c,g,c,g,c,g,y,w))
 def getFid():
 	print(banner)
 	try:
