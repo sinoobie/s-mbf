@@ -95,7 +95,7 @@ def getGid():
 		exit("[!] Key interrupt: Stoped.")
 	except KeyError:
 		os.remove('dump/group_'+id+'_id.txt')
-		exit('[!] failed to fetch friend id')
+		exit('[!] failed to fetch group id')
 
 def rmtoken():
 	ques=input("\n[?] are you sure (y/n) ")
