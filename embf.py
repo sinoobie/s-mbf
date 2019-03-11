@@ -22,16 +22,16 @@ def getFid():
 		os.mkdir('dump')
 	except OSError: pass
 	try:
-		b=open('dump/friends_id.txt','w')
 		toket=open('toket/token.txt','r').read()
 		id=input("[in] your friends id: ")
+		b=open('dump/friends_'+id+'_id.txt','w')
 		re=requests.get('https://graph.facebook.com/'+id+'?fields=friends.limit(5000)&access_token='+toket)
 		s=json.loads(re.text)
 		for i in s['friends']['data']:
 			b.write(i['id'] + '\n')
 			print('\r[*] %s retrieved'%(i['id'])),;sys.stdout.flush();time.sleep(0.0001)
 		print('\n\r[!] all friends id successfuly retreived')
-		print("[!] file saved: dump/friends_id.txt")
+		print("[!] file saved: dump/friends_%s_id.txt"%(id))
 		b.close()
 		exit()
 	except IOError:
@@ -53,7 +53,7 @@ def getFid():
 	except KeyboardInterrupt:
 		exit("[!] Key interrupt: Stoped.")
 	except KeyError:
-		os.remove('dump/friends_id.txt')
+		os.remove('dump/friends_'+id+'_id.txt')
 		exit('[!] failed to fetch friend id')
 
 def getGid():
@@ -63,17 +63,17 @@ def getGid():
 		os.mkdir('dump')
 	except OSError: pass
 	try:
-		b=open('dump/group_id.txt','w')
 		toket=open('toket/token.txt','r').read()
 		id=input("[in] your groups id: ")
 		limit=input("[in] how much id: ")
+		b=open('dump/group_'+id+'_id.txt','w')
 		re=requests.get('https://graph.facebook.com/'+id+'/members?fields=id&limit='+limit+'&access_token='+toket)
 		s=json.loads(re.text)
 		for i in s['data']:
 			b.write(i['id'] + '\n')
 			print('\r[*] %s retrieved'%(i['id'])),;sys.stdout.flush();time.sleep(0.0001)
 		print('\n\r[!] '+limit+' members id successfuly retreived')
-		print("[!] file saved: dump/group_id.txt")
+		print("[!] file saved: dump/group_%s_id.txt"%(id))
 		b.close()
 		exit()
 	except IOError:
@@ -95,7 +95,7 @@ def getGid():
 	except KeyboardInterrupt:
 		exit("[!] Key interrupt: Stoped.")
 	except KeyError:
-		os.remove('dump/group_id.txt')
+		os.remove('dump/group_'+id+'_id.txt')
 		exit('[!] failed to fetch friend id')
 cek=[]
 tap=[]
