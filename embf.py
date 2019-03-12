@@ -105,11 +105,11 @@ def update():
 	import subprocess as sp
 	print("\n[!] checking update..")
 	os.system('cd;rm -rf s-mbf')
-	sp.call('git clone https://github.com/KANG-NEWBIE/s-mbf',shell=True, stdout=sp.DEVNULL, stderr=sp.STDOUT)
+	sp.call('cd;git clone https://github.com/KANG-NEWBIE/s-mbf',shell=True, stdout=sp.DEVNULL, stderr=sp.STDOUT)
 	os.system('clear')
 	print("[!] Restarting Program...")
 	time.sleep(2.5)
-	os.system('cd s-mbf;python embf.py')
+	os.system('cd ../s-mbf;python embf.py')
 
 cek=[]
 tap=[]
