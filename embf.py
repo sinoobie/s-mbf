@@ -14,9 +14,7 @@ banner=("""%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
 /___/_/_/  /_/____/_/     %sversion: %s3.0%s
 """%(c,g,c,g,c,g,y,w))
-print("[!] Checking update")
-os.system('git pull')
-time.sleep(3)
+
 try:
 	toket=open('toket/token.txt')
 	toket.close()
@@ -103,6 +101,16 @@ def rmtoken():
 		exit("[!] success removed access token")
 	else: exit("[!] wrong input: exit")
 
+def update():
+	import subprocess as sp
+	print("\n[!] checking update..")
+	os.system('cd;rm -rf s-mbf')
+	sp.call('cd;git clone https://github.com/KANG-NEWBIE/s-mbf',shell=True, stdout=sp.DEVNULL, stderr=sp.STDOUT)
+	os.system('clear')
+	print("[!] Restarting Program...")
+	time.sleep(2.5)
+	os.system('cd ../s-mbf;python embf.py')
+
 cek=[]
 tap=[]
 def main(arg):
@@ -147,7 +155,7 @@ def main(arg):
 
 os.system('clear')
 print(banner)
-print("\t[1] start \n\t[2] dump id from your friends id \n\t[3] dump id from your group id \n\t[4] remove access token")
+print("\t[1] start\n\t[2] dump id from your friends id\n\t[3] dump id from your group id\n\t[4] remove access token\n\t[5] check update")
 pilih=int(input('\n\t[!] choose your option: '))
 if pilih == 2:
 	os.system('clear')
@@ -157,6 +165,8 @@ elif pilih == 3:
 	getGid()
 elif pilih == 4:
 	rmtoken()
+elif pilih == 5:
+	update()
 else:
 	os.system('clear')
 	print(banner)
