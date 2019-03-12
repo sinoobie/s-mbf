@@ -1,6 +1,6 @@
 from multiprocessing.pool import ThreadPool
 import urllib.parse, os, requests, sys, json, time, hashlib
-os.system('clear')
+
 #color
 r="\033[31m"
 g="\033[32m"
