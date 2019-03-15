@@ -12,7 +12,7 @@ banner=("""%s
    _____ __  ______  ____
   / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
-/___/_/_/  /_/____/_/     %sversion: %s3.0%s
+/___/_/_/  /_/____/_/     %sversion: %s3.5%s
 """%(c,g,c,g,c,g,y,w))
 
 try:
@@ -155,7 +155,7 @@ def main(arg):
 
 os.system('clear')
 print(banner)
-print("\t[1] start\n\t[2] dump id from your friends id\n\t[3] dump id from your group id\n\t[4] remove access token\n\t[5] check update")
+print("\t[1] start\n\t[2] dump id from your friends id\n\t[3] dump id from your group id\n\t[4] remove access token\n\t[5] spam comment facebook\n\t[0] check update")
 pilih=int(input('\n\t[!] choose your option: '))
 if pilih == 2:
 	os.system('clear')
@@ -166,6 +166,9 @@ elif pilih == 3:
 elif pilih == 4:
 	rmtoken()
 elif pilih == 5:
+	os.system('python komen.py')
+	exit()
+elif pilih == 0:
 	update()
 else:
 	os.system('clear')
