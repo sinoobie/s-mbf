@@ -25,32 +25,39 @@ try:
 	if msg == '':
 		exit("[!] you stupid")
 	ms=msg.replace('<n>','\n')
+	id1=[]
 	def main(arg):
-		global ms,toket
-		par = {'access_token' : toket, 'message' : ms}
-		pt=requests.post('https://graph.facebook.com/'+arg+'/comments',data=par)
-		post=json.loads(pt.text)
-#		print(post)
-		if 'error' in str(post):
-			print("[Error] maybe you are blocked from leaving comments")
-		else:
-			print('[+] ['+arg+'] commented')
-
+		requs=requests.get('https://graph.facebook.com/'+arg+'/feed?limit=2&access_token='+toket)
+		res=json.loads(requs.text)
+		for i in res['data']:
+			id1.append(i['id'])
+			print("[get] %s"%(i['id']))
 	id=[]
 	toket=open('toket/token.txt','r').read()
 	req = requests.get('https://graph.facebook.com/me/groups?access_token='+toket)
 	result = json.loads(req.text)
 	for i in result['data']:
-		requs=requests.get('https://graph.facebook.com/'+i['id']+'/feed?limit=1&access_token='+toket)
-		res=json.loads(requs.text)
-		for i in res['data']:
-			id.append(i['id'])
-			print("[get] %s"%(i['id']))
-	print("[!] Start.")
-	time.sleep(2)
-	os.system('clear')
-	T=ThreadPool(10)
+		id.append(i['id'])
+	T=ThreadPool(5)
 	T.map(main,id)
+	
+	print("[!] start.")
+	time.sleep(3)
+	os.system('clear')
+	le=len(id1)
+	co=int(1)
+	while co < le:
+		for i in range(le):
+			par = {'access_token' : toket, 'message' : ms}
+			pt=requests.post('https://graph.facebook.com/'+str(id1[i])+'/comments',data=par)
+			post=json.loads(pt.text)
+			if 'error' in str(post):
+				print("[Error] maybe you are blocked from leaving comments")
+			else:
+				print('[+] ['+str(id1[i])+'] commented')
+			co+=1
+			print("[!] sleep 30 second")
+			time.sleep(30)
 	print("[^•^] done")
-except Exception as F:
+except Ecxeption as F:
 	exit("\n[Error] %s"%(F))
