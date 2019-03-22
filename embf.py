@@ -145,7 +145,7 @@ def main(arg):
                         print("%s[%sCpoint%s]%s %s -> %s"%(c,y,c,w,arg,pas))
                         f.close()
                 else:
-                        print("\r%s[%snot%s]%s %s"%(c,r,c,w,arg)),;sys.stdout.flush()
+                        print("%s[%snot%s]%s %s"%(c,r,c,w,arg))
         except: pass
 
 os.system('clear')
