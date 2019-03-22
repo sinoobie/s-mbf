@@ -15,7 +15,7 @@ banner=("""%s
    _____ __  ______  ____
   / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
-/___/_/_/  /_/____/_/     %sversion: %s4.0%s
+/___/_/_/  /_/____/_/     %sversion: %s4.5%s
 """%(c,g,c,g,c,g,y,w))
 
 try:
