@@ -59,5 +59,5 @@ try:
 			print("[!] sleep 30 second")
 			time.sleep(30)
 	print("[^•^] done")
-except Ecxeption as F:
+except Exception as F:
 	exit("\n[Error] %s"%(F))
