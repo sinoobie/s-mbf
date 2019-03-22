@@ -1,9 +1,15 @@
+#!usr/bin/python3.7
+#Author: KANG-NEWBIE
+#contact: t.me/kang_nuubi
+#github: github.com/kang-newbie
 try:
 	from multiprocessing.pool import ThreadPool
 	import os, requests, sys, json, time, hashlib, random
 except Exception as F:
 	exit("[ModuleErr] %s"%(F))
 
+if sys.version[0] in '2':
+	exit("[sorry] use python version 3")
 #color
 r="\033[31m"
 g="\033[32m"
@@ -15,7 +21,7 @@ banner=("""%s
    _____ __  ______  ____
   / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
-/___/_/_/  /_/____/_/     %sversion: %s4.5%s
+/___/_/_/  /_/____/_/     %sversion: %s5.0%s
 """%(c,g,c,g,c,g,y,w))
 
 try:
@@ -46,6 +52,8 @@ except IOError:
 			exit()
 		except (KeyboardInterrupt,EOFError):
 			exit("\n[!] Key interrupt: exit.")
+		except Exception as F:
+			exit("[Error] %s"%(F))
 
 def getFid():
 	print(banner)
@@ -150,7 +158,7 @@ def main(arg):
 
 os.system('clear')
 print(banner)
-print("\t[1] start\n\t[2] dump id from your friends id\n\t[3] dump id from your group id\n\t[4] remove access token\n\t[5] spam comment facebook\n\t[6] mass group spam comment\n\t[0] check update")
+print("\t[1] start\n\t[2] dump id from your friends id\n\t[3] dump id from your group id\n\t[4] remove access token\n\t[5] home comment facebook\n\t[6] mass group comment\n\t[7] specific target comments\n\t[0] check update")
 pilih=int(input('\n\t[!] choose your option: '))
 if pilih == 2:
 	os.system('clear')
@@ -161,15 +169,18 @@ elif pilih == 3:
 elif pilih == 4:
 	rmtoken()
 elif pilih == 5:
-	os.system('python src/komen.py')
+	os.system('python3 src/komen.py')
 	exit()
 elif pilih == 6:
-	os.system('python src/Gkomen.py')
+	os.system('python3 src/Gkomen.py')
+	exit()
+elif pilih == 7:
+	os.system('python3 src/Tkomen.py')
 	exit()
 elif pilih == 0:
 	print("\n[!] Checking update")
 	rr=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
-	if 'v.5.0' in str(rr) or 'v.5.5' in str(rr):
+	if 'v.5.5' in str(rr) or 'v.6.0' in str(rr):
 		update()
 	else: exit("[!] already up to date")
 else:
