@@ -105,7 +105,7 @@ def rmtoken():
 	else: exit("[!] wrong input: exit")
 
 def update():
-	print("\n[!] checking update..")
+	print("[!] updating...")
 	os.system('cd;rm -rf s-mbf')
 	os.system('cd;git clone https://github.com/KANG-NEWBIE/s-mbf')
 	exit()
@@ -167,10 +167,11 @@ elif pilih == 6:
 	os.system('python src/Gkomen.py')
 	exit()
 elif pilih == 0:
+	print("\n[!] Checking update")
 	rr=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
-	if 'v.4.5' in str(rr) or 'v.5.0' in str(rr):
+	if 'v.5.0' in str(rr) or 'v.5.5' in str(rr):
 		update()
-	else: exit("\n[!] already up to date")
+	else: exit("[!] already up to date")
 else:
 	os.system('clear')
 	print(banner)
