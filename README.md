@@ -1,6 +1,8 @@
 # s-mbf
 Simple multi bruteforce facebook by KANG-NEWBIE<br>
 # Update:
+- v.4.5<br>
+optimize and fix bug
 - v.4.0<br>
 Add mass group spam comment
 - v.3.5<br>
