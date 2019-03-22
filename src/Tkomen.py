@@ -36,8 +36,11 @@ try:
 		par = {'access_token' : toket, 'message' : ms}
 		pt=requests.post('https://graph.facebook.com/'+tr+'/comments',data=par)
 		post=json.loads(pt.text)
+#		print(pt.text)
 		if 'error' in str(post):
 			print('['+str(co)+'] Err: an error occurred')
+		elif 'true' in pt.text:
+			exit("[Err] the link must be the same as the example")
 		else:
 			print('['+str(co)+'] successfully comments')
 		co+=1
