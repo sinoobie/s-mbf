@@ -1,12 +1,14 @@
 # s-mbf
 Simple multi bruteforce facebook by KANG-NEWBIE<br>
 # Update:
+- v.5.0
+Add specific target comments
 - v.4.5<br>
 optimize and fix bug
 - v.4.0<br>
-Add mass group spam comment
+Add mass group comment
 - v.3.5<br>
-Add spam comment facebook
+Add home comment facebook
 - v.3.0<br>
 Add new feature: dump id from friends id and dump id from group id<br>
 - V.2.0<br>
