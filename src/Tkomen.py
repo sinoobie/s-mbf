@@ -20,8 +20,8 @@ try:
                                          """)
 	os.system('clear')
 	print(banner)
-	print("[ex] https://www.facebook.com/100009256XXXXX/posts/223037817XXXXX/?app=fbl")
-	tr=input("[?] target link: ").replace('https://www.facebook.com/','').replace('/posts/','_').replace('/?app=fbl','')
+	print("[ex] https://www.facebook.com/100009256XXXXX/posts/223037817XXXXX")
+	tr=input("[?] target link: ").replace('https://www.facebook.com/','').replace('/posts/','_')
 	print("\n[info] type '<n>' for newlines")
 	msg=input("[?] comment: ")
 	if msg == '':
