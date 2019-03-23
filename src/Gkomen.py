@@ -45,9 +45,10 @@ try:
 	time.sleep(3)
 	os.system('clear')
 	le=len(id1)
-	co=int(1)
+	co=int(0)
 	while co < le:
 		for i in range(le):
+			co+=1
 			par = {'access_token' : toket, 'message' : ms}
 			pt=requests.post('https://graph.facebook.com/'+str(id1[i])+'/comments',data=par)
 			post=json.loads(pt.text)
@@ -55,9 +56,10 @@ try:
 				print("[Error] maybe you are blocked from leaving comments")
 			else:
 				print('[+] ['+str(id1[i])+'] commented')
-			co+=1
-			print("[!] sleep 30 second")
-			time.sleep(30)
+			if co == le:
+				break
+			print("[!] sleep 60 second")
+			time.sleep(60)
 	print("[^•^] done")
 except Exception as F:
 	exit("\n[Error] %s"%(F))
