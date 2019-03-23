@@ -21,7 +21,7 @@ banner=("""%s
    _____ __  ______  ____
   / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
-/___/_/_/  /_/____/_/     %sversion: %s5.0%s
+/___/_/_/  /_/____/_/     %sversion: %s5.5%s
 """%(c,g,c,g,c,g,y,w))
 
 try:
@@ -158,7 +158,15 @@ def main(arg):
 
 os.system('clear')
 print(banner)
-print("\t[1] start\n\t[2] dump id from your friends id\n\t[3] dump id from your group id\n\t[4] remove access token\n\t[5] home comment facebook\n\t[6] mass group comment\n\t[7] specific target comments\n\t[0] check update")
+print("""\t[1] start
+\t[2] dump id from your friends id
+\t[3] dump id from your group id
+\t[4] remove access token
+\t[5] home comment facebook
+\t[6] mass group comment
+\t[7] specific target comments
+\t[8] specific react comments
+\t[0] check update""")
 pilih=int(input('\n\t[!] choose your option: '))
 if pilih == 2:
 	os.system('clear')
@@ -177,10 +185,13 @@ elif pilih == 6:
 elif pilih == 7:
 	os.system('python3 src/Tkomen.py')
 	exit()
+elif pilih == 8:
+	os.system('python3 src/Kreact.py')
+	exit()
 elif pilih == 0:
 	print("\n[!] Checking update")
 	rr=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
-	if 'v.5.5' in str(rr) or 'v.6.0' in str(rr):
+	if 'v.6.0' in str(rr) or 'v.6.5' in str(rr):
 		update()
 	else: exit("[!] already up to date")
 else:
