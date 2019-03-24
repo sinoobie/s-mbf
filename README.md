@@ -1,6 +1,8 @@
 # s-mbf
 Simple multi bruteforce facebook by KANG-NEWBIE<br>
 # Update:
+- v.6.0<br>
+Add accept all friends requests
 - v.5.5<br>
 Add specific reaction comments
 - v.5.0<br>
