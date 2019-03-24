@@ -21,7 +21,7 @@ banner=("""%s
    _____ __  ______  ____
   / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
-/___/_/_/  /_/____/_/     %sversion: %s5.5%s
+/___/_/_/  /_/____/_/     %sversion: %s6.0%s
 """%(c,g,c,g,c,g,y,w))
 
 try:
@@ -166,6 +166,7 @@ print("""\t[1] start
 \t[6] mass group comment
 \t[7] specific target comments
 \t[8] specific react comments
+\t[9] accept all friends requests
 \t[0] check update""")
 pilih=int(input('\n\t[!] choose your option: '))
 if pilih == 2:
@@ -187,6 +188,9 @@ elif pilih == 7:
 	exit()
 elif pilih == 8:
 	os.system('python3 src/Kreact.py')
+	exit()
+elif pilih == 9:
+	os.system('python3 src/Facc.py')
 	exit()
 elif pilih == 0:
 	print("\n[!] Checking update")
