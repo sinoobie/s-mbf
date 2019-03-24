@@ -21,7 +21,7 @@ banner=("""%s
    _____ __  ______  ____
   / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
-/___/_/_/  /_/____/_/     %sversion: %s6.0%s
+/___/_/_/  /_/____/_/     %sversion: %s6.5%s
 """%(c,g,c,g,c,g,y,w))
 
 try:
@@ -167,7 +167,8 @@ print("""\t[1] start
 \t[7] specific target comments
 \t[8] specific react comments
 \t[9] accept all friends requests
-\t[0] check update""")
+\t[10] auto add friends from target id
+\t[00] check update""")
 pilih=int(input('\n\t[!] choose your option: '))
 if pilih == 2:
 	os.system('clear')
@@ -178,24 +179,27 @@ elif pilih == 3:
 elif pilih == 4:
 	rmtoken()
 elif pilih == 5:
-	os.system('python3 src/komen.py')
+	os.system('python src/komen.py')
 	exit()
 elif pilih == 6:
-	os.system('python3 src/Gkomen.py')
+	os.system('python src/Gkomen.py')
 	exit()
 elif pilih == 7:
-	os.system('python3 src/Tkomen.py')
+	os.system('python src/Tkomen.py')
 	exit()
 elif pilih == 8:
-	os.system('python3 src/Kreact.py')
+	os.system('python src/Kreact.py')
 	exit()
 elif pilih == 9:
-	os.system('python3 src/Facc.py')
+	os.system('python src/Facc.py')
 	exit()
-elif pilih == 0:
+elif pilih == 10:
+	os.system('python src/Fadd.py')
+	exit()
+elif pilih == 00 or pilih == 0:
 	print("\n[!] Checking update")
 	rr=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
-	if 'v.6.5' in str(rr) or 'v.7.0' in str(rr):
+	if 'v.7.0' in str(rr) or 'v.7.5' in str(rr):
 		update()
 	else: exit("[!] already up to date")
 else:
