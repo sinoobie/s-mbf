@@ -1,16 +1,14 @@
 # s-mbf
 Simple multi bruteforce facebook by KANG-NEWBIE<br>
 # Update:
+- v.6.5<br>
+Add auto add friends from target id
 - v.6.0<br>
 Add accept all friends requests
 - v.5.5<br>
 Add specific reaction comments
 - v.5.0<br>
 Add specific target comments
-- v.4.5<br>
-optimize and fix bug
-- v.4.0<br>
-Add mass group comment
 
 # installation
 $ apt update && apt upgrade<br>$ pkg install python<br>$ pkg install git<br>$ git clone https://github.com/KANG-NEWBIE/s-mbf<br>$ python -m pip install requests<br>$ cd s-mbf<br>$ python embf.py<br>
