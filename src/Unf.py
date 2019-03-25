@@ -32,8 +32,6 @@ try:
 \t          [By : KANG-NEWBIE]
 """)
 		year=input("[?] YEAR: ")
-		if '' in year:
-			exit()
 		fl=un().flist(toket)
 		for i in fl:
 			name=i['name']
