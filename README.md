@@ -1,6 +1,8 @@
 # s-mbf
 Simple multi bruteforce facebook by KANG-NEWBIE<br>
 # Update:
+- v.7.0<br>
+Add facebook auto unfriends
 - v.6.5<br>
 Add auto add friends from target id
 - v.6.0<br>
