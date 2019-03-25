@@ -21,7 +21,7 @@ banner=("""%s
    _____ __  ______  ____
   / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
-/___/_/_/  /_/____/_/     %sversion: %s6.5%s
+/___/_/_/  /_/____/_/     %sversion: %s7.0%s
 """%(c,g,c,g,c,g,y,w))
 
 try:
@@ -158,18 +158,19 @@ def main(arg):
 
 os.system('clear')
 print(banner)
-print("""\t[1] start
-\t[2] dump id from your friends id
-\t[3] dump id from your group id
-\t[4] remove access token
-\t[5] home comment facebook
-\t[6] mass group comment
-\t[7] specific target comments
-\t[8] specific react comments
-\t[9] accept all friends requests
+print("""\t[01] start
+\t[02] dump id from your friends id
+\t[03] dump id from your group id
+\t[04] remove access token
+\t[05] facebook home comments
+\t[06] mass group comment
+\t[07] specific target comments
+\t[08] specific react comments
+\t[09] accept all friends requests
 \t[10] auto add friends from target id
+\t[11] facebook auto unfriends
 \t[00] check update""")
-pilih=int(input('\n\t[!] choose your option: '))
+pilih=int(input('\n\t[#] kang-newbie/> '))
 if pilih == 2:
 	os.system('clear')
 	getFid()
@@ -196,10 +197,13 @@ elif pilih == 9:
 elif pilih == 10:
 	os.system('python src/Fadd.py')
 	exit()
+elif pilih == 11:
+	os.system('python src/Unf.py')
+	exit()
 elif pilih == 00 or pilih == 0:
 	print("\n[!] Checking update")
 	rr=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
-	if 'v.7.0' in str(rr) or 'v.7.5' in str(rr):
+	if 'v.7.5' in str(rr) or 'v.8.0' in str(rr):
 		update()
 	else: exit("[!] already up to date")
 else:
