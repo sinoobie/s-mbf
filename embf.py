@@ -161,7 +161,7 @@ print(banner)
 print("""\t[01] Start
 \t[02] Dump id from your friends id
 \t[03] Dump id from your group id
-\t[04] Demove access token
+\t[04] Remove access token
 \t[05] Facebook home comments
 \t[06] Mass group comment
 \t[07] Specific target comments
