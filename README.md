@@ -1,6 +1,8 @@
 # s-mbf
 Simple multi bruteforce facebook by KANG-NEWBIE<br>
 # Update:
+- v.8.0<br
+Add Facebook chat spammer
 - v.7.5<br>
 Add mass auto reactions
 - v.7.0<br>
@@ -9,10 +11,6 @@ Add facebook auto unfriends
 Add auto add friends from target id
 - v.6.0<br>
 Add accept all friends requests
-- v.5.5<br>
-Add specific reaction comments
-- v.5.0<br>
-Add specific target comments
 
 # installation
 $ apt update && apt upgrade<br>$ pkg install python<br>$ pkg install git<br>$ git clone https://github.com/KANG-NEWBIE/s-mbf<br>$ python -m pip install requests<br>$ cd s-mbf<br>$ python embf.py<br>
