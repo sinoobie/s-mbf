@@ -21,7 +21,7 @@ banner=("""%s
    _____ __  ______  ____
   / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
-/___/_/_/  /_/____/_/     %sversion: %s7.5%s
+/___/_/_/  /_/____/_/     %sversion: %s8.0%s
 """%(c,g,c,g,c,g,y,w))
 
 try:
@@ -158,19 +158,20 @@ def main(arg):
 
 os.system('clear')
 print(banner)
-print("""\t[01] start
-\t[02] dump id from your friends id
-\t[03] dump id from your group id
-\t[04] remove access token
-\t[05] facebook home comments
-\t[06] mass group comment
-\t[07] specific target comments
-\t[08] specific react comments
-\t[09] accept all friends requests
-\t[10] auto add friends from target id
-\t[11] facebook auto unfriends
-\t[12] mass auto reactions
-\t[00] check update""")
+print("""\t[01] Start
+\t[02] Dump id from your friends id
+\t[03] Dump id from your group id
+\t[04] Demove access token
+\t[05] Facebook home comments
+\t[06] Mass group comment
+\t[07] Specific target comments
+\t[08] Specific react comments
+\t[09] Accept all friends requests
+\t[10] Auto add friends from target id
+\t[11] Facebook auto unfriends
+\t[12] Mass auto reactions
+\t[13] Facebook chat spammer
+\t[00] Check update""")
 pilih=int(input('\n\t[#] kang-newbie/> '))
 if pilih == 2:
 	os.system('clear')
@@ -205,10 +206,13 @@ elif pilih == 12:
 	input("[info] before use this module you must have a lot accounts [press enter to continue]")
 	os.system('python src/Mreact.py')
 	exit()
-elif pilih == 00 or pilih == 0:
+elif pilih == 13:
+	os.system('python src/Cspam.py')
+	exit()
+elif pilih == 0:
 	print("\n[!] Checking update")
 	rr=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
-	if 'v.8.0' in str(rr) or 'v.8.5' in str(rr):
+	if 'v.8.5' in str(rr) or 'v.9.0' in str(rr):
 		update()
 	else: exit("[!] already up to date")
 else:
