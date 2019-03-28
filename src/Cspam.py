@@ -41,7 +41,7 @@ try:
 		js=json.loads(re)
 		for i in js['friends']['data']:
 			send(i['id'],msg,1)
-			print(i['id'])
+#			print(i['id'])
 
 	os.system('clear')
 	print("""
@@ -53,18 +53,20 @@ try:
 """)
 	pil = int(input("/kang-newbie_> "))
 	if pil == 1:
-		usr=input("[?] username: ")
+		usr=input("\n[?] username: ")
 		pws=input("[?] password: ")
-		msg=input("[?] message : ")
+		print("\n[Info] type '<n>' for newlines")
+		msg=input("[?] message : ").replace('<n>','\n')
 		id=input("[?] target id: ")
 		lop=input("[?] looping : ")
 		print()
 		login(usr,pws)
 		send(id,msg,lop)
 	elif pil == 2:
-		usr=input("[?] username: ")
+		usr=input("\n[?] username: ")
 		pws=input("[?] password: ")
-		msg=input("[?] message : ")
+		print("\n[Info] type '<n>' for newlines")
+		msg=input("[?] message : ").replace('<n>','\n')
 		limit=input("[?] how many: ")
 		login(usr,pws)
 		getid(msg,limit)
