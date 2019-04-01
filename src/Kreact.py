@@ -43,7 +43,7 @@ try:
 		ct+=1
 
 	lih=int(input("/kang-newbie_> "))
-	ree=requests.get('https://graph.facebook.com/v3.2/'+str(ids[lih-1])+'/comments?access_token='+ken)
+	ree=requests.get('https://graph.facebook.com/v3.2/'+str(ids[lih-1])+'/comments?limit=5000&access_token='+ken)
 	jso=json.loads(ree.text)
 	print("""\n\t[react]
 1. Like \t4.Wow
