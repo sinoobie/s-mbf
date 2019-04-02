@@ -21,7 +21,7 @@ banner=("""%s
    _____ __  ______  ____
   / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
-/___/_/_/  /_/____/_/     %sversion: %s8.5%s"""%(c,g,c,g,c,g,y,w))
+/___/_/_/  /_/____/_/     %sversion: %s9.0%s"""%(c,g,c,g,c,g,y,w))
 
 try:
 	toket=open('toket/token.txt')
@@ -180,6 +180,7 @@ try:
 [12]> Mass auto reactions
 [13]> Mass auto subscribe
 [14]> Facebook chat spammer
+[15]> Auto posting status
 [00]> Check update"""%(y,name,w))
 except (KeyError,NameError): pass
 
@@ -224,10 +225,13 @@ elif pilih == 13:
 elif pilih == 14:
 	os.system('python src/Cspam.py')
 	exit()
+elif pilih == 15:
+	os.system('python src/Apost.py')
+	exit()
 elif pilih == 0:
 	print("\n[!] Checking update")
 	rr=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
-	if 'v.9.0' in str(rr) or 'v.9.5' in str(rr):
+	if 'v.9.5' in str(rr) or 'v.10.0' in str(rr):
 		update()
 	else: exit("[!] already up to date")
 else:
