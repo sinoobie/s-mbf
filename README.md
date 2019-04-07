@@ -1,6 +1,8 @@
 # s-mbf
 Simple multi bruteforce facebook by KANG-NEWBIE<br>
 # Update:
+- v.9.5<br>
+Add mass auto report
 - v.9.0<br>
 Add auto posting status
 - v.8.5<br>
