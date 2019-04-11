@@ -260,8 +260,8 @@ if len(file) == 0:
 	exit("%s[!] File empty\n"%(r))
 if 'yeah' in str(tap) or 'notbad' in str(cek):
         print("\nFound ["+str(len(tap))+"] CheckPoint ["+str(len(cek))+"]")
-if str(len(tap)) > 0:
+if len(tap) > 0:
 	print("found result saved: result/found.txt")
-if str(len(cek)) > 0:
+if len(cek) > 0:
 	print("check result saved: result/cek.txt")
 else: print("[ %s:(%s ] nothing found"%(y,w))
