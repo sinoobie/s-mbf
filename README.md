@@ -1,6 +1,8 @@
 # s-mbf
-Simple multi bruteforce facebook by KANG-NEWBIE<br>
+Simple Multi BruteForce by KANG-NEWBIE<br>
 # Update:
+- v.1.0 (v.10)<br>
+Add facebook dump mail and simple multi bruteforce EMAIL
 - v.9.5<br>
 Add mass auto report
 - v.9.0<br>
