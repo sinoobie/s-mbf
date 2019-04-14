@@ -11,17 +11,17 @@ except Exception as F:
 if sys.version[0] in '2':
 	exit("[sorry] use python version 3")
 #color
-r="\033[31m"
-g="\033[32m"
-w="\033[1;37m"
-c="\033[36m"
-y="\033[33m"
+r="\033[91m"
+g="\033[92m"
+w="\033[97m"
+c="\033[96m"
+y="\033[93m"
 #banner
 banner=("""%s
    _____ __  ______  ____
   / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
-/___/_/_/  /_/____/_/     %sversion: %s9.5%s"""%(c,g,c,g,c,g,y,w))
+/___/_/_/  /_/____/_/     %sversion: %s1.0%s"""%(c,g,c,g,c,g,c,w))
 
 try:
 	toket=open('toket/token.txt')
@@ -182,6 +182,8 @@ try:
 [14]> Facebook chat spammer
 [15]> Auto posting status
 [16]> Mass Auto Report
+[17]> Facebook dump email
+[18]> Simple multi bruteforce EMAIL
 [00]> Check update"""%(y,name,w))
 except (KeyError,NameError): pass
 
@@ -232,10 +234,16 @@ elif pilih == 15:
 elif pilih == 16:
 	os.system('python src/Mreport.py')
 	exit()
+elif pilih == 17:
+	os.system('python src/Edump.py')
+	exit()
+elif pilih == 18:
+	os.system('python src/Ebrute.py')
+	exit()
 elif pilih == 0:
 	print("\n[!] Checking update")
 	rr=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
-	if 'v.1.0' in str(rr) or 'v.1.1' in str(rr):
+	if 'v.1.1' in str(rr) or 'v.1.2' in str(rr):
 		update()
 	else: exit("[!] already up to date")
 else:
