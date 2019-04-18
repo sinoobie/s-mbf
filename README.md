@@ -1,7 +1,9 @@
 # s-mbf
 Simple Multi BruteForce by KANG-NEWBIE<br>
 # Update:
-- v.1.0 (v.10)<br>
+- v.1.1<br>
+Optimize module number 1,2,3,5 and 6
+- v.1.0<br>
 Add facebook dump mail and simple multi bruteforce EMAIL
 - v.9.5<br>
 Add mass auto report
@@ -12,14 +14,6 @@ Optimize<br>
 Add mass auto subscribe
 - v.8.0<br>
 Add Facebook chat spammer
-- v.7.5<br>
-Add mass auto reactions
-- v.7.0<br>
-Add facebook auto unfriends
-- v.6.5<br>
-Add auto add friends from target id
-- v.6.0<br>
-Add accept all friends requests
 
 # installation
 $ apt update && apt upgrade<br>$ pkg install python<br>$ pkg install git<br>$ git clone https://github.com/KANG-NEWBIE/s-mbf<br>$ cd s-mbf<br>$ python -m pip install -r req.txt<br>$ python embf.py<br>
