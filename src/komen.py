@@ -41,7 +41,7 @@ try:
 	result = json.loads(req.text)
 	for i in result['home']['data']:
 		id.append(i['id'])
-		print('\r[get] %s  '%(i['id']))
+		print('\r[get] %s  '%(i['id']),end=''),;sys.stdout.flush();time.sleep(0.01)
 	print("[!] Start.")
 	time.sleep(2)
 	os.system('clear')
