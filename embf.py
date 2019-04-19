@@ -56,7 +56,6 @@ except IOError:
 			exit("[Error] %s"%(F))
 
 def getFid():
-	global toket
 	print(banner)
 	try:
 		os.mkdir('dump')
@@ -80,7 +79,6 @@ def getFid():
 		exit('[!] failed to fetch friend id')
 
 def getGid():
-	global toket
 	print(banner)
 	try:
 		os.mkdir('dump')
