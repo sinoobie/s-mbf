@@ -38,7 +38,7 @@ except IOError:
 			x = hashlib.new('md5')
 			x.update(sig)
 			data.update({'sig':x.hexdigest()})
-			requ=requests.get('https://api.facebook.com/restserver.php',params=data)
+			requ=requests.get('https://api.facebook.com/restserver.php',params=data,headers={'User-Agent':'Opera/9.80 (Android; Opera Mini/32.0.2254/85. U; id) Presto/2.12.423 Version/12.16'})
 			res=requ.json()['access_token']
 			o=open('toket/token.txt','w')
 			o.write(res)
