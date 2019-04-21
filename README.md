@@ -1,6 +1,8 @@
 # s-mbf
 Simple Multi BruteForce by KANG-NEWBIE<br>
 # Update:
+- v.1.2<br>
+Optimize module number 14
 - v.1.1<br>
 Optimize module number 1,2,3,5 and 6
 - v.1.0<br>
@@ -16,6 +18,14 @@ Add mass auto subscribe
 Add Facebook chat spammer
 
 # installation
-$ apt update && apt upgrade<br>$ pkg install python<br>$ pkg install git<br>$ git clone https://github.com/KANG-NEWBIE/s-mbf<br>$ cd s-mbf<br>$ python -m pip install -r req.txt<br>$ python embf.py<br>
+'''
+$ apt update && apt upgrade
+$ pkg install python
+$ pkg install git
+$ git clone https://github.com/KANG-NEWBIE/s-mbf
+$ cd s-mbf
+$ python -m pip install -r req.txt
+$ python embf.py
+'''
 <h1>Note:</h1>
 Special thanks to Derray. And check my other repository <a href="https://github.com/KANG-NEWBIE?tab=repositories">here</a>
