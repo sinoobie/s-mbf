@@ -28,4 +28,4 @@ $ python -m pip install -r req.txt
 $ python embf.py
 ```
 <h1>Note:</h1>
-Special thanks to Derray. And check my other repository <a href="https://github.com/KANG-NEWBIE?tab=repositories">here</a>
+Check my other repository <a href="https://github.com/KANG-NEWBIE?tab=repositories">here</a>
