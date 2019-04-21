@@ -4,12 +4,18 @@
 #github: github.com/kang-newbie
 try:
 	from multiprocessing.pool import ThreadPool
-	import os, requests, sys, json, time, hashlib, random
+	import os, requests, sys, json, time, hashlib, random, shutil
 except Exception as F:
 	exit("[ModuleErr] %s"%(F))
 
 if sys.version[0] in '2':
 	exit("[sorry] use python version 3")
+
+#remove cache
+try:
+	shutil.rmtree("src/__pycache__")
+except: pass
+
 #color
 r="\033[91m"
 g="\033[92m"
@@ -21,7 +27,7 @@ banner=("""%s
    _____ __  ______  ____
   / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
-/___/_/_/  /_/____/_/     %sversion: %s1.1%s"""%(c,g,c,g,c,g,c,w))
+/___/_/_/  /_/____/_/     %sversion: %s1.2%s"""%(c,g,c,g,c,g,c,w))
 
 try:
 	toket=open('toket/token.txt')
@@ -160,6 +166,8 @@ try:
 	name=nam.json()['name']
 except KeyError:
 	print("\n[Warning] access token invalid. type '4' to remove access token")
+except requests.exceptions.RequestException:
+	exit("\n[Err] Check your internet connection")
 try:
 	print("""\t[ Welcome %s%s%s ]
 
@@ -194,53 +202,53 @@ elif pilih == 3:
 elif pilih == 4:
 	rmtoken()
 elif pilih == 5:
-	os.system('python src/komen.py')
+	import src.komen
 	exit()
 elif pilih == 6:
-	os.system('python src/Gkomen.py')
+	import src.Gkomen
 	exit()
 elif pilih == 7:
-	os.system('python src/Tkomen.py')
+	import src.Tkomen
 	exit()
 elif pilih == 8:
-	os.system('python src/Kreact.py')
+	import src.Kreact
 	exit()
 elif pilih == 9:
-	os.system('python src/Facc.py')
+	import src.Facc
 	exit()
 elif pilih == 10:
-	os.system('python src/Fadd.py')
+	import src.Fadd
 	exit()
 elif pilih == 11:
-	os.system('python src/Unf.py')
+	import src.Unf
 	exit()
 elif pilih == 12:
 	input("[info] before use this module you must have a lot accounts [press enter to continue]")
-	os.system('python src/Mreact.py')
+	import src.Mreact
 	exit()
 elif pilih == 13:
 	input("[Info] before use this module you must have a lot accounts [press enter]")
-	os.system('python src/Asubs.py')
+	import src.Asubs
 	exit()
 elif pilih == 14:
-	os.system('python src/Cspam.py')
+	import src.Cspam
 	exit()
 elif pilih == 15:
-	os.system('python src/Apost.py')
+	import src.Apost
 	exit()
 elif pilih == 16:
-	os.system('python src/Mreport.py')
+	import src.Mreport
 	exit()
 elif pilih == 17:
-	os.system('python src/Edump.py')
+	import src.Edump
 	exit()
 elif pilih == 18:
-	os.system('python src/Ebrute.py')
+	import src.Ebrute
 	exit()
 elif pilih == 0:
 	print("\n[!] Checking update")
 	rr=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
-	if 'v.1.2' in str(rr):
+	if 'v.1.3' in str(rr):
 		update()
 	else: exit("[!] already up to date")
 else:
