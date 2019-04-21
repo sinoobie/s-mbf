@@ -18,7 +18,7 @@ Add mass auto subscribe
 Add Facebook chat spammer
 
 # installation
-'''
+```
 $ apt update && apt upgrade
 $ pkg install python
 $ pkg install git
@@ -26,6 +26,6 @@ $ git clone https://github.com/KANG-NEWBIE/s-mbf
 $ cd s-mbf
 $ python -m pip install -r req.txt
 $ python embf.py
-'''
+```
 <h1>Note:</h1>
 Special thanks to Derray. And check my other repository <a href="https://github.com/KANG-NEWBIE?tab=repositories">here</a>
