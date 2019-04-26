@@ -27,7 +27,7 @@ banner=("""%s
    _____ __  ______  ____
   / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
-/___/_/_/  /_/____/_/     %sversion: %s1.2%s"""%(c,g,c,g,c,g,c,w))
+/___/_/_/  /_/____/_/     %sversion: %s1.3%s"""%(c,g,c,g,c,g,c,w))
 
 try:
 	toket=open('toket/token.txt')
@@ -108,13 +108,30 @@ def getGid():
 		exit('[!] failed to fetch group id')
 
 def rmtoken():
-	ques=input("\n[?] are you sure (y/n) ")
-	if ques == 'n' or ques == 'N':
-		exit("[!] Canceling")
-	elif ques == 'y' or ques == 'Y':
-		os.remove('toket/token.txt')
-		exit("[!] success removed access token")
-	else: exit("[!] wrong input: exit")
+	print("""
+1. remove access token
+2. remove cookies
+""")
+	pilihan=int(input("/kang-newbie_> "))
+	if pilihan == 1:
+		ques=input("\n[?] are you sure (y/n) ")
+		if ques == 'n' or ques == 'N':
+			exit("[!] Canceling")
+		elif ques == 'y' or ques == 'Y':
+			os.remove('toket/token.txt')
+			exit("[!] success removed access token")
+		else: exit("[!] wrong input: exit")
+	elif pilihan == 2:
+		ques=input("\n[?] are you sure (y/n) ")
+		if ques == 'n' or ques == 'N':
+			exit("[!] Canceling")
+		elif ques == 'y' or ques == 'Y':
+			try:
+				os.remove('toket/kue.txt')
+			except FileNotFoundError: exit("[?] cookies not found")
+			exit("[!] success removed cookies")
+		else: exit("[!] wrong input: exit")
+	else: exit("[exit] wrong input")
 
 def update():
 	print("[!] updating...")
@@ -174,7 +191,7 @@ try:
 [01]> Simple multi bruteforce facebook
 [02]> Dump id from your friends id
 [03]> Dump id from your group id
-[04]> Remove access token
+[04]> Remove access token/cookies
 [05]> Facebook home comments
 [06]> Mass group comment
 [07]> Auto comments target
@@ -248,7 +265,7 @@ elif pilih == 18:
 elif pilih == 0:
 	print("\n[!] Checking update")
 	rr=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
-	if 'v.1.3' in str(rr):
+	if 'v.1.4' in str(rr):
 		update()
 	else: exit("[!] already up to date")
 else:
