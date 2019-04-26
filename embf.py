@@ -189,8 +189,8 @@ try:
 	print("""\t[ Welcome %s%s%s ]
 
 [01]> Simple multi bruteforce facebook
-[02]> Dump id from your friends id
-[03]> Dump id from your group id
+[02]> Dump id from your friends
+[03]> Dump id from your group
 [04]> Remove access token/cookies
 [05]> Facebook home comments
 [06]> Mass group comment
@@ -200,12 +200,12 @@ try:
 [10]> Auto add friends from target id
 [11]> Facebook auto unfriends
 [12]> Mass auto reactions
-[13]> Mass auto subscribe
+[13]> Mass auto follow
 [14]> Facebook chat spammer
 [15]> Auto posting status
 [16]> Mass Auto Report
 [17]> Facebook dump email
-[18]> Simple multi bruteforce EMAIL
+[18]> Multi bruteforce EMAIL (BETA)
 [00]> Check update"""%(y,name,w))
 except (KeyError,NameError): pass
 
