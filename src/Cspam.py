@@ -40,11 +40,12 @@ try:
 
 	def send(id,msg,lop):
 		try:
+			print()
 			cjs = kuki('toket/kue.txt')
 			cjs.load()
 			br.set_cookiejar(cjs)
 			for i in range(int(lop)):
-				print("[+] sending messages to "+id)
+				print("[!] sending messages to "+id)
 				br.open('https://mbasic.facebook.com/messages/thread/'+id+'/')
 				br.form = list(br.forms())[1]
 				control = br.form.find_control("body")
@@ -52,9 +53,12 @@ try:
 					if control.type == "submit":
 						control.disabled = True
 				br["body"]=msg
-				br.submit()
+				snd=br.submit().read()
+				if 'send_success' in str(snd):
+					print('[+] succes')
+				else: print('[-] failed')
 		except IndexError:
-			print("[!] fail send messages to "+id)
+			print("[!] error when sending a message to",id)
 
 	def getid(msg,limit):
 		ket=open('toket/token.txt','r').read()

