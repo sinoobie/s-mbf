@@ -27,7 +27,7 @@ banner=("""%s
    _____ __  ______  ____
   / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
  _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
-/___/_/_/  /_/____/_/     %sversion: %s1.3%s"""%(c,g,c,g,c,g,c,w))
+/___/_/_/  /_/____/_/     %sversion: %s1.4%s"""%(c,g,c,g,c,g,c,w))
 
 try:
 	toket=open('toket/token.txt')
@@ -118,7 +118,7 @@ def rmtoken():
 		if ques == 'n' or ques == 'N':
 			exit("[!] Canceling")
 		elif ques == 'y' or ques == 'Y':
-			os.remove('toket/token.txt')
+			os.remove('toket/token.txt');os.remove('toket/kue.txt')
 			exit("[!] success removed access token")
 		else: exit("[!] wrong input: exit")
 	elif pilihan == 2:
@@ -141,6 +141,7 @@ def update():
 
 cek=[]
 tap=[]
+crk=[]
 def main(arg):
         try:
                 url='https://mbasic.facebook.com/login'
@@ -172,7 +173,8 @@ def main(arg):
                         f=open('result/cek.txt','a')
                         f.write(wrt)
                         f.close()
-                print("\r%s[%scrack%s]%s >>  %s  F[%s] CP[%s] << "%(c,r,c,w,arg,len(tap),len(cek)),end=''),;sys.stdout.flush()
+                crk.append(arg)
+                print("\r%s[%scrack%s]%s >>  %s/%s  F[%s] CP[%s] <<  "%(c,r,c,w,len(crk),len(o),len(tap),len(cek)),end=''),;sys.stdout.flush()
         except: pass
 
 os.system('clear')
@@ -181,8 +183,12 @@ try:
 	toket=open('toket/token.txt','r').read()
 	nam=requests.get('https://graph.facebook.com/me/?access_token='+toket)
 	name=nam.json()['name']
+
+	requp=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
+	if 'v.1.5' in str(requp):
+		print('\n%sNew version available update your s-mbf now!%s'%(y,w))
 except KeyError:
-	print("\n[Warning] access token invalid. type '4' to remove access token")
+	print("\n[Warning] access token invalid. type '5' to remove access token")
 except requests.exceptions.RequestException:
 	exit("\n[Err] Check your internet connection")
 try:
@@ -191,21 +197,22 @@ try:
 [01]> Simple multi bruteforce facebook
 [02]> Dump id from your friends
 [03]> Dump id from your group
-[04]> Remove access token/cookies
-[05]> Facebook home comments
-[06]> Mass group comment
-[07]> Auto comments target
-[08]> Auto react comments target
-[09]> Accept all friends requests
-[10]> Auto add friends from target id
-[11]> Facebook auto unfriends
-[12]> Mass auto reactions
-[13]> Mass auto follow
-[14]> Facebook chat spammer
-[15]> Auto posting status
-[16]> Mass Auto Report
-[17]> Facebook dump email
-[18]> Multi bruteforce EMAIL (BETA)
+[04]> Dump id with search name
+[05]> Remove access token/cookies
+[06]> Facebook home comments
+[07]> Mass group comment
+[08]> Auto comments target
+[09]> Auto react comments target
+[10]> Accept all friends requests
+[11]> Auto add friends from target id
+[12]> Facebook auto unfriends
+[13]> Mass auto reactions
+[14]> Mass auto follow
+[15]> Facebook chat spammer
+[16]> Auto posting status
+[17]> Mass Auto Report
+[18]> Facebook dump email
+[19]> Multi bruteforce EMAIL (BETA)
 [00]> Check update"""%(y,name,w))
 except (KeyError,NameError): pass
 
@@ -217,55 +224,58 @@ elif pilih == 3:
 	os.system('clear')
 	getGid()
 elif pilih == 4:
-	rmtoken()
+	os.system('python3 src/DumpS.py')
+	exit()
 elif pilih == 5:
+	rmtoken()
+elif pilih == 6:
 	import src.komen
 	exit()
-elif pilih == 6:
+elif pilih == 7:
 	import src.Gkomen
 	exit()
-elif pilih == 7:
+elif pilih == 8:
 	import src.Tkomen
 	exit()
-elif pilih == 8:
+elif pilih == 9:
 	import src.Kreact
 	exit()
-elif pilih == 9:
+elif pilih == 10:
 	import src.Facc
 	exit()
-elif pilih == 10:
+elif pilih == 11:
 	import src.Fadd
 	exit()
-elif pilih == 11:
+elif pilih == 12:
 	import src.Unf
 	exit()
-elif pilih == 12:
+elif pilih == 13:
 	input("[info] before use this module you must have a lot accounts [press enter to continue]")
 	import src.Mreact
 	exit()
-elif pilih == 13:
+elif pilih == 14:
 	input("[Info] before use this module you must have a lot accounts [press enter]")
 	import src.Asubs
 	exit()
-elif pilih == 14:
+elif pilih == 15:
 	import src.Cspam
 	exit()
-elif pilih == 15:
+elif pilih == 16:
 	import src.Apost
 	exit()
-elif pilih == 16:
+elif pilih == 17:
 	import src.Mreport
 	exit()
-elif pilih == 17:
+elif pilih == 18:
 	import src.Edump
 	exit()
-elif pilih == 18:
+elif pilih == 19:
 	import src.Ebrute
 	exit()
 elif pilih == 0:
 	print("\n[!] Checking update")
 	rr=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
-	if 'v.1.4' in str(rr):
+	if 'v.1.5' in str(rr):
 		update()
 	else: exit("[!] already up to date")
 else:
