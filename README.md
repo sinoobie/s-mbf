@@ -1,6 +1,8 @@
 # s-mbf
 Simple Multi BruteForce by KANG-NEWBIE<br>
 # Update:
+- v.1.4<br>
+Add Dump id with search name
 - v.1.3<br>
 Optimize module number 4,11,and 14
 - v.1.2<br>
