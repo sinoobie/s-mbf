@@ -46,7 +46,7 @@ class cari_id(object):
 			if len(loli) !=0:
 				self.cari(loli[0])
 			else:
-				print("[!] user does exist.")
+				print("[!] user doesn't exist.")
 				
 	def cari(self,url):
 		bs=bs4.BeautifulSoup(self.req.get(url).text,
