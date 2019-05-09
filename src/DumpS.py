@@ -58,7 +58,7 @@ class cari_id(object):
 			else:
 				js=re.findall("/(.*?)$",x["href"])
 				if len(js) !=0:
-					print("\r[!] %s                     "%(p.text))
+					print("\r[!] %s           "%(p.text))
 					open("dump/search_id.txt","a").write("%s\n"%(js[0].replace("profile.php?id=","")))
 					print("\r[%s] Writing .. "%(len(open("dump/search_id.txt").readlines())),end=""),;sys.stdout.flush()
 		for xi in bs.find_all("a",href=True):
@@ -87,6 +87,14 @@ if __name__ == '__main__':
 	     Author : Kang-Newbie
 	  Thanks to Deray (LOoLzeC)
 """)
+		try:
+			cekfile=open('dump/search_id.txt','r').readline()
+			if len(cekfile) != 0:
+				confir=input("[!] file exist not empty\n[?] remove (y/n) ")
+				if confir == 'Y' or confir == 'y':
+					os.remove('dump/search_id.txt')
+					print('[√] Successfully deleted file')
+		except: pass
 		cari_id()
 	except Exception as F:
 		print("Err: %s"%(F))
