@@ -1,6 +1,8 @@
 # s-mbf
 Simple Multi BruteForce by KANG-NEWBIE<br>
 # Update:
+- v.1.5<br>
+Add Check apps and optimize for windows7
 - v.1.4<br>
 Add Dump id with search name
 - v.1.3<br>
@@ -22,14 +24,25 @@ Add mass auto subscribe
 Add Facebook chat spammer
 
 # installation
+<b>installation for windows:</b>
+Download <a href='https://www.python.org'>python3</a><br>
+Download <a href='https://git-scm.com/downloads'>git</a><br>
+Now type this command in your cmd:
 ```
-$ apt update && apt upgrade
-$ pkg install python
-$ pkg install git
-$ git clone https://github.com/KANG-NEWBIE/s-mbf
-$ cd s-mbf
-$ python -m pip install -r req.txt
-$ python embf.py
+git clone https://github.com/KANG-NEWBIE/s-mbf
+cd s-mbf
+python -m pip install -r req.txt
+python embf.py
+```
+<b>installation for termux or linux:</b>
+```
+apt update && apt upgrade
+apt-get install python
+apt-get install git
+git clone https://github.com/KANG-NEWBIE/s-mbf
+cd s-mbf
+python -m pip install -r req.txt
+python embf.py
 ```
 <h1>Note:</h1>
 Check my other repository <a href="https://github.com/KANG-NEWBIE?tab=repositories">here</a>
