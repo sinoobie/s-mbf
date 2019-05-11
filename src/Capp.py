@@ -20,11 +20,12 @@ class App:
 	def cekapp(self):
 		page=self.url.format('settings/apps/tabbed/')
 		bs=BS(self.req.get(page).text,features="html.parser")
-		for x in bs.find_all("a",href=True):
+		for x in bs.find_all("h3"):
 			p=x.find("div")
 			if "None" in str(p):
 				continue
-			else: print(p.text)
+			else:
+				print("-",p.text)
 
 try:
 	print("""
@@ -41,5 +42,5 @@ try:
 		print("\n[!] Check APP on account [ "+str(id)+"|"+str(pas)+" ]")
 		cek=App(id,pas)
 		cek.login()
-except Exception as F:
+except Exceptionss as F:
 	print("Err: %s"%(F))
