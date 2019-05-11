@@ -5,7 +5,6 @@
 try:
 	import requests,json,sys,os,time
 
-	os.system('clear')
 	ct=int(0)
 	cout=int(1)
 	def komen(id,msg,ken):

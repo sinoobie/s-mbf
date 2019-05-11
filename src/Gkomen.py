@@ -18,7 +18,7 @@ try:
 |   < (_) | | | | | |  __/ | | | || (_| | 
 |_|\_\___/|_| |_| |_|\___|_| |_|\__\__,_| 
                                          """)
-	os.system('clear')
+
 	print(banner)
 	print("[info] type '<n>' for newlines")
 	msg=input("[?] comment: ")
@@ -43,7 +43,6 @@ try:
 	
 	print("[!] start.")
 	time.sleep(3)
-	os.system('clear')
 	le=len(id1)
 	co=int(0)
 	while co < le:

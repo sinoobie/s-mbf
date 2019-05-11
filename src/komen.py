@@ -18,7 +18,7 @@ try:
 |   < (_) | | | | | |  __/ | | | || (_| | 
 |_|\_\___/|_| |_| |_|\___|_| |_|\__\__,_| 
                                          """)
-	os.system('clear')
+
 	print(banner)
 	print("[info] type '<n>' for newlines")
 	msg=input("[?] comment: ")
@@ -44,7 +44,7 @@ try:
 		print('\r[get] %s  '%(i['id']),end=''),;sys.stdout.flush();time.sleep(0.01)
 	print("[!] Start.")
 	time.sleep(2)
-	os.system('clear')
+
 	T=ThreadPool(10)
 	T.map(main,id)
 	print("[^•^] done")

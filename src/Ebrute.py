@@ -47,10 +47,9 @@ try:
 			fil3.close()
 		except: print("[-] ["+arg+" (failuer)]")
 
-	os.system('clear')
 	print("""
 	[Simple Multi BruteForce Email]
-	        [By:KANG-NEWBIE]
+		[By:KANG-NEWBIE]
 1. Brute Yahoo
 2. Brute Gmail
 	""")

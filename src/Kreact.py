@@ -3,7 +3,7 @@
 #contact: t.me/kang_nuubi
 try:
 	import requests,os,sys,time,json
-	os.system('clear')
+
 	ct=int(0)
 	cout=int(1)
 	def act(id,react,ken):

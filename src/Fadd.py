@@ -3,7 +3,6 @@
 #Github: https://github.com/kang-newbie
 try:
 	import requests,json,sys,os,time
-	os.system('clear')
 	print("""
 \t[ Auto add friends from friends id ]
 \t        [ by : KANG-NEWBIE ]

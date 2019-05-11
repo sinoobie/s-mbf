@@ -57,7 +57,6 @@ try:
 				print("[UNFRIEND] %s - %s"%(name,id));aun().unfriend(id,toket)
 		except IndexError: pass
 
-	os.system('clear')
 	print("""
 \t[Facebook Auto Unfriend]
 \t   [By : KANG-NEWBIE]

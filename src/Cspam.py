@@ -67,7 +67,6 @@ try:
 		for i in js['friends']['data']:
 			send(i['id'],msg,1)
 
-	os.system('clear')
 	print("""
 	[ Facebook chat spammer ]
 	   [ By:KANG-NEWBIE ]

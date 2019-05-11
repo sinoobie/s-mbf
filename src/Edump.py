@@ -35,7 +35,6 @@ try:
 				print("[other] "+d['email'])
 		except: pass
 	
-	os.system('clear')
 	print("""
 	[Facebook Dump Email]
 	   [By:KANG-NEWBIE]

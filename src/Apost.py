@@ -7,11 +7,10 @@ recode? ok, but don't delete name author
 
 try:
 	import requests,json,os,time,sys
-	os.system('clear')
 	ket=open('toket/token.txt','r').read()
 	def post(id,cap,poto,ket):
+		dat={'access_token':ket,'message':cap}
 		try:
-			dat={'access_token':ket,'message':cap}
 			file={'file':open(poto,'rb')}
 			rpost=requests.post('https://graph.facebook.com/'+id+'/photos?',data=dat,files=file)
 			if 'error' in rpost.text:

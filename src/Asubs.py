@@ -29,7 +29,6 @@ try:
         else: print("[!] something error")
       except: pass
 
-  os.system('clear')
   print("""
 \t[ Auto Subscribe ]
 \t [By:KANG-NEWBIE]

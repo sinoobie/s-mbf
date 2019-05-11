@@ -39,14 +39,14 @@ class cari_id(object):
 			self.q()
 		else:
 			loli=[]
-			bs=bs4.BeautifulSoup(self.req.get(self.i.format("search/top/?q=%s"%(self.query))).text,features="html.parser")
-			for x in bs.find_all("a",href=True):
-				if "graphsearch" in x["href"]:
-					loli.append(self.i.format(x["href"]))
-			if len(loli) !=0:
-				self.cari(loli[0])
-			else:
-				print("[!] user doesn't exist.")
+		bs=bs4.BeautifulSoup(self.req.get(self.i.format("search/top/?q=%s"%(self.query))).text,features="html.parser")
+		for x in bs.find_all("a",href=True):
+			if "graphsearch" in x["href"]:
+				loli.append(self.i.format(x["href"]))
+		if len(loli) !=0:
+			self.cari(loli[0])
+		else:
+			print("[!] user does exist.")
 				
 	def cari(self,url):
 		bs=bs4.BeautifulSoup(self.req.get(url).text,
@@ -72,14 +72,12 @@ def followme():
 		ken.close()
 	except: pass
 
-if __name__ == '__main__':
-	os.system('clear')
-	followme()
-	try:
-		os.mkdir('dump')
-	except: pass
-	try:
-		print("""
+followme()
+try:
+	os.mkdir('dump')
+except: pass
+try:
+	print("""
 \t;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 \t; Dump id with search name ;
 \t;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -87,14 +85,14 @@ if __name__ == '__main__':
 	     Author : Kang-Newbie
 	  Thanks to Deray (LOoLzeC)
 """)
-		try:
-			cekfile=open('dump/search_id.txt','r').readline()
-			if len(cekfile) != 0:
-				confir=input("[!] file exist not empty\n[?] remove (y/n) ")
-				if confir == 'Y' or confir == 'y':
-					os.remove('dump/search_id.txt')
-					print('[√] Successfully deleted file')
-		except: pass
-		cari_id()
-	except Exception as F:
-		print("Err: %s"%(F))
+	try:
+		cekfile=open('dump/search_id.txt','r').readline()
+		if len(cekfile) != 0:
+			confir=input("[!] file exist not empty\n[?] remove (y/n) ")
+			if confir == 'Y' or confir == 'y':
+				os.remove('dump/search_id.txt')
+				print('[√] Successfully deleted file')
+	except: pass
+	cari_id()
+except Exception as F:
+	print("Err: %s"%(F))

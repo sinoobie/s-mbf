@@ -8,7 +8,6 @@ recode? oke, but don't deleted name author
 try:
 	import requests,sys,os,time,json
 
-	os.system('clear')
 	print("""
 \t\t[ Accept All Friends Requests ]
 \t\t      [ By: KANG-NEWBIE ]
