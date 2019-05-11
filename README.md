@@ -24,7 +24,7 @@ Add mass auto subscribe
 Add Facebook chat spammer
 
 # installation
-<b>installation for windows:</b>
+<b>installation for windows:</b><br>
 Download <a href='https://www.python.org'>python3</a><br>
 Download <a href='https://git-scm.com/downloads'>git</a><br>
 Now type this command in your cmd:
