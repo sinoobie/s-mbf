@@ -42,5 +42,5 @@ try:
 		print("\n[!] Check APP on account [ "+str(id)+"|"+str(pas)+" ]")
 		cek=App(id,pas)
 		cek.login()
-except Exceptionss as F:
+except Exception as F:
 	print("Err: %s"%(F))
