@@ -150,12 +150,12 @@ def rmtoken():
 def update():
 	print("[!] updating...")
 	if os.name in ['nt','win32']:
-		os.system('cd ..')
-		shutil.rmtree("s-mbf")
-		os.system('git clone https://github.com/KANG-NEWBIE/s-mbf')
+		os.system('cd .. & rd /s/q s-mbf')
+		os.system('cd .. & git clone https://github.com/KANG-NEWBIE/s-mbf')
+		exit()	
 	else:
 		os.system('cd ..;rm -rf s-mbf')
-		os.system('git clone https://github.com/KANG-NEWBIE/s-mbf')
+		os.system('cd ..;git clone https://github.com/KANG-NEWBIE/s-mbf')
 		exit()
 
 cek=[]
