@@ -3,7 +3,7 @@ Simple Multi BruteForce by KANG-NEWBIE<br>
 # Update:
 - v.1.6<br>
 Optimize Dump id group<br>
-remove Bruteforce Email<br>
+removed Bruteforce Email<br>
 Add Deleted post<br>
 Add Checker accounts
 - v.1.5<br>
