@@ -1,6 +1,7 @@
 import requests,bs4,mechanize,json,re,sys,time,os
 from http.cookiejar import LWPCookieJar as kuki
 from requests import Session as ses
+from getpass import getpass
 
 class cari_id(object):
 	def __init__(self):
@@ -19,21 +20,31 @@ class cari_id(object):
 		except FileNotFoundError:
 			print("[!] cookies not found\n\n[!] please login in your facebook once again")
 			email=input('[?] email/username: ')
-			pw=input('[?] password: ')
+			pw=getpass('[?] password: ')
 			data = {'email':email,'pass':pw}
 			urrl='https://mbasic.facebook.com/login'
 			res = s.post(urrl,data=data).text
 			if 'm_sess' in str(res) or 'save-device' in str(res):
 				s.cookies.save()
+				self.req.cookies=kuki('toket/kue.txt')
+				self.req.cookies.load()
 				self.q()
+				exit()
 			else:
 				exit('[!] fail login into your account')
-		print('[√] cookies found\n')
-		self.q()
-			
-	def q(self):
+		self.cek_kuki()
+		
+	def cek_kuki(self):
 		self.req.cookies=kuki('toket/kue.txt')
 		self.req.cookies.load()
+		cek=self.req.get('https://mbasic.facebook.com/me').text
+		if 'mbasic_logout_button' in cek:
+			print('[√] cookies found\n')
+			self.q()
+		else:
+			print('[!] cookies invalid')
+
+	def q(self):
 		self.query=input("[?] Search: ")
 		if self.query =="":
 			self.q()
