@@ -83,33 +83,36 @@ def getFid():
 
 def getGid():
 	banner()
+	gid=input("\n[in] your groups id: ")
 	try:
 		os.mkdir('dump')
 	except OSError: pass
 	class dumps:
 		def __init__(self):
 			self.req=requests.Session()
-			self.id=input("\n[in] your groups id: ")
-			self.b=open('dump/group_'+self.id+'_id.txt','w')
-			self.dum(f"https://graph.facebook.com/{self.id}/members?fields=id&limit=999999999&access_token={str(toket)}")
+			self.b=open('dump/group_'+gid+'_id.txt','w')
+			self.dum(f"https://graph.facebook.com/{gid}/members?fields=id&limit=999999999&access_token={str(toket)}")
 		
 		def dum(self,idi):
 			self.re=self.req.get(idi).json()
 			for i in self.re['data']:
 				self.b.write(i['id'] + '\n')
-				c=open('dump/group_'+self.id+'_id.txt').readlines()
-				print('\r[%s] %s retrieved	'%(len(c),i['id']),end=''),;sys.stdout.flush();time.sleep(0.000000001)
+				c=open('dump/group_'+gid+'_id.txt').readlines()
+				print('\r[%s] %s retrieved'%(len(c),i['id']),end='')
 
 			try:
 				self.dum(self.re["paging"]["next"])
-			except:
-				print('\n[!] all group id successfuly retreived')
-				print("[!] file saved: dump/group_%s_id.txt"%(self.id))
-				exit()
+			except KeyError: pass
 	try:			
 		dumps()
+		of=open('dump/group_'+gid+'_id.txt','r').readlines()
+		if len(of) > 0:
+			print('\n[!] all group id successfuly retreived')
+			print("[!] file saved: dump/group_%s_id.txt"%(gid))
+		else:
+			print('\n[!] failed retreived groups id')
 	except (KeyboardInterrupt,EOFError):
-		exit("[!] Key interrupt: Stoped.")
+		exit("\n[!] Key interrupt: Stoped.")
 
 def rmtoken():
 	print("""
@@ -245,6 +248,7 @@ if pilih == 2:
 elif pilih == 3:
 	DOS.Dos()
 	getGid()
+	exit()
 elif pilih == 4:
 	DOS.Dos()
 	import src.DumpS
