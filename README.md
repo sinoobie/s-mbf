@@ -1,6 +1,10 @@
 # s-mbf
 Simple Multi BruteForce by KANG-NEWBIE<br>
 # Update:
+- v.1.6<br>
+Optimized Dump id group<br>
+Add Deleted post<br>
+Add Checker accounts
 - v.1.5<br>
 Add Check apps and optimize for windows7
 - v.1.4<br>
@@ -13,15 +17,6 @@ Optimize module number 14
 Optimize module number 1,2,3,5 and 6
 - v.1.0<br>
 Add facebook dump mail and simple multi bruteforce EMAIL
-- v.9.5<br>
-Add mass auto report
-- v.9.0<br>
-Add auto posting status
-- v.8.5<br>
-Optimize<br>
-Add mass auto subscribe
-- v.8.0<br>
-Add Facebook chat spammer
 
 # installation
 <b>installation for windows:</b><br>
