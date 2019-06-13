@@ -1,6 +1,10 @@
 # s-mbf
 Simple Multi BruteForce by KANG-NEWBIE<br>
 # Update:
+- v.1.7<br>
+Optimize Friend requests<br>
+Optimize Delete Friends<br>
+Add Leave all Groups
 - v.1.6<br>
 Optimize Dump id group<br>
 removed Bruteforce Email<br>
