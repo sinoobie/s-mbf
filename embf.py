@@ -24,7 +24,7 @@ def banner():
 	print(cyan('   _____ __  ______  ____',bold=True))
 	print(cyan('  / __(_)  |/  / _ )/ __/ ',bold=True),green('Author : KANG-NEWBIE',bold=True))
 	print(cyan(' _\ \/ / /|_/ / _  / _/	  ',bold=True),green('Contact: t.me/kang_nuubi',bold=True))
-	print(cyan('/___/_/_/  /_/____/_/     ',bold=True),green('version:',bold=True),cyan('1.6',bold=True))
+	print(cyan('/___/_/_/  /_/____/_/     ',bold=True),green('version:',bold=True),cyan('1.7',bold=True))
 
 try:
 	toket=open('toket/token.txt')
@@ -168,8 +168,8 @@ def main(arg):
         try:
                 url='https://mbasic.facebook.com/login'
                 dt={'email':arg,'pass':pas,'login':'submit'}
-                head={'User-Agent':'Opera/9.80 (Windows NT 6.1; WOW64) Presto/2.12.388 Version/12.18'}
-                req=requests.post(url,data=dt,headers=head)
+                #head={'User-Agent':'Opera/9.80 (Windows NT 6.1; WOW64) Presto/2.12.388 Version/12.18'}
+                req=requests.post(url,data=dt) #,headers=head)
                 respData = req.content
                 if 'save-device' in str(respData) or 'm_sess' in str(respData):
                         true='yeah'
@@ -206,7 +206,7 @@ try:
 	nam=requests.get('https://graph.facebook.com/me/?access_token='+toket)
 	name=nam.json()['name']
 
-	upver='v.1.7'
+	upver='v.1.8'
 	requp=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
 	if upver in str(requp):
 		print(yellow('\nNew version available. update your s-mbf now!'))
@@ -222,7 +222,7 @@ try:
 [03]> Dump id from your group
 [04]> Dump id with search name
 [05]> Remove access token/cookies
-[06]> Accept all friends requests
+[06]> Accept/delete all friends requests
 [07]> Add friends from target id
 [08]> React comments target
 [09]> Home comments
@@ -238,6 +238,7 @@ try:
 [19]> Check bind apps
 [20]> Deleted post
 [21]> Checker accounts
+[22]> Leave all groups
 [00]> Check update""")
 except (KeyError,NameError): pass
 
@@ -320,6 +321,10 @@ elif pilih == 20:
 elif pilih == 21:
 	DOS.Dos()
 	import src.Cekun
+	exit()
+elif pilih == 22:
+	DOS.Dos()
+	import src.Lgrup
 	exit()
 elif pilih == 0:
 	print("\n[!] Checking update")
