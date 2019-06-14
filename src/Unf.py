@@ -51,14 +51,17 @@ try:
 				self.ung(id)
 
 		def ung(self,id):
-			cg=self.req.get(self.u.format(id+'/?access_token='+self.ken))
-			jss=json.loads(cg.text)		
-			if self.gen == jss['gender']:
-				unf=self.req.delete(self.u.format('me/friends?uid='+id+'&access_token='+self.ken))
-				if unf.text == 'true':
-					print(f"[+] {id} - UNFRIEND ({jss['name']})")
-				else:
-					print(f"[Failed] {id} - ({jss['name']})")
+			try:
+				cg=self.req.get(self.u.format(id+'/?access_token='+self.ken))
+				jss=json.loads(cg.text)		
+				if self.gen == jss['gender']:
+					unf=self.req.delete(self.u.format('me/friends?uid='+id+'&access_token='+self.ken))
+					if unf.text == 'true':
+						print(f"[+] {id} - UNFRIEND ({jss['name']})")
+					else:
+						print(f"[Failed] {id} - ({jss['name']})")
+			except KeyError:
+				print(f"[Failed] {id} - ({jss['name']})")
 
 	toket=open('toket/token.txt','r').read()
 	def main1():
