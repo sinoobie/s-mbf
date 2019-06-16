@@ -50,7 +50,7 @@ try:
 		get('me')
 		print("[!] start\n")
 
-	p=ThreadPool(50)
+	p=ThreadPool(20)
 	p.map(main,id)
 	print("""
 [FILE SAVED]
