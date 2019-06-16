@@ -39,13 +39,10 @@ class Ubahpw:
 			br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
 			br.addheaders = [('User-Agent','Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.114 Mobile Safari/537.36')]
 			br.open(self.u.format('/login'))
-			print(br.response().read())
-			#br._factory.is_html = True
 			br.select_form(nr=0)
 			br.form['email']=ids.split('|')[0]
 			br.form['pass']=ids.split('|')[1]
 			sub=br.submit().read()
-			print(sub)
 			if 'save-device' in str(sub) or 'm_sess' in str(sub):
 				self.ganti(ids)
 			else:
