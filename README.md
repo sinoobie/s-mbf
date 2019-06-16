@@ -1,6 +1,10 @@
 # s-mbf
 Simple Multi BruteForce by KANG-NEWBIE<br>
 # Update:
+- v.1.8<br>
+Add Auto multi bruteforce<br>
+Add Auto reset password<br>
+Optimize Update module and Dump email module
 - v.1.7<br>
 Optimize Friend requests<br>
 Optimize Delete Friends<br>
