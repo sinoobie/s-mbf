@@ -1,6 +1,8 @@
 # s-mbf
 Simple Multi BruteForce by KANG-NEWBIE<br>
 # Update:
+- v.1.9<br>
+FIX THE FUCKING BUGS!!!
 - v.1.8<br>
 Add Auto multi bruteforce<br>
 Add Auto reset password<br>
