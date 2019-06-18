@@ -1,6 +1,9 @@
 # s-mbf
 Simple Multi BruteForce by KANG-NEWBIE<br>
 # Update:
+- v.2.0<br>
+Add Auto deleted all messages<br>
+Optimize module Abrute,Mreport, and Tkomen (2,18,and 12)
 - v.1.9<br>
 FIX THE FUCKING BUGS!!!
 - v.1.8<br>
