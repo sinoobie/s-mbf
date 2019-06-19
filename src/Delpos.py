@@ -14,7 +14,6 @@ class Delpos:
 		;;;;;;;;;;;;;;;;
 		""")
 		t=time.ctime().split(' ')
-		print(t)
 		self.in_time=input('[info] enter to delete all post\n[?] YEAR: ')
 		if self.in_time == '':
 			self.in_time=t[4]
