@@ -14,9 +14,10 @@ class Delpos:
 		;;;;;;;;;;;;;;;;
 		""")
 		t=time.ctime().split(' ')
+		print(t)
 		self.in_time=input('[info] enter to delete all post\n[?] YEAR: ')
 		if self.in_time == '':
-			self.in_time=t[5]
+			self.in_time=t[4]
 		self.getinf(self.url)
 
 	def getinf(self,inf):

@@ -61,7 +61,7 @@ try:
 					else:
 						print(f"[Failed] {id} - ({jss['name']})")
 			except KeyError:
-				print(f"[Failed] {id} - ({jss['name']})")
+				print(f"[Failed] {id} - (unknow)")
 
 	toket=open('toket/token.txt','r').read()
 	def main1():

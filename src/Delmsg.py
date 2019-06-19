@@ -2,10 +2,11 @@
 #Author: KANG-NEWBIE ©2019
 #Special thanks to LOoLzeC (Deray)
 
-import requests,time,os,click,sys,Genkuki
+import requests,time,os,click,sys
 from bs4 import BeautifulSoup as BS
 from getpass import getpass
 from multiprocessing.pool import ThreadPool
+from src import Genkuki
 
 class Del:
 	def __init__(self):
