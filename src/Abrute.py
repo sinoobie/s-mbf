@@ -5,6 +5,7 @@ class AutoB:
 	def __init__(self):
 		self.fnd=[]
 		self.cek=[]
+		self.tar=[]
 		self.hit=1
 		self.ken=open('toket/token.txt','r').read()
 		self.u='https://graph.facebook.com/{}'
@@ -47,7 +48,7 @@ class AutoB:
 	""")
 		fil=input('[?] List Id Target: ')
 		try:
-			self.file=open(fil,'r').read().splitlines()
+			file=open(fil,'r').read().splitlines()
 		except FileNotFoundError:
 			exit('[!] File not found')
 		tan=input('[?] Do you want enter extra password (y/n): ')
@@ -56,8 +57,10 @@ class AutoB:
 		else:
 			self.spas=''
 		print()
+		for x in file:
+			self.tar.append(x)
 		p=ThreadPool(50)
-		p.map(self.nama,self.file)
+		p.map(self.nama,self.tar)
 		if 'ntaps' in str(self.fnd) or 'yaudah gpp' in str(self.cek):
 			print("\nFound ["+str(len(self.fnd))+"] CheckPoint ["+str(len(self.cek))+"]")
 		else: print("\n[ :( ] nothing found")
