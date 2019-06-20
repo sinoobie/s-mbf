@@ -36,7 +36,7 @@ class AutoB:
 				pen.write(f'{idd}|{x}\n')
 				self.cek.append('yaudah gpp')
 				break
-		print(f'\r[CRACK] >> {self.hit}/{len(self.file)} F[{len(self.fnd)}] CP[{len(self.cek)}] <<',end='');sys.stdout.flush()
+		print(f'\r[CRACK] >> {self.hit}/{len(self.tar)} F[{len(self.fnd)}] CP[{len(self.cek)}] <<',end='');sys.stdout.flush()
 		self.hit+=1
 
 	def main(self):
