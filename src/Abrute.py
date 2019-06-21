@@ -37,9 +37,9 @@ class AutoB:
 					pen=open('result/cek.txt','a')
 					pen.write(f'{idd}|{x}\n')
 					break
-			self.hit+=1
-			print(f'\r[CRACK] >> {self.hit}/{len(self.tar)} F[{self.fnd}] CP[{self.cek}] <<',end='')
 		except: pass
+		self.hit+=1
+		print(f'\r[CRACK] >> {self.hit}/{len(self.tar)} F[{self.fnd}] CP[{self.cek}] <<',end='')
 
 	def main(self):
 		try:
