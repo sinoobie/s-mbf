@@ -38,8 +38,6 @@ class Cekun:
 			c=open('checker/check.txt','a')
 			c.write(f'{id}|{pas}\n')
 			c.close()
-		else:
-			print(f'\033[97m[\033[91minvalid\033[97m] {id} - {pas}')
 			
 Cekun()
 print('\n[info] alive file saved as checker/alive.txt')
