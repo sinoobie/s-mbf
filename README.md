@@ -1,6 +1,11 @@
 # s-mbf
 Simple Multi BruteForce by KANG-NEWBIE<br>
 # Update:
+- v.2.1<br>
+Add Target comments v2 (module no 12)<br>
+Add Auto UNTAG<br>
+Add Download all image from messages<br>
+Bug fixed
 - v.2.0<br>
 Add Auto deleted all messages<br>
 Optimize module Abrute,Mreport, and Tkomen (2,18,and 12)
