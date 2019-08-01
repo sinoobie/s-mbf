@@ -1,6 +1,8 @@
 # s-mbf
 Simple Multi BruteForce by KANG-NEWBIE<br>
 # Update:
+- v.2.2<br>
+Fix mirror bugs
 - v.2.1<br>
 Add Target comments v2 (module no 12)<br>
 Add Auto UNTAG<br>
