@@ -1,7 +1,7 @@
 # s-mbf
 Simple Multi BruteForce by KANG-NEWBIE<br>
 # Update:
--v.2.3<br>
+- v.2.3<br>
 Optimezed simple multi bruteforce
 - v.2.2<br>
 Fix mirror bugs
