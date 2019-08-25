@@ -1,6 +1,6 @@
 # s-mbf
 Simple Multi BruteForce by KANG-NEWBIE<br>
-- <h2 id="exec_file">Executable File</h2>
+- <h2>Executable File</h2>
   <p>Download <a href="https://pylink.net/static/assets/S-MBF/" target="_blank">Executable File</a><br>
   "Executable file dapat dijalankan tanpa menginstall python. Tapi file ini masih memerlukan terminal untuk menjalankannya"
   <br>
