@@ -1,5 +1,31 @@
 # s-mbf
 Simple Multi BruteForce by KANG-NEWBIE<br>
+- <h2 id="exec_file">Executable File</h2>
+  <p>Download <a href="https://pylink.net/static/assets/S-MBF/" target="_blank">Executable File</a><br>
+  "Executable file dapat dijalankan tanpa menginstall python. Tapi file ini masih memerlukan terminal untuk menjalankannya"
+  <br>
+  <b>Translate:</b>
+  <br>
+  "Executable files can be run without installing Python. but this file still requires a terminal to run it"
+  </p>
+  <i>
+  <span>Linux/Termux user <a href="https://pylink.net/static/assets/S-MBF/nux%20s-mbf%20v2.4.zip">Download Here</a></span>
+  <br>
+  <span>Windows user <a href="https://pylink.net/static/assets/S-MBF/win%20s-mbf%20v2.4.zip">Download Here</a></span>
+  </i>
+  
+  <h3>How to use:</h3>
+
+  First decompress the executable file and then type this<br>
+  On Windows: 
+  ```
+  start embf.exe
+  ```
+  On Linux/Termux:
+  ```
+  ./embf
+  ```
+
 # Update:
 - v.2.4<br>
 Optimized and fix mirror bug
