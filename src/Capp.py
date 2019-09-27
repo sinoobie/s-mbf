@@ -12,7 +12,7 @@ class App:
 		link=self.url.format('login')
 		data={'email':self.id,'pass':self.pas}
 		res = self.req.post(link,data=data).text
-		if 'm_sess' in str(res) or 'save-device' in str(res):
+		if 'logout.php' in str(res) or 'mbasic_logout_button' in str(res):
 			self.cekapp()
 		else:
 			print(f'[!!] {self.id}|{self.pas} FAILED LOGIN')

