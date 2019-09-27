@@ -10,6 +10,7 @@ try:
 	import requests,mechanize,json,os,sys,time
 	from requests import Session as ses
 	from http.cookiejar import LWPCookieJar as kuki
+	from prompt_toolkit import prompt
 
 
 	br=mechanize.Browser()
@@ -28,12 +29,12 @@ try:
 		except FileNotFoundError:
 			print("[!] cookies not found\n\n[!] please login in your facebook once again")
 			email=input('[?] email/username: ')
-			pw=input('[?] password: ')
+			pw=prompt('[?] password: ',is_password=True)
 			data = {'email':email,'pass':pw}
 			url='https://mbasic.facebook.com/login'
 
 			res = s.post(url,data=data).text
-			if 'm_sess' in str(res) or 'save-device' in str(res):
+			if 'logout.php' in str(res) or 'mbasic_logout_button' in str(res):
 				s.cookies.save()
 			else:
 				exit('[!] fail login into your account')

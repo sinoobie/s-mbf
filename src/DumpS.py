@@ -1,50 +1,16 @@
 import requests,bs4,mechanize,json,re,sys,time,os
 from http.cookiejar import LWPCookieJar as kuki
 from requests import Session as ses
-from getpass import getpass
+from src import Genkuki
 
 class cari_id(object):
 	def __init__(self):
 		self.req=requests.Session()
 		self.i="https://mbasic.facebook.com/{}"
-		self.login()
-		
-	def login(self):
-		print("\n[!] checking cookies")
-		time.sleep(1)
-		s = self.req
-		s.cookies = kuki('toket/kue.txt')
-		try:
-			fil=open('toket/kue.txt')
-			fil.close()
-		except FileNotFoundError:
-			print("[!] cookies not found\n\n[!] please login in your facebook once again")
-			email=input('[?] email/username: ')
-			pw=getpass('[?] password: ')
-			data = {'email':email,'pass':pw}
-			urrl='https://mbasic.facebook.com/login'
-			res = s.post(urrl,data=data).text
-			if 'm_sess' in str(res) or 'save-device' in str(res):
-				s.cookies.save()
-				self.req.cookies=kuki('toket/kue.txt')
-				self.req.cookies.load()
-				self.q()
-				exit()
-			else:
-				exit('[!] fail login into your account')
-		self.cek_kuki()
-		
-	def cek_kuki(self):
-		self.req.cookies=kuki('toket/kue.txt')
-		self.req.cookies.load()
-		cek=self.req.get('https://mbasic.facebook.com/me').text
-		if 'mbasic_logout_button' in cek:
-			print('[√] cookies found\n')
-			self.q()
-		else:
-			print('[!] cookies invalid')
+		self.q()
 
 	def q(self):
+		Genkuki.login(self)
 		self.query=input("[?] Search: ")
 		if self.query =="":
 			self.q()

