@@ -1,7 +1,8 @@
 # s-mbf
 Simple Multi BruteForce by KANG-NEWBIE<br>
+<strike>
 - <h2>Executable File</h2>
-  <p>Download <a href="https://pylink.net/static/assets/S-MBF/" target="_blank">Executable File</a><br>
+  <p>Download <a href="#" target="_blank">Executable File</a><br>
   "Executable file dapat dijalankan tanpa menginstall python. Tapi file ini masih memerlukan terminal untuk menjalankannya"
   <br>
   <b>Translate:</b>
@@ -9,9 +10,9 @@ Simple Multi BruteForce by KANG-NEWBIE<br>
   "Executable files can be run without installing Python. but this file still requires a terminal to run it"
   </p>
   <i>
-  <span>Linux/Termux user <a href="https://pylink.net/static/assets/S-MBF/nux%20s-mbf%20v2.4.zip">Download Here</a></span>
+  <span>Linux/Termux user <a href="#">Download Here</a></span>
   <br>
-  <span>Windows user <a href="https://pylink.net/static/assets/S-MBF/win%20s-mbf%20v2.4.zip">Download Here</a></span>
+  <span>Windows user <a href="#">Download Here</a></span>
   </i>
   
   <h3>How to use:</h3>
@@ -25,8 +26,11 @@ Simple Multi BruteForce by KANG-NEWBIE<br>
   ```
   ./embf
   ```
+</strike>
 
 # Update:
+- v.2.5<br>
+Fix bugs login cookies
 - v.2.4<br>
 Optimized and fix mirror bug
 - v.2.3<br>
