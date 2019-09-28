@@ -29,6 +29,8 @@ Simple Multi BruteForce by KANG-NEWBIE<br>
 </strike>
 
 # Update:
+- v.2.6<br>
+Fix bugs (again-_-)
 - v.2.5<br>
 Fix bugs login cookies
 - v.2.4<br>
