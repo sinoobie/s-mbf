@@ -24,7 +24,7 @@ def banner():
 	print(cyan('   _____ __  ______  ____',bold=True))
 	print(cyan('  / __(_)  |/  / _ )/ __/ ',bold=True),green('Author : KANG-NEWBIE',bold=True))
 	print(cyan(' _\ \/ / /|_/ / _  / _/	  ',bold=True),green('Contact: t.me/kang_nuubi',bold=True))
-	print(cyan('/___/_/_/  /_/____/_/     ',bold=True),green('version:',bold=True),cyan('2.5',bold=True))
+	print(cyan('/___/_/_/  /_/____/_/     ',bold=True),green('version:',bold=True),cyan('2.7',bold=True))
 
 try:
 	toket=open('toket/token.txt')
@@ -92,7 +92,7 @@ def getGid():
 		def __init__(self):
 			self.req=requests.Session()
 			self.b=open('dump/group_'+gid+'_id.txt','w')
-			self.dum(f"https://graph.facebook.com/{gid}/members?fields=id&limit=999999999&access_token={str(toket)}")
+			self.dum(f"https://graph.facebook.com/{gid}/members?fields=id&access_token={str(toket)}")
 		
 		def dum(self,idi):
 			self.re=self.req.get(idi).json()
@@ -212,7 +212,7 @@ try:
 	nam=requests.get('https://graph.facebook.com/me/?access_token='+toket)
 	name=nam.json()['name']
 
-	upver='v.2.6'
+	upver='v.2.7'
 	requp=requests.get('https://raw.githubusercontent.com/KANG-NEWBIE/s-mbf/master/README.md').text
 	if upver in str(requp):
 		print(yellow('\nNew version available. update your s-mbf now!'))
